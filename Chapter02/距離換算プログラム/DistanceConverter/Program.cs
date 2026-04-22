@@ -1,69 +1,53 @@
 ﻿
 
-namespace DistanceConverter
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
+namespace DistanceConverter {
+    internal class Program {
+        static void Main(string[] args) {
             int start = int.Parse(args[1]);
             int stop = int.Parse(args[2]);
 
-            if (args.Length >= 1 && args[0] == "-tom")
-            {
+            if (args.Length >= 1 && args[0] == "-tom") {
                 PrintFeetToMeterList(start, stop);   //メートルへの変換
-            }
-            else if (args.Length >= 1 && args[0] == "-tof")
-            {
+            } else if (args.Length >= 1 && args[0] == "-tof") {
                 PrintMeterToFeetList(start, stop);   //フィートへの変換
-            }
-            else
-            {
+            } else {
                 Console.WriteLine("引数エラー");
             }
         }
 
-        private static void PrintFeetToMeterList(int start, int stop)
-        {
-            //フィートからメートルへの対応表を出力
-
+        //フィートからメートルへの対応表を出力
+        private static void PrintFeetToMeterList(int start, int stop) {
             Console.WriteLine("(" + start + "フィートから" + stop + "フィートまでの"
                 + "メートルへの変換表を表示" + ")");
 
             Console.WriteLine();
 
-            for (int feet = start; feet <= stop; feet++)
-            {
+            for (int feet = start; feet <= stop; feet++) {
                 double meter = FeetToMeter(feet);
                 Console.WriteLine($"{feet}ft = {meter:0.0000}m");
             }
         }
 
-        private static void PrintMeterToFeetList(int start, int stop)
-        {
-            //メートルからフィートへの対応表を出力
-
+        //メートルからフィートへの対応表を出力
+        private static void PrintMeterToFeetList(int start, int stop) {
             Console.WriteLine("(" + start + "メートルから" + stop + "メートルまでの"
                 + "フィートへの変換表を表示" + ")");
 
             Console.WriteLine();
 
-            for (int meter = start; meter <= stop; meter++)
-            {
+            for (int meter = start; meter <= stop; meter++) {
                 double feet = MeterToFeet(meter);
                 Console.WriteLine($"{meter}m = {feet:0.0000}ft");
             }
         }
 
         //フィートからメートルを求める
-        static double FeetToMeter(int feet)
-        {
+        static double FeetToMeter(int feet) {
             return feet * 0.3048;
         }
 
         //メートルからフィートを求める
-        static double MeterToFeet(int meter)
-        {
+        static double MeterToFeet(int meter) {
             return meter / 0.3048;
         }
     }
