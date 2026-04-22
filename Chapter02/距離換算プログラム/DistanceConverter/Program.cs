@@ -1,10 +1,21 @@
 ﻿
 
+using System.Runtime;
+
 namespace DistanceConverter {
     internal class Program {
         static void Main(string[] args) {
-            int start = int.Parse(args[1]);
-            int stop = int.Parse(args[2]);
+            if (args.Length != 3) {
+                Console.WriteLine("引数エラー");
+            }
+
+            if (!(int.TryParse(args[1], out var start))) {
+                Console.WriteLine("引数エラー");
+            }
+
+            if (!(int.TryParse(args[2], out var stop))) {
+                Console.WriteLine("引数エラー");
+            }
 
             if (args.Length >= 1 && args[0] == "-tom") {
                 PrintFeetToMeterList(start, stop);   //メートルへの変換
