@@ -5,22 +5,17 @@ using System.Runtime;
 namespace DistanceConverter {
     internal class Program {
         static void Main(string[] args) {
-            if (args.Length != 3) {
-                Console.WriteLine("引数エラー");
-            }
+            if (args.Length == 3
+                && int.TryParse(args[1], out var start)
+                    && int.TryParse(args[2], out var stop)) {
 
-            if (!(int.TryParse(args[1], out var start))) {
-                Console.WriteLine("引数エラー");
-            }
-
-            if (!(int.TryParse(args[2], out var stop))) {
-                Console.WriteLine("引数エラー");
-            }
-
-            if (args.Length >= 1 && args[0] == "-tom") {
-                PrintFeetToMeterList(start, stop);   //メートルへの変換
-            } else if (args.Length >= 1 && args[0] == "-tof") {
-                PrintMeterToFeetList(start, stop);   //フィートへの変換
+                if (args[0] == "-tom") {
+                    PrintFeetToMeterList(start, stop);   //メートルへの変換
+                } else if (args[0] == "-tof") {
+                    PrintMeterToFeetList(start, stop);   //フィートへの変換
+                } else {
+                    Console.WriteLine("引数形式エラー");
+                }
             } else {
                 Console.WriteLine("引数エラー");
             }
@@ -30,7 +25,6 @@ namespace DistanceConverter {
         private static void PrintFeetToMeterList(int start, int stop) {
             Console.WriteLine("(" + start + "フィートから" + stop + "フィートまでの"
                 + "メートルへの変換表を表示" + ")");
-
             Console.WriteLine();
 
             for (int feet = start; feet <= stop; feet++) {
@@ -43,7 +37,6 @@ namespace DistanceConverter {
         private static void PrintMeterToFeetList(int start, int stop) {
             Console.WriteLine("(" + start + "メートルから" + stop + "メートルまでの"
                 + "フィートへの変換表を表示" + ")");
-
             Console.WriteLine();
 
             for (int meter = start; meter <= stop; meter++) {
