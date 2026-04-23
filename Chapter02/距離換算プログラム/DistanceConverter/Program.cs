@@ -25,9 +25,7 @@ namespace DistanceConverter {
 
         //フィートからメートルへの対応表を出力
         private static void PrintFeetToMeterList(int start, int stop) {
-            Console.WriteLine("(" + start + "フィートから" + stop + "フィートまでの"
-                + "メートルへの変換表を表示" + ")");
-
+            PrintMessage(start, stop, "フィート", "メートル");
             Console.WriteLine();
 
             for (int feet = start; feet <= stop; feet++) {
@@ -38,15 +36,18 @@ namespace DistanceConverter {
 
         //メートルからフィートへの対応表を出力
         private static void PrintMeterToFeetList(int start, int stop) {
-            Console.WriteLine("(" + start + "メートルから" + stop + "メートルまでの"
-                + "フィートへの変換表を表示" + ")");
-
+            PrintMessage(start, stop, "メートル", "フィート");
             Console.WriteLine();
 
             for (int meter = start; meter <= stop; meter++) {
                 double feet = FeetConverter.FromMeter(meter);
                 Console.WriteLine($"{meter}m = {feet:0.0000}ft");
             }
+        }
+
+        private static void PrintMessage(int start, int stop, String from, String to) {
+            Console.WriteLine("(" + start + from + "から" + stop + from + "までの"
+                + to + "への変換表を表示" + ")");
         }
     }
 }
