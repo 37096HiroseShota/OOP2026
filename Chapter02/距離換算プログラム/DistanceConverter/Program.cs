@@ -1,6 +1,8 @@
 ﻿
-
+using System;
+using System.Diagnostics.Metrics;
 using System.Runtime;
+using System.Threading;
 
 namespace DistanceConverter {
     internal class Program {
@@ -25,10 +27,13 @@ namespace DistanceConverter {
         private static void PrintFeetToMeterList(int start, int stop) {
             Console.WriteLine("(" + start + "フィートから" + stop + "フィートまでの"
                 + "メートルへの変換表を表示" + ")");
+            
             Console.WriteLine();
 
+            FeetConverter converter = new FeetConverter();
+
             for (int feet = start; feet <= stop; feet++) {
-                double meter = FeetToMeter(feet);
+                double meter = converter.ToMeter(feet);
                 Console.WriteLine($"{feet}ft = {meter:0.0000}m");
             }
         }
@@ -37,22 +42,15 @@ namespace DistanceConverter {
         private static void PrintMeterToFeetList(int start, int stop) {
             Console.WriteLine("(" + start + "メートルから" + stop + "メートルまでの"
                 + "フィートへの変換表を表示" + ")");
+            
             Console.WriteLine();
 
+            FeetConverter converter = new FeetConverter();
+
             for (int meter = start; meter <= stop; meter++) {
-                double feet = MeterToFeet(meter);
+                double feet = converter.FromMeter(meter);
                 Console.WriteLine($"{meter}m = {feet:0.0000}ft");
             }
-        }
-
-        //フィートからメートルを求める
-        static double FeetToMeter(int feet) {
-            return feet * 0.3048;
-        }
-
-        //メートルからフィートを求める
-        static double MeterToFeet(int meter) {
-            return meter / 0.3048;
         }
     }
 }
