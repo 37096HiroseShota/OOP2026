@@ -2,7 +2,6 @@
 namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
-            //2.1.3
             var songs = new List<Song>();
 
             Console.WriteLine("***** 曲の登録 *****");
@@ -31,7 +30,7 @@ namespace Exercise01 {
         //Alt + Enterを押して、メソッドを生成するを選択すると、
         //以下のメソッドが自動的に生成される
         //2.1.4
-        private static void PrintSongs(List<Song> songs) {
+        private static void PrintSongs(IEnumerable<Song> songs) {
             foreach (var song in songs) {
                 Console.WriteLine($"{song.Title},{song.ArtistName},{song.Lenght / 60}:{(song.Lenght % 60):00}");
             }
