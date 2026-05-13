@@ -22,7 +22,7 @@ namespace Exercise02 {
 
         //インチからメートルへの対応表を出力
         private static void PrintInchToMeterList(int start, int stop) {
-            PrintMessage(start, stop, "メートル", "フィート");
+            PrintMessage(start, stop, "インチ", "メートル");
             Console.WriteLine();
 
             for (int Inch = start; Inch <= stop; Inch++) {
@@ -33,7 +33,7 @@ namespace Exercise02 {
 
         //メートルからフィートへの対応表を出力
         private static void PrintMeterToInchList(int start, int stop) {
-            PrintMessage(start, stop, "メートル", "フィート");
+            PrintMessage(start, stop, "メートル", "インチ");
             Console.WriteLine();
 
             for (int meter = start; meter <= stop; meter++) {
