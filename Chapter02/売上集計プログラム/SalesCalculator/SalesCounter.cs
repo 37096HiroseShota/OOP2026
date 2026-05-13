@@ -44,5 +44,21 @@ namespace SalesCalculator {
             }
                 return dict;
         }
+
+        //商品カテゴリ別売り上げを求める
+        public IDictionary<string, int> GetPerProductCategorySales() {
+            var dict = new SortedDictionary<string, int>();
+
+            foreach (var sale in _sales) {
+                //既に商品カテゴリ名が辞書のキーに登録されているか？
+                if (dict.ContainsKey(sale.ShopName))
+                    //登録されている場合
+                    dict[sale.ProductCategory] += sale.Amount;   //売り上げを足しこみ
+                else
+                    //未登録の場合
+                    dict[sale.ProductCategory] = sale.Amount;   //新規に売り上げを登録
+            }
+            return dict;
+        }
     }
 }
