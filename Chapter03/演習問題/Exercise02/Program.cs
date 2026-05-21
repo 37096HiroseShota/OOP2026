@@ -38,8 +38,11 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_3(List<string> cities) {
-	        //できたらGitのコメント「問題3.2.3完成」
-	        
+            //できたらGitのコメント「問題3.2.3完成」
+            var query =  cities.Where(c => c.Contains('o')).ToArray();
+            foreach (var item in query) {
+                Console.WriteLine(item);
+            }
         }
 
         private static void Exercise2_4(List<string> cities) {
