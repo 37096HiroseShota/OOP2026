@@ -4,6 +4,7 @@ namespace Exercise01 {
         static void Main(string[] args) {
             var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 31, 17, 48 };
 
+            #region 各演習の呼び出し（ドライバ）
             // 3.1.1
             Exercise1(numbers);
             Console.WriteLine("-----");
@@ -18,11 +19,12 @@ namespace Exercise01 {
 
             // 3.1.4
             Exercise4(numbers);
+            #endregion　
         }
 
         private static void Exercise1(List<int> numbers) {
             //できたらGitのコメント「問題3.1.1完成」
-            var exists = numbers.Exists(s => s % 8 == 0 || s % 9 == 0);
+            var exists = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
             if (exists) {
                 Console.WriteLine("存在しています");
                 return;
@@ -32,23 +34,17 @@ namespace Exercise01 {
 
         private static void Exercise2(List<int> numbers) {
             //できたらGitのコメント「問題3.1.2完成」
-            numbers.ForEach(s => Console.WriteLine(s / 2.0));
+            numbers.ForEach(n => Console.WriteLine(n / 2.0));
         }
 
         private static void Exercise3(List<int> numbers) {
             //できたらGitのコメント「問題3.1.3完成」
-            var query = numbers.Where(s => 50 <= s).ToArray();
-            for (int i = 0; query.Length > i; i++) {
-                Console.WriteLine(query[i]);
-            }
+            numbers.Where(n => n > 50).ToList().ForEach(n => Console.WriteLine(n));
         }
 
         private static void Exercise4(List<int> numbers) {
             //できたらGitのコメント「問題3.1.4完成」
-            IEnumerable<int> query = numbers.Select(s => s * 2).ToList();
-            foreach (var item in query) {
-                Console.WriteLine(item);
-            }
+            numbers.Select(n => n * 2).ToList().ForEach(n => Console.WriteLine(n));
         }
     }
 }
