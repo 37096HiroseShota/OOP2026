@@ -26,9 +26,15 @@ namespace Exercise02 {
 
         private static void Exercise2_1(List<string> cities) {
             //できたらGitのコメント「問題3.2.1完成」
-            var name = Console.ReadLine();
-            var index = cities.FindIndex(c => c.Equals(name));
-            Console.WriteLine(index);
+            while (true) {
+                Console.WriteLine("都市名を入力。空行で終了");
+                var name = Console.ReadLine();
+                if (String.IsNullOrEmpty(name)) {
+                    break;
+                }
+                var index = cities.FindIndex(c => c.Equals(name));
+                Console.WriteLine(index);
+            }
         }
 
         private static void Exercise2_2(List<string> cities) {
