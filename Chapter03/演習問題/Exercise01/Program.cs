@@ -32,9 +32,7 @@ namespace Exercise01 {
 
         private static void Exercise2(List<int> numbers) {
             //できたらGitのコメント「問題3.1.2完成」
-            foreach (var item in numbers) {
-                Console.WriteLine(item / 2.0);
-            }
+            numbers.ForEach(s => Console.WriteLine(s / 2.0));
         }
 
         private static void Exercise3(List<int> numbers) {
@@ -47,6 +45,10 @@ namespace Exercise01 {
 
         private static void Exercise4(List<int> numbers) {
             //できたらGitのコメント「問題3.1.4完成」
+            IEnumerable<int> query = numbers.Select(s => s * 2).ToList();
+            foreach (var item in query) {
+                Console.WriteLine(item);
+            }
         }
     }
 }
