@@ -46,8 +46,9 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<string> cities) {
-	        //できたらGitのコメント「問題3.2.4完成」
-	        
+            //できたらGitのコメント「問題3.2.4完成」
+            var query = cities.Where(c => c.StartsWith('B')).Select(c => c.Length);
+            Console.WriteLine(query);
         }
     }
 }
