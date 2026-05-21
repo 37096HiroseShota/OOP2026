@@ -23,7 +23,11 @@ namespace Exercise01 {
         private static void Exercise1(List<int> numbers) {
             //できたらGitのコメント「問題3.1.1完成」
             var exists = numbers.Exists(s => s % 8 == 0 || s % 9 == 0);
-            Console.WriteLine(exists);
+            if (exists) {
+                Console.WriteLine("存在しています");
+                return;
+            }
+            Console.WriteLine("存在していません");
         }
 
         private static void Exercise2(List<int> numbers) {
@@ -35,6 +39,10 @@ namespace Exercise01 {
 
         private static void Exercise3(List<int> numbers) {
             //できたらGitのコメント「問題3.1.3完成」
+            var query = numbers.Where(s => 50 <= s).ToArray();
+            for (int i = 0; query.Length > i; i++) {
+                Console.WriteLine(query[i]);
+            }
         }
 
         private static void Exercise4(List<int> numbers) {
