@@ -45,17 +45,18 @@ namespace Exercise02 {
 
         private static void Exercise2_3(List<string> cities) {
             //できたらGitのコメント「問題3.2.3完成」
-            var query =  cities.Where(c => c.Contains('o')).ToArray();
-            foreach (var item in query) {
-                Console.WriteLine(item);
+            var selected =  cities.Where(c => c.Contains('o')).ToArray();
+            foreach (var name in selected) {
+                Console.WriteLine(name);
             }
         }
 
         private static void Exercise2_4(List<string> cities) {
             //できたらGitのコメント「問題3.2.4完成」
-            var query = cities.Where(c => c.StartsWith('B')).Select(c => c.Length);
-            foreach (var item in query) {
-                Console.WriteLine(item);
+            var obj = cities.Where(c => c.StartsWith('B'))
+                                .Select(c => new { c, c.Length });
+            foreach (var data in obj) {
+                Console.WriteLine(data.c + ":" + data.Length + "文字");
             }
         }
     }
