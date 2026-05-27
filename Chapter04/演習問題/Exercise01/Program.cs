@@ -46,6 +46,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(List<string> langs) {
+            langs.Where(s => s.Contains('S')).ToList().ForEach(s => Console.WriteLine(s));
         }
 
         private static void Exercise3(List<string> langs) {
