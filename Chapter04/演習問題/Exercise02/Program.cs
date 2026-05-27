@@ -14,6 +14,7 @@ namespace Exercise02 {
 
         private static void Exercise1() {
             //if-else文を使用
+            Console.Write("数値を入力してください" + ":");
             string? inputNumber = Console.ReadLine();
             int.TryParse(inputNumber, out var number);
 
@@ -30,6 +31,7 @@ namespace Exercise02 {
 
         private static void Exercise2() {
             //switch文を使用
+            Console.Write("数値を入力してください" + ":");
             string? inputNumber = Console.ReadLine();
             int.TryParse(inputNumber, out var number);
 
@@ -48,6 +50,7 @@ namespace Exercise02 {
 
         private static void Exercise3() {
             //switch式を使用
+            Console.Write("数値を入力してください" + ":");
             string? inputNumber = Console.ReadLine();
             int.TryParse(inputNumber, out var number);
 

@@ -17,29 +17,25 @@ namespace Exercise01 {
         }
 
         private static void Exercise1(List<string> langs) {
-            foreach (var item in langs) {
-                if (item.Contains('S')) {
-                    Console.WriteLine(item);
+            Console.WriteLine("\nforeach文で出力");
+            foreach (var lang in langs) {
+                if (lang.Contains('S')) {
+                    Console.WriteLine(lang);
                 }
             }
 
-            Console.WriteLine();
-
+            Console.WriteLine("\nfor文で出力");
             for (int i = 0; i < langs.Count; i++) {
                 if (langs[i].Contains('S')) {
                     Console.WriteLine(langs[i]);
                 }
             }
 
-            Console.WriteLine();
-
+            Console.WriteLine("\nwhile文で出力");
             int count = 0;
-            while (true) {
+            while (count < langs.Count) {
                 if (langs[count].Contains('S')) {
                     Console.WriteLine(langs[count]);
-                }
-                if (count >= (langs.Count - 1)) {
-                    break;
                 }
                 count++;
             }
