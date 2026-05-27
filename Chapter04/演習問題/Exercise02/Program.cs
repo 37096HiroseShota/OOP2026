@@ -16,7 +16,9 @@ namespace Exercise02 {
             //if-else文を使用
             Console.Write("数値を入力してください" + ":");
             string? inputNumber = Console.ReadLine();
-            int.TryParse(inputNumber, out var number);
+            if(!int.TryParse(inputNumber, out var number)) {
+                Console.WriteLine("入力値に誤りがあります");
+            }
 
             if (number < 0) {
                 Console.WriteLine(number);
@@ -33,7 +35,9 @@ namespace Exercise02 {
             //switch文を使用
             Console.Write("数値を入力してください" + ":");
             string? inputNumber = Console.ReadLine();
-            int.TryParse(inputNumber, out var number);
+            if(!int.TryParse(inputNumber, out var number)) {
+                Console.WriteLine("入力値に誤りがあります");
+            }
 
             switch (number) {
                 case < 0:
@@ -52,7 +56,9 @@ namespace Exercise02 {
             //switch式を使用
             Console.Write("数値を入力してください" + ":");
             string? inputNumber = Console.ReadLine();
-            int.TryParse(inputNumber, out var number);
+            if (!int.TryParse(inputNumber, out var number)) {
+                Console.WriteLine("入力値に誤りがあります");
+            }
 
             var text = number switch {
                 < 0 => number,
