@@ -18,6 +18,7 @@ namespace Exercise02 {
             string? inputNumber = Console.ReadLine();
             if(!int.TryParse(inputNumber, out var number)) {
                 Console.WriteLine("入力値に誤りがあります");
+                return;
             }
 
             if (number < 0) {
@@ -37,6 +38,7 @@ namespace Exercise02 {
             string? inputNumber = Console.ReadLine();
             if(!int.TryParse(inputNumber, out var number)) {
                 Console.WriteLine("入力値に誤りがあります");
+                return;
             }
 
             switch (number) {
@@ -58,6 +60,7 @@ namespace Exercise02 {
             string? inputNumber = Console.ReadLine();
             if (!int.TryParse(inputNumber, out var number)) {
                 Console.WriteLine("入力値に誤りがあります");
+                return;
             }
 
             var text = number switch {
