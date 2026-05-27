@@ -49,6 +49,5 @@ namespace Exercise01 {
             var lang = langs.Find(s => s.Length >= 10);
             Console.WriteLine(lang ??= "unknown");
         }
-
     }
 }
