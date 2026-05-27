@@ -30,13 +30,35 @@ namespace Exercise02 {
 
         private static void Exercise2() {
             //switch文を使用
+            string? inputNumber = Console.ReadLine();
+            int.TryParse(inputNumber, out var number);
 
+            switch (number) {
+                case < 0:
+                    Console.WriteLine(number);
+                    break;
+                case < 100:
+                    Console.WriteLine(number * 2);
+                    break;
+                case < 500:
+                    Console.WriteLine(number * 3);
+                    break;
+            }
         }
 
         private static void Exercise3() {
             //switch式を使用
+            string? inputNumber = Console.ReadLine();
+            int.TryParse(inputNumber, out var number);
 
+            var text = number switch {
+                < 0 => number,
+                < 100 => number * 2,
+                < 500 => number * 3,
+                _ => number,
+            };
 
+            Console.WriteLine(text);
         }
     }
 }

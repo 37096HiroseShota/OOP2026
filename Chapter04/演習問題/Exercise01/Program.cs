@@ -54,6 +54,7 @@ namespace Exercise01 {
             if (lang is null) {
                 lang = "unknown";
             }
+            Console.WriteLine(lang);
         }
 
     }
