@@ -51,6 +51,10 @@ namespace Exercise02 {
                 case < 500:
                     Console.WriteLine(number * 3);
                     break;
+
+                default:
+                    Console.WriteLine(number);
+                        break;
             }
         }
 
@@ -69,7 +73,7 @@ namespace Exercise02 {
                 < 500 => number * 3,
                 _ => number,
             };
-
+            
             Console.WriteLine(text);
         }
     }
