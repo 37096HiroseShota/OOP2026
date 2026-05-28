@@ -15,8 +15,8 @@ namespace Exercise02 {
         private static void Exercise1() {
             //if-else文を使用
             Console.Write("数値を入力してください" + ":");
-            string? inputNumber = Console.ReadLine();
-            if(!int.TryParse(inputNumber, out var number)) {
+            string? line = Console.ReadLine();
+            if(!int.TryParse(line, out var number)) {
                 Console.WriteLine("入力値に誤りがあります");
                 return;
             }
@@ -35,8 +35,8 @@ namespace Exercise02 {
         private static void Exercise2() {
             //switch文を使用
             Console.Write("数値を入力してください" + ":");
-            string? inputNumber = Console.ReadLine();
-            if(!int.TryParse(inputNumber, out var number)) {
+            string? line = Console.ReadLine();
+            if(!int.TryParse(line, out var number)) {
                 Console.WriteLine("入力値に誤りがあります");
                 return;
             }
@@ -61,20 +61,20 @@ namespace Exercise02 {
         private static void Exercise3() {
             //switch式を使用
             Console.Write("数値を入力してください" + ":");
-            string? inputNumber = Console.ReadLine();
-            if (!int.TryParse(inputNumber, out var number)) {
+            string? line = Console.ReadLine();
+            if (!int.TryParse(line, out var number)) {
                 Console.WriteLine("入力値に誤りがあります");
                 return;
             }
 
-            var text = number switch {
+            var outNumber = number switch {
                 < 0 => number,
                 < 100 => number * 2,
                 < 500 => number * 3,
                 _ => number,
             };
             
-            Console.WriteLine(text);
+            Console.WriteLine(outNumber);
         }
     }
 }
