@@ -14,12 +14,11 @@ namespace Exercise01 {
         //5.1.2
         //設定されている西暦が21世紀か判定する
         //Yearが2001～2100年の間ならtrue、それ以外ならfalseを返す
-        //以下はメソッドの例(return true/false　は使用しないで記述するP91参照)
-        public bool IS21Century => Year > 2000 && Year < 2101;
+        public bool IS21Century => 2001 <= Year && Year <= 2100;
 
         //5.1.3
         public int AddOneMonth() {
-            var yearmonth = new YearMonth(this.Year, this.Month + 1);
+            var yearmonth = new YearMonth(Year, Month + 1);
             if (yearmonth.Month < 13) {
                 return yearmonth.Month;
             }
