@@ -24,15 +24,15 @@ namespace Exercise02 {
         }
 
         private static void Exercise2(YearMonth[] ymCollection) {
-            foreach(var item in ymCollection) {
-                Console.WriteLine(ymCollection);
+            foreach(var obj in ymCollection) {
+                Console.WriteLine(obj);
             }
         }
 
         private static void Exercise4(YearMonth[] ymCollection) {
-            var is21Century = Search21Century(ymCollection);
-            if (Search21Century(ymCollection) is not null) {
-                Console.WriteLine(is21Century);
+            var obj = Search21Century(ymCollection);
+            if (obj is not null) {
+                Console.WriteLine(obj);
                 return;
             }
             Console.WriteLine("21世紀のデータはありません");

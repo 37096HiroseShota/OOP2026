@@ -21,7 +21,7 @@ namespace Exercise01 {
             if (Month == 12) {
                 return new YearMonth(Year + 1, 1);
             }
-            return new(Year, Month + 1);
+            return new (Year, Month + 1);
         }
 
         //5.1.4
