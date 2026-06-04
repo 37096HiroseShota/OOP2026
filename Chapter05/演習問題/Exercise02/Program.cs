@@ -24,13 +24,13 @@ namespace Exercise02 {
         }
 
         private static void Exercise2(YearMonth[] ymCollection) {
-            foreach(var obj in ymCollection) {
+            foreach (var obj in ymCollection) {
                 Console.WriteLine(obj);
             }
         }
 
         private static void Exercise4(YearMonth[] ymCollection) {
-            var obj = Search21Century(ymCollection);
+            var obj = FindFirst21C(ymCollection);
             if (obj is not null) {
                 Console.WriteLine(obj.Month);
                 return;
@@ -40,9 +40,13 @@ namespace Exercise02 {
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
+            var query = ymCollection.Select(s => s.AddOneMonth()).ToArray();
+            foreach(var obj in query) {
+                Console.WriteLine(obj);
+            }
         }
 
-        public static YearMonth Search21Century(YearMonth[] ymCollection) {
+        public static YearMonth FindFirst21C(YearMonth[] ymCollection) {
             foreach (var obj in ymCollection) {
                 if (obj.IS21Century) {
                     return obj;
