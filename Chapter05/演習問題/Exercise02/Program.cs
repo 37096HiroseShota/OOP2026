@@ -43,9 +43,9 @@ namespace Exercise02 {
         }
 
         public static YearMonth Search21Century(YearMonth[] ymCollection) {
-            foreach (var item in ymCollection) {
-                if (item.IS21Century) {
-                    return item;
+            foreach (var obj in ymCollection) {
+                if (obj.IS21Century) {
+                    return obj;
                 }
             }
             return null;
