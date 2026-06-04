@@ -41,7 +41,7 @@ namespace Exercise02 {
 
         private static void Exercise5(YearMonth[] ymCollection) {
             var query = ymCollection.Select(s => s.AddOneMonth()).ToArray();
-            foreach(var obj in query) {
+            foreach (var obj in query) {
                 Console.WriteLine(obj);
             }
         }
