@@ -36,10 +36,10 @@ namespace Exercise02 {
                 return;
             }
             Console.WriteLine("21世紀のデータはありません");
-            return;
 
 
-            //return FindFirst21C(ymCollection)?.Month ?? DefaultMessage();
+
+            Console.WriteLine(FindFirst21C(ymCollection)?.ToString() ?? DefaultMessage());
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
