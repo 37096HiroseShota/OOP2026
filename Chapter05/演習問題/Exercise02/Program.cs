@@ -32,7 +32,7 @@ namespace Exercise02 {
         private static void Exercise4(YearMonth[] ymCollection) {
             var obj = Search21Century(ymCollection);
             if (obj is not null) {
-                Console.WriteLine(obj);
+                Console.WriteLine(obj.Month);
                 return;
             }
             Console.WriteLine("21世紀のデータはありません");
