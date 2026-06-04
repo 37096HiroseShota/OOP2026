@@ -32,11 +32,14 @@ namespace Exercise02 {
         private static void Exercise4(YearMonth[] ymCollection) {
             var obj = FindFirst21C(ymCollection);
             if (obj is not null) {
-                Console.WriteLine(obj.Month);
+                Console.WriteLine(obj.Year);
                 return;
             }
             Console.WriteLine("21世紀のデータはありません");
             return;
+
+
+            //return FindFirst21C(ymCollection)?.Month ?? DefaultMessage();
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
@@ -46,13 +49,17 @@ namespace Exercise02 {
             }
         }
 
-        public static YearMonth FindFirst21C(YearMonth[] ymCollection) {
+        public static YearMonth? FindFirst21C(YearMonth[] ymCollection) {
             foreach (var obj in ymCollection) {
                 if (obj.IS21Century) {
                     return obj;
                 }
             }
             return null;
+        }
+
+        public static string DefaultMessage() {
+            return "21世紀のデータはありません";
         }
     }
 }
