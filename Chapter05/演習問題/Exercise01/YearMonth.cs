@@ -17,12 +17,11 @@ namespace Exercise01 {
         public bool IS21Century => 2001 <= Year && Year <= 2100;
 
         //5.1.3
-        public int AddOneMonth() {
-            var yearmonth = new YearMonth(Year, Month + 1);
-            if (yearmonth.Month < 13) {
-                return yearmonth.Month;
+        public YearMonth AddOneMonth() {
+            if (Month == 12) {
+                return new YearMonth(Year + 1, 1);
             }
-            return yearmonth.Month - 12;
+            return new(Year, Month + 1);
         }
 
         //5.1.4
