@@ -5,7 +5,7 @@
             var str = Console.ReadLine();
 
             if (int.TryParse(str, out var num)) {
-                Console.WriteLine(num.ToString("\nカンマ付き数字文字列:"+ "#,0"));
+                Console.WriteLine("\nカンマ付き数字文字列:" +$"{num:#,0}");
             } else {
                 Console.WriteLine("\n整数文字列ではありません");
             }
