@@ -5,9 +5,9 @@
             var str = Console.ReadLine();
 
             if (int.TryParse(str, out var num)) {
-                Console.WriteLine(num.ToString("#,0"));
+                Console.WriteLine(num.ToString("\nカンマ付き数字文字列:"+ "#,0"));
             } else {
-                Console.WriteLine("整数文字列ではありません");
+                Console.WriteLine("\n整数文字列ではありません");
             }
         }
     }

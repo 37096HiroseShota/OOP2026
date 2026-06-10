@@ -8,9 +8,9 @@
             var str2 = Console.ReadLine();
 
             if (String.Compare(str1, str2, ignoreCase: true) == 0) {
-                Console.WriteLine("等しい");
+                Console.WriteLine("\n等しい");
             } else {
-                Console.WriteLine("等しくない");
+                Console.WriteLine("\n等しくない");
             }
         }
     }
