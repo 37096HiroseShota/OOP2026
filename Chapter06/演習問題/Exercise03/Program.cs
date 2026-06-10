@@ -25,27 +25,33 @@ namespace Exercise03 {
         }
 
         private static void Exercise1(string text) {
-            
+            var count = 0;
+            foreach (var c in text) {
+                if (c.Equals(' ') || c.Equals('　')) {
+                    count++;
+                }
+            }
+            Console.WriteLine($"{count}文字");
         }
 
         private static void Exercise2(string text) {
-            
+
         }
 
         private static void Exercise3(string text) {
-            
+
         }
 
         private static void Exercise4(string text) {
-            
+
         }
 
         private static void Exercise5(string text) {
-            
+
         }
 
         private static void Exercise6(string text) {
-            
+
         }
     }
 }
