@@ -3,10 +3,9 @@
         static void Main(string[] args) {
             var line = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
 
-            var lines = line.Split(new[] { '=', ';' });
-
-            for (int i = 0; i < lines.Length; i += 2) {
-                Console.WriteLine(ToJapanese(lines[i]) + ":" + lines[i + 1]);
+            foreach (var item in line.Split(';')) {
+                var word = item.Split('=');
+                Console.WriteLine($"{ToJapanese(word[0])}:{word[1]}");
             }
         }
 
