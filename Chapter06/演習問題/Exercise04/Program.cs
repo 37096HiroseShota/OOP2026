@@ -6,11 +6,7 @@
             var lines = line.Split(new[] { '=', ';' });
 
             for (int i = 0; i < lines.Length; i += 2) {
-                if (ToJapanese(lines[i]).Length == 2) {
-                    Console.WriteLine(ToJapanese(lines[i]) + "　" + ":" + lines[i + 1]);
-                } else {
-                    Console.WriteLine(ToJapanese(lines[i]) + ":" + lines[i + 1]);
-                }
+                Console.WriteLine(ToJapanese(lines[i]) + ":" + lines[i + 1]);
             }
         }
 
