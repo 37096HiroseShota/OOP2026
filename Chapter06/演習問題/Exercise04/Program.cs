@@ -3,11 +3,14 @@
         static void Main(string[] args) {
             var line = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
 
-            var str = line.Split(new[] { '=', ';' },
-                                 StringSplitOptions.RemoveEmptyEntries);
+            var lines = line.Split(new[] { '=', ';' });
 
-            for (int i = 0; i < str.Length; i += 2) {
-                Console.WriteLine(ToJapanese(str[i]) + ":" + str[i + 1]);
+            for (int i = 0; i < lines.Length; i += 2) {
+                if (ToJapanese(lines[i]).Length == 2) {
+                    Console.WriteLine(ToJapanese(lines[i]) + "　" + ":" + lines[i + 1]);
+                } else {
+                    Console.WriteLine(ToJapanese(lines[i]) + ":" + lines[i + 1]);
+                }
             }
         }
 

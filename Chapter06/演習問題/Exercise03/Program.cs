@@ -46,6 +46,7 @@ namespace Exercise03 {
             var sb = new StringBuilder(words[0]);
 
             sb.Append(words[0]);
+            
             for(int i = 1; i < words.Length; i++) {
                 sb.Append(' ');
                 sb.Append(words[i]);
@@ -55,6 +56,7 @@ namespace Exercise03 {
                 sb.Append(' ');
                 sb.Append(word);
             }
+
             Console.WriteLine(sb + ".");
         }
 
@@ -90,6 +92,7 @@ namespace Exercise03 {
             foreach (var alph in str) {
                 array[alph - 'a']++;
             }
+
             for (char ch = 'a'; ch <= 'z'; ch++) {
                 Console.WriteLine($"{ch}:{array[ch - 'a']}");
             }
