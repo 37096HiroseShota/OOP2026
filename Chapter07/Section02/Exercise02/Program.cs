@@ -37,7 +37,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise1(List<Book> books) {
-            var book = books.Find(s => s.Title == "ワンダフル・C#ライフ");
+            var book = books.FirstOrDefault(s => s.Title == "ワンダフル・C#ライフ");
             if (book is not null) {
                 Console.WriteLine($"価格:{book.Price:#,0}円 ページ数:{book.Pages}ページ");
             } else {
