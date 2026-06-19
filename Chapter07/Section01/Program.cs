@@ -16,11 +16,9 @@
             books.Where(x => x.Price >= 500).ToList().ForEach
                 (s => Console.WriteLine($"作品名:{s.Title} 値段:{s.Price}円"));
 
-            //250ページ以上の本を上位3冊出力
-            var array = books.Where(x => x.Pages >= 250).Take(3);
-            foreach(var book in array) {
-                Console.WriteLine(book.Title);
-            }
+            Console.WriteLine("\n--- 250ページ以上の本 ---");
+            books.Where(x => x.Pages >= 250).Take(3).ToList().ForEach
+                (s => Console.WriteLine($"作品名:{s.Title} ページ数:{s.Pages}ページ"));
         }
     }
 }
