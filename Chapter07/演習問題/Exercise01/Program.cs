@@ -31,14 +31,14 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(int[] numbers) {
-            var data = numbers.Select(n => n.ToString("000"));
-            foreach (var number in data) {
+            var strings = numbers.Select(n => n.ToString("000"));
+            foreach (var number in strings) {
                 Console.WriteLine(number);
             }
         }
 
         private static void Exercise4(int[] numbers) {
-            var sortednumbers = numbers.OrderBy(n => n);
+            var sortednumbers = numbers.Order();
             foreach (var number in sortednumbers.Take(3)) {
                 Console.WriteLine(number); 
             }
