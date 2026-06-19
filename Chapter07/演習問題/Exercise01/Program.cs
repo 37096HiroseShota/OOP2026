@@ -25,7 +25,9 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(int[] numbers) {
-            Console.WriteLine(numbers.LastOrDefault());
+            foreach (var number in numbers.TakeLast(2)) {
+                Console.WriteLine(number);
+            }
         }
 
         private static void Exercise3(int[] numbers) {
@@ -43,7 +45,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise5(int[] numbers) {
-            
+            Console.WriteLine(numbers.Distinct().Count(n => n >= 10));
         }
     }
 }
