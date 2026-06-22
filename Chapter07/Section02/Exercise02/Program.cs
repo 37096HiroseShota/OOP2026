@@ -83,7 +83,7 @@ namespace Exercise02 {
 
         private static void Exercise7(List<Book> books) {
             Console.WriteLine("---タイトルにC#が含まれていて、500ページ以下の本のタイトル---");
-            var data = books.Where(b => b.Title.Contains("C#") && 500 <= b.Pages);
+            var data = books.Where(b => b.Title.Contains("C#") && 500 >= b.Pages);
             foreach (var book in data) {
                 Console.WriteLine($"タイトル:{book.Title}");
             }
