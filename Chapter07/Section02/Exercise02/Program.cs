@@ -74,8 +74,7 @@ namespace Exercise02 {
         private static void Exercise6(List<Book> books) {
             Console.WriteLine("---ページ数が400ページ以上の書籍のタイトルと価格（価格の高い順）---");
             var sortedbook = books.Where(b => b.Pages >= 400)
-                .OrderByDescending(b => b.Price)
-                .ThenByDescending(b => b.Price);
+                .OrderByDescending(b => b.Price);
             foreach (var book in sortedbook) {
                 Console.WriteLine($"タイトル:{book.Title} 価格:{book.Price}円");
             }
