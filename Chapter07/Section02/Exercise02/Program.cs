@@ -37,6 +37,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise1(List<Book> books) {
+            Console.WriteLine("---タイトルがワンダフル・C#ライフである書籍の価格とページ数---");
             var book = books.FirstOrDefault(s => s.Title == "ワンダフル・C#ライフ");
             if (book is not null) {
                 Console.WriteLine($"価格:{book.Price:#,0}円 ページ数:{book.Pages}ページ");
@@ -46,39 +47,45 @@ namespace Exercise02 {
         }
 
         private static void Exercise2(List<Book> books) {
-            Console.WriteLine(books.Count(b => b.Title.Contains("C#")));
+            Console.WriteLine("---タイトルにC#が含まれれている書籍の数---");
+            Console.WriteLine($"{books.Count(b => b.Title.Contains("C#"))}冊");
         }
 
         private static void Exercise3(List<Book> books) {
-            //Console.WriteLine(books.Average(b => b.Title.Contains("C#")));
+            Console.WriteLine("---タイトルにC#が含まれている書籍の平均ページ---");
+            Console.WriteLine($"{books.Where(b => b.Title.Contains("C#")).Average(b => b.Pages)}ページ");
         }
 
         private static void Exercise4(List<Book> books) {
+            Console.WriteLine("---価格が4000円以上の本で最初に見つかった書籍のタイトル---");
             var book = books.FirstOrDefault(b => b.Price >= 4000);
             if (book is not null) {
-                Console.WriteLine($"作品名:{book.Title}");
+                Console.WriteLine($"タイトル:{book.Title}");
             } else {
                 Console.WriteLine("見つかりませんでした。");
             }
         }
 
         private static void Exercise5(List<Book> books) {
-            Console.WriteLine(books.Where(b => b.Price < 4000).Max(b => b.Pages));
+            Console.WriteLine("---価格が4000円未満の本の中で最大のページ数---");
+            Console.WriteLine($"{books.Where(b => b.Price < 4000).Max(b => b.Pages)}ページ");
         }
 
         private static void Exercise6(List<Book> books) {
+            Console.WriteLine("---ページ数が400ページ以上の書籍のタイトルと価格（価格の高い順）---");
             var sortedbook = books.Where(b => b.Pages >= 400)
                 .OrderByDescending(b => b.Price)
                 .ThenByDescending(b => b.Price);
             foreach (var book in sortedbook) {
-                Console.WriteLine($"作品名:{book.Title} 価格:{book.Price}");
+                Console.WriteLine($"タイトル:{book.Title} 価格:{book.Price}円");
             }
         }
 
         private static void Exercise7(List<Book> books) {
+            Console.WriteLine("---タイトルにC#が含まれていて、500ページ以下の本のタイトル---");
             var data = books.Where(b => b.Title.Contains("C#") && 500 <= b.Pages);
             foreach (var book in data) {
-                Console.WriteLine($"作品名:{book.Title}");
+                Console.WriteLine($"タイトル:{book.Title}");
             }
         }
     }
