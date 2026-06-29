@@ -24,7 +24,7 @@ namespace Section01 {
 
                 //既に都道府県が登録されているか？
                 if (prefOfficeDict.ContainsKey(pref)) {
-                    Console.WriteLine("上書きしますか？Y/N");
+                    Console.Write("上書きしますか？Y/N:");
                     if (Console.ReadLine() == "N") continue;
                 }
 
@@ -58,7 +58,7 @@ namespace Section01 {
             Console.WriteLine("1：一覧表示");
             Console.WriteLine("2：検索");
             Console.WriteLine("9：終了");
-            Console.WriteLine(">");
+            Console.Write(">");
 
             //メニュー番号を入力させて呼び出し元へ返却
             return int.Parse(Console.ReadLine());
@@ -74,12 +74,12 @@ namespace Section01 {
 
         //検索処理
         private static void searchPrefCaptalLocation() {
-            Console.WriteLine("都道府県:");
+            Console.Write("都道府県:");
             String? searchPref = Console.ReadLine();
 
             //検索した結果を表示
             if (prefOfficeDict.ContainsKey(searchPref)) {
-                Console.WriteLine($"{searchPref}の県庁所在地は{prefOfficeDict}です");
+                Console.WriteLine($"{searchPref}の県庁所在地は{prefOfficeDict[searchPref]}です");
             }
         }
     }
