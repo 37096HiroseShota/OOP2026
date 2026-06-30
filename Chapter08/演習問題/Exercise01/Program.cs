@@ -2,7 +2,7 @@
 namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
-            var text = "Cozy lummox gives smart squid who job pen";
+            var text = "Cozy lummox gives smart squid who asks for job pen";
 
             Exercise01(text);
             Console.WriteLine();
