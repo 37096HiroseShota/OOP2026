@@ -34,7 +34,6 @@ public class Abbreviations {
     //Countプロパティを追加
     public int Count => _dict.Count();
 
-
     // 8.2.2（最終的に式形式で記述すること）
     public bool Remove(string abb) => _dict.Remove(abb);
 
