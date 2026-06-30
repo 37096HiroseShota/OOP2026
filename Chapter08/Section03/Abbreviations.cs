@@ -32,4 +32,15 @@ public class Abbreviations {
             }
         }
     }
+
+    public int Count() {
+        return _dict.Count();
+    }
+
+    public Boolean Remove(string abbr) {
+        if (_dict.ContainsKey(abbr)) {
+            return true;
+        }
+        return false;
+    }
 }

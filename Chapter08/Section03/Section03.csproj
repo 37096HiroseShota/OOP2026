@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\演習問題\Exercise02\Exercise02.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Abbreviations.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
