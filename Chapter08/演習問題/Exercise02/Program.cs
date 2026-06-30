@@ -9,13 +9,22 @@
 
             // 8.2.3 (Countの呼び出し例)
             // 上のAddメソッドで、２つのオブジェクトを追加しているので、読み込んだ単語数+2が、Countの値になる。
-            abbrs.Count();
+            Console.WriteLine($"用語数:{abbrs.Count}");
             
-            Console.WriteLine();    //改行
+            Console.WriteLine();   //改行
 
             // 8.2.3 (Removeの呼び出し例)
-            abbrs.Remove("IOC");
-            abbrs.Remove("NPT");
+            if (abbrs.Remove("IOC")) {
+                Console.WriteLine("削除しました");
+            } else {
+                Console.WriteLine("削除できません");
+            }
+
+            if (abbrs.Remove("NPT")) {
+                Console.WriteLine("削除しました");
+            } else {
+                Console.WriteLine("削除できません");
+            }
             
             // すでに削除してあるので、falseが返る
             if (!abbrs.Remove("NPT")) {
