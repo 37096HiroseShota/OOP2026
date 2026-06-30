@@ -25,7 +25,10 @@
 
             // 8.2.4
             // 新たなGetAllメソッドを追加済みなので、使用してLINQで処理を行う
-            Console.WriteLine(abbrs.GetAll);
+            var data = abbrs.GetAll().Where(s => s.Key.Length == 3);
+            foreach (var obj in data) {
+                Console.WriteLine($"{obj.Key}={obj.Value}");
+            }
         }
     }
 }
