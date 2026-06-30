@@ -10,13 +10,40 @@ namespace Exercise01 {
         }
 
         private static void Exercise01(string text) {
-            //if('A' <= ch && ch <= 'Z') {
+            var str = text.ToUpper();
 
-            //}
+            var alphDicCount = Enumerable.Range('A', 26).
+                ToDictionary(n => ((char)n), n => 0);
+
+            foreach (var c in str) {
+                if ('A' <= c && c <= 'Z') {
+                    alphDicCount[c]++;
+                }
+            }
+
+            foreach (var c in alphDicCount) {
+                Console.WriteLine($"{c.Key}:{c.Value}");
+            }
         }
 
         private static void Exercise02(string text) {
-            //SortedDictionary<TKey, TValue>
+            var str = text.ToUpper();
+
+            var dict = new SortedDictionary<char, int>();
+
+            foreach (var c in str) {
+                if ('A' <= c && c <= 'Z') {
+                    if (dict.ContainsKey(c)) {
+                        dict[c]++;
+                    } else {
+                        dict[c] = 1;
+                    }
+                }
+            }
+
+            foreach (var c in dict) {
+                Console.WriteLine($"{c.Key}:{c.Value}");
+            }
         }
     }
 }
