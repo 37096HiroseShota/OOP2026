@@ -14,23 +14,22 @@
             Console.WriteLine();   //改行
 
             // 8.2.3 (Removeの呼び出し例)
-            Remove(abbrs, "IOC");
-            Remove(abbrs, "NPT");
+            RemovCheck(abbrs, "IOC");
+            RemovCheck(abbrs, "NPT");
 
             // すでに削除してあるので、falseが返る
-            Remove(abbrs, "NPT");
+            RemovCheck(abbrs, "NPT");
             
             Console.WriteLine();   //改行
 
             // 8.2.4
             // 新たなGetAllメソッドを追加済みなので、使用してLINQで処理を行う
-            var data = abbrs.GetAll().Where(s => s.Key.Length == 3);
-            foreach (var obj in data) {
-                Console.WriteLine($"{obj.Key}={obj.Value}");
+            foreach (var data in abbrs.GetAll().Where(s => s.Key.Length == 3)) {
+                Console.WriteLine($"{data.Key}={data.Value}");
             }
         }
 
-        public static void Remove(Abbreviations abbreviations, string abb) {
+        public static void RemovCheck(Abbreviations abbreviations, string abb) {
             if (abbreviations.Remove(abb)) {
                 Console.WriteLine("削除しました");
             } else {
