@@ -12,11 +12,11 @@
             var score = new List<Student>();
             var lines = File.ReadAllLines(filePath);
             foreach (var line in lines) {
-                var items = line.Split(',');
+                var scores = line.Split(',');
                 var student = new Student {
-                    Name = items[0],
-                    Subject = items[1],
-                    Score = int.Parse(items[2]),
+                    Name = scores[0],
+                    Subject = scores[1],
+                    Score = int.Parse(scores[2]),
                 };
                 score.Add(student);
             }

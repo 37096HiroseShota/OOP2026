@@ -29,6 +29,7 @@
                 Console.WriteLine($"{obj.Key}={obj.Value}");
             }
         }
+
         public static void Remove(Abbreviations abbreviations, string abb) {
             if (abbreviations.Remove(abb)) {
                 Console.WriteLine("削除しました");
