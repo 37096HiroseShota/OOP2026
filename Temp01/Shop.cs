@@ -26,6 +26,5 @@ namespace Temp01 {
         }
 
         public static int Buy(Item item, int buyAmount) => item.stock - buyAmount;
-        
     }
 }

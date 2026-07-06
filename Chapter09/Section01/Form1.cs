@@ -1,36 +1,47 @@
 namespace Section01 {
     public partial class Form1 : Form {
-        private int count { get; set; }
         public Form1() {
             InitializeComponent();
-            tbOutput.Text = $"{nudNum1.Value}";
-            label3.Text = $"{DateTime.Now}";
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            tbOutput.Text = (nudNum1.Value + nudNum2.Value).ToString();
-        }
+        private void btGet_Click(object sender, EventArgs e) {
+            DateTime dt1 = dtpDate.Value;
+            DayOfWeek dayOfWeek = dt1.DayOfWeek;
 
-        private void button2_Click(object sender, EventArgs e) {
-            count++;
-            label2.Text = $"ƒNƒŠƒbƒN”:{count}";
-        }
+            if (dayOfWeek == DayOfWeek.Tuesday) {
+                tbOut.Text = "¡“ú‚Í‰Î—j“ú‚Å‚·";
+            }
 
-        private void label3_Click(object sender, EventArgs e) {
-            label3.Text = $"{DateTime.Now}";
-        }
+            if(DateTime.IsLeapYear(dt1.Year)) {
+                tbOut.Text = "‚¤‚é‚¤”N‚Å‚·";
+            } else {
+                tbOut.Text = "‚¤‚é‚¤”N‚Å‚Í‚ ‚è‚Ü‚¹‚ñ";
+            }
 
-        private void nudNum1_ValueChanged(object sender, EventArgs e) {
-            tbOutput.Text = $"{nudNum1.Value}";
-        }
+                switch (dayOfWeek) {
+                    case DayOfWeek.Saturday:
+                        tbOut.Text = "¡“ú‚Í“y—j“ú‚Å‚·";
+                        break;
+                    case DayOfWeek.Sunday:
+                        tbOut.Text = "¡“ú‚Í“ú—j“ú‚Å‚·";
+                        break;
+                    case DayOfWeek.Monday:
+                        tbOut.Text = "¡“ú‚ÍŒ—j“ú‚Å‚·";
+                        break;
+                    case DayOfWeek.Tuesday:
+                        tbOut.Text = "¡“ú‚Í‰Î—j“ú‚Å‚·";
+                        break;
+                    case DayOfWeek.Wednesday:
+                        tbOut.Text = "¡“ú‚Í…—j“ú‚Å‚·";
+                        break;
+                    case DayOfWeek.Thursday:
+                        tbOut.Text = "¡“ú‚Í–Ø—j“ú‚Å‚·";
+                        break;
+                    case DayOfWeek.Friday:
+                        tbOut.Text = "¡“ú‚Í‹à—j“ú‚Å‚·";
+                        break;
+                }
 
-        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e) {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e) {
-            ofdOpen.ShowDialog();
-            pbPic.ImageLocation = ofdOpen.FileName;
         }
     }
 }

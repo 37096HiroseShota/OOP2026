@@ -18,6 +18,7 @@ namespace Temp01 {
                 SaleItem1.Text = item.name;
                 SaleItem2.Text = $"{item.stock}";
             }
+            Shop.Buy(saleItem._items);
         }
 
         private void buyButton_Click(object sender, EventArgs e) {
