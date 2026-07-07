@@ -13,12 +13,11 @@ namespace Temp01 {
         }
 
         private void BuyDisp_Load(object sender, EventArgs e) {
-            var saleItem = new Shop(@"Item.csv");
             foreach (var item in saleItem._items) {
                 SaleItem1.Text = item.name;
                 SaleItem2.Text = $"{item.stock}";
             }
-            Shop.Buy(saleItem._items);
+            Shop.Buy(item, quantity.Value);
         }
 
         private void buyButton_Click(object sender, EventArgs e) {
