@@ -34,7 +34,7 @@
             // endButton
             // 
             endButton.Font = new Font("メイリオ", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            endButton.Location = new Point(58, 378);
+            endButton.Location = new Point(12, 147);
             endButton.Name = "endButton";
             endButton.Size = new Size(172, 94);
             endButton.TabIndex = 0;
@@ -45,7 +45,7 @@
             // showBuyDispButton
             // 
             showBuyDispButton.Font = new Font("Yu Gothic UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            showBuyDispButton.Location = new Point(122, 123);
+            showBuyDispButton.Location = new Point(12, 12);
             showBuyDispButton.Name = "showBuyDispButton";
             showBuyDispButton.Size = new Size(179, 119);
             showBuyDispButton.TabIndex = 1;
@@ -62,7 +62,6 @@
             Controls.Add(endButton);
             Name = "Menu";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
         }
 

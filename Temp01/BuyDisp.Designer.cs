@@ -24,14 +24,16 @@
         /// </summary>
         private void InitializeComponent() {
             buyButton = new Button();
-            SaleItem1 = new TextBox();
-            SaleItem2 = new TextBox();
+            itemNameTextBox = new TextBox();
+            itemStockTextBox = new TextBox();
+            quantityNumericUpDown = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)quantityNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // buyButton
             // 
             buyButton.Font = new Font("Yu Gothic UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            buyButton.Location = new Point(91, 308);
+            buyButton.Location = new Point(12, 12);
             buyButton.Name = "buyButton";
             buyButton.Size = new Size(132, 68);
             buyButton.TabIndex = 0;
@@ -39,33 +41,40 @@
             buyButton.UseVisualStyleBackColor = true;
             buyButton.Click += buyButton_Click;
             // 
-            // SaleItem1
+            // itemNameTextBox
             // 
-            SaleItem1.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            SaleItem1.Location = new Point(98, 122);
-            SaleItem1.Name = "SaleItem1";
-            SaleItem1.Size = new Size(125, 38);
-            SaleItem1.TabIndex = 1;
+            itemNameTextBox.Location = new Point(19, 107);
+            itemNameTextBox.Name = "itemNameTextBox";
+            itemNameTextBox.Size = new Size(125, 27);
+            itemNameTextBox.TabIndex = 1;
             // 
-            // SaleItem2
+            // itemStockTextBox
             // 
-            SaleItem2.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            SaleItem2.Location = new Point(247, 122);
-            SaleItem2.Name = "SaleItem2";
-            SaleItem2.Size = new Size(125, 38);
-            SaleItem2.TabIndex = 1;
+            itemStockTextBox.Location = new Point(19, 149);
+            itemStockTextBox.Name = "itemStockTextBox";
+            itemStockTextBox.Size = new Size(125, 27);
+            itemStockTextBox.TabIndex = 1;
+            // 
+            // quantityNumericUpDown
+            // 
+            quantityNumericUpDown.Location = new Point(150, 40);
+            quantityNumericUpDown.Name = "quantityNumericUpDown";
+            quantityNumericUpDown.Size = new Size(150, 27);
+            quantityNumericUpDown.TabIndex = 2;
             // 
             // BuyDisp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(SaleItem2);
-            Controls.Add(SaleItem1);
+            Controls.Add(quantityNumericUpDown);
+            Controls.Add(itemStockTextBox);
+            Controls.Add(itemNameTextBox);
             Controls.Add(buyButton);
             Name = "BuyDisp";
             Text = "Form2";
             Load += BuyDisp_Load;
+            ((System.ComponentModel.ISupportInitialize)quantityNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -73,7 +82,8 @@
         #endregion
 
         private Button buyButton;
-        private TextBox itemName;
-        private TextBox itemStock;
+        private TextBox itemNameTextBox;
+        private TextBox itemStockTextBox;
+        private NumericUpDown quantityNumericUpDown;
     }
 }

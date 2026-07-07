@@ -11,7 +11,6 @@ namespace Temp01 {
         private void showBuyDispButton_Click(object sender, EventArgs e) {
             BuyDisp buyDisp = new BuyDisp();
             buyDisp.Show();
-            Hide();
         }
     }
 }
