@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using System.Globalization;
 
 namespace Section01 {
@@ -23,6 +24,26 @@ namespace Section01 {
             var culture = new CultureInfo("ja-jp");
             tbOut3.Text = $"¶‚Ü‚ê‚½{birth.Month}Œ{birth.Day}“ú‚Í‘æ{NthWeek(birth)}T‚Ì" +
                 $"{culture.DateTimeFormat.GetDayName(birth.DayOfWeek)}‚Å‚·";
+
+
+            Boolean todaybirrh = false;
+            int nextbirth = 0;
+
+            if (birth.Date == today.Date) {
+                tbOut4.Text = "’a¶“ú‚Í¡“ú‚Å‚·";
+                todaybirrh = true;
+            } else if (birth.Day - today.Day > 0) {
+                nextbirth = birth.Day - today.Day;
+            } else {
+                nextbirth = birth.Day + 365 - today.Day;
+            }
+
+            if (!todaybirrh) {
+                if (DateTime.IsLeapYear(today.Year)) {
+                    nextbirth += 1;
+                }
+                tbOut4.Text = $"Ÿ‚Ì’a¶“ú‚Ü‚Å{nextbirth}“ú‚Å‚·";
+            }
         }
 
         //”N—î‚ğ‹‚ß‚éƒƒ\ƒbƒh

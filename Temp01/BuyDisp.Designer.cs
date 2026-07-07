@@ -73,7 +73,7 @@
         #endregion
 
         private Button buyButton;
-        private TextBox SaleItem1;
-        private TextBox SaleItem2;
+        private TextBox itemName;
+        private TextBox itemStock;
     }
 }
