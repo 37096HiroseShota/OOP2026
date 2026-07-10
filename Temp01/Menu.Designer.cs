@@ -29,6 +29,8 @@
         private void InitializeComponent() {
             endButton = new Button();
             showBuyDispButton = new Button();
+            depositButton = new Button();
+            loginButton = new Button();
             SuspendLayout();
             // 
             // endButton
@@ -53,11 +55,35 @@
             showBuyDispButton.UseVisualStyleBackColor = true;
             showBuyDispButton.Click += showBuyDispButton_Click;
             // 
+            // depositButton
+            // 
+            depositButton.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            depositButton.Location = new Point(327, 52);
+            depositButton.Name = "depositButton";
+            depositButton.Size = new Size(145, 61);
+            depositButton.TabIndex = 2;
+            depositButton.Text = "入金";
+            depositButton.UseVisualStyleBackColor = true;
+            depositButton.Click += depositButton_Click;
+            // 
+            // loginButton
+            // 
+            loginButton.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            loginButton.Location = new Point(708, 52);
+            loginButton.Name = "loginButton";
+            loginButton.Size = new Size(188, 87);
+            loginButton.TabIndex = 3;
+            loginButton.Text = "ログイン";
+            loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButton_Click;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1262, 673);
+            Controls.Add(loginButton);
+            Controls.Add(depositButton);
             Controls.Add(showBuyDispButton);
             Controls.Add(endButton);
             Name = "Menu";
@@ -69,5 +95,7 @@
 
         private Button endButton;
         private Button showBuyDispButton;
+        private Button depositButton;
+        private Button loginButton;
     }
 }

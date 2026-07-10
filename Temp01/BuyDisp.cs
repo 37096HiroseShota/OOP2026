@@ -30,6 +30,7 @@ namespace Temp01 {
 
             itemNameTextBox.Text = selectedItem.Name;
             itemStockTextBox.Text = $"{selectedItem.Stock}";
+            moneyTextBox.Text = $"{userAccount.Money}";
         }
 
         private void buyButton_Click(object sender, EventArgs e) {
@@ -52,6 +53,12 @@ namespace Temp01 {
             itemStockTextBox.Text = $"{selectedItem.Stock}";
 
             userAccount.Money -= count * selectedItem.Price;
+
+            moneyTextBox.Text = $"{userAccount.Money}";
+        }
+
+        private void closeButton_Click(object sender, EventArgs e) {
+            Close();
         }
     }
 }

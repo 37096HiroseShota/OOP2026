@@ -12,5 +12,14 @@ namespace Temp01 {
             BuyDisp buyDisp = new BuyDisp();
             buyDisp.Show();
         }
+
+        private void depositButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void loginButton_Click(object sender, EventArgs e) {
+            Login login = new Login();
+            login.Show();
+        }
     }
 }

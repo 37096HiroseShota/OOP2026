@@ -27,13 +27,15 @@
             itemNameTextBox = new TextBox();
             itemStockTextBox = new TextBox();
             quantityNumericUpDown = new NumericUpDown();
+            closeButton = new Button();
+            moneyTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)quantityNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // buyButton
             // 
             buyButton.Font = new Font("Yu Gothic UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            buyButton.Location = new Point(12, 12);
+            buyButton.Location = new Point(12, 234);
             buyButton.Name = "buyButton";
             buyButton.Size = new Size(132, 68);
             buyButton.TabIndex = 0;
@@ -43,33 +45,53 @@
             // 
             // itemNameTextBox
             // 
-            itemNameTextBox.Location = new Point(19, 107);
+            itemNameTextBox.Location = new Point(12, 39);
             itemNameTextBox.Name = "itemNameTextBox";
             itemNameTextBox.Size = new Size(125, 27);
             itemNameTextBox.TabIndex = 1;
             // 
             // itemStockTextBox
             // 
-            itemStockTextBox.Location = new Point(19, 149);
+            itemStockTextBox.Location = new Point(12, 89);
             itemStockTextBox.Name = "itemStockTextBox";
             itemStockTextBox.Size = new Size(125, 27);
             itemStockTextBox.TabIndex = 1;
             // 
             // quantityNumericUpDown
             // 
-            quantityNumericUpDown.Location = new Point(150, 40);
+            quantityNumericUpDown.Location = new Point(12, 139);
             quantityNumericUpDown.Name = "quantityNumericUpDown";
             quantityNumericUpDown.Size = new Size(150, 27);
             quantityNumericUpDown.TabIndex = 2;
+            // 
+            // closeButton
+            // 
+            closeButton.Font = new Font("Yu Gothic UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            closeButton.Location = new Point(190, 234);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new Size(132, 68);
+            closeButton.TabIndex = 0;
+            closeButton.Text = "閉じる";
+            closeButton.UseVisualStyleBackColor = true;
+            closeButton.Click += closeButton_Click;
+            // 
+            // moneyTextBox
+            // 
+            moneyTextBox.Location = new Point(636, 39);
+            moneyTextBox.Name = "moneyTextBox";
+            moneyTextBox.Size = new Size(125, 27);
+            moneyTextBox.TabIndex = 3;
             // 
             // BuyDisp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(moneyTextBox);
             Controls.Add(quantityNumericUpDown);
             Controls.Add(itemStockTextBox);
             Controls.Add(itemNameTextBox);
+            Controls.Add(closeButton);
             Controls.Add(buyButton);
             Name = "BuyDisp";
             Text = "Form2";
@@ -85,5 +107,7 @@
         private TextBox itemNameTextBox;
         private TextBox itemStockTextBox;
         private NumericUpDown quantityNumericUpDown;
+        private Button closeButton;
+        private TextBox moneyTextBox;
     }
 }
