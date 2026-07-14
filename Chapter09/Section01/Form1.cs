@@ -25,7 +25,6 @@ namespace Section01 {
             tbOut3.Text = $"生まれた{birth.Month}月{birth.Day}日は第{NthWeek(birth)}週の" +
                 $"{culture.DateTimeFormat.GetDayName(birth.DayOfWeek)}です";
 
-
             Boolean todaybirrh = false;
             int nextbirth = 0;
 
@@ -44,6 +43,9 @@ namespace Section01 {
                 }
                 tbOut4.Text = $"次の誕生日まで{nextbirth}日です";
             }
+
+            tbOut5.Text = "今年";
+            tbOut5.Text = $"{NthWeek(today)}";
         }
 
         //年齢を求めるメソッド
