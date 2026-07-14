@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
@@ -31,6 +32,8 @@ namespace CarReportSystem {
                 Picture = pbPicture.Image,
             };
             listCarReports.Add(carReport);
+
+            ImputItemsALLClear();   //ì¸óÕçÄñ⁄ÇÃëSÉNÉäÉA
         }
 
         private MakerGroup GetRadioButtonMaker() {
@@ -65,6 +68,28 @@ namespace CarReportSystem {
 
         private void btDeletePicture_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
+        }
+
+        private void btNewInput_Click(object sender, EventArgs e) {
+            ImputItemsALLClear();
+        }
+
+        private void ImputItemsALLClear() {
+            dtpDate.Value = DateTime.Today;
+            cbAuthor.Text = String.Empty;
+            rbOther.Checked = true;
+            cbCarName.Text = String.Empty;
+            tbReport.Text = String.Empty;
+            pbPicture.Image = null;
+        }
+
+        private void dgvRecords_Click(object sender, EventArgs e) {
+            dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
+            cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
+
+            cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
+            tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
+            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
         }
     }
 }

@@ -241,6 +241,7 @@
             dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(719, 292);
             dgvRecords.TabIndex = 4;
+            dgvRecords.Click += dgvRecords_Click;
             // 
             // tbReport
             // 
@@ -271,6 +272,7 @@
             btNewInput.TabIndex = 6;
             btNewInput.Text = "新規入力";
             btNewInput.UseVisualStyleBackColor = false;
+            btNewInput.Click += btNewInput_Click;
             // 
             // label7
             // 
