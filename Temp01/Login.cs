@@ -21,12 +21,15 @@ namespace Temp01 {
             string[] lines = {
                 $"{accountNameTextBox.Text + passWordTextBox.Text}" 
             };
+            String.Join(",");
 
-            using (var) 
 
-                File.WriteAllLines(@"User.csv", (lines));
+            string failePath = "User.csv";
+            using (var writer = new StreamWriter(failePath, append: true)) {
+                    writer.WriteLine(line);
+            }
 
-            foreach (var item in File.ReadAllLines(@"User.csv")) {
+            foreach (var item in File.ReadAllLines("User.csv")) {
                 testTextBox.Text = item;
             }
             

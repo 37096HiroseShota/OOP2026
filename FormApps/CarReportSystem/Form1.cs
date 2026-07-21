@@ -150,6 +150,12 @@ namespace CarReportSystem {
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
 
+            //記録者と車名が未入力だった場合は修正しない
+            if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
+                tsslbMessage.Text = "記録者、または車名が未入力です";
+                return;
+            }
+
             //カーレポート管理用リストの該当する要素のデータを書き換える
             listCarReports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value;
             listCarReports[dgvRecords.CurrentRow.Index].Author = cbAuthor.Text;
@@ -159,6 +165,7 @@ namespace CarReportSystem {
             listCarReports[dgvRecords.CurrentRow.Index].Picture = pbPicture.Image;
 
             dgvRecords.Refresh();   //データグリッドビューの更新
+            ImputItemsUpdate();
         }
     }
 }
