@@ -22,7 +22,9 @@ namespace Temp01 {
                 $"{accountNameTextBox.Text + passWordTextBox.Text}" 
             };
 
-            File.WriteAllLines(@"User.csv", (lines));
+            using (var) 
+
+                File.WriteAllLines(@"User.csv", (lines));
 
             foreach (var item in File.ReadAllLines(@"User.csv")) {
                 testTextBox.Text = item;

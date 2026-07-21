@@ -80,8 +80,8 @@ namespace CarReportSystem {
         }
 
         private void dgvRecords_Click(object sender, EventArgs e) {
-
-            if (dgvRecords.CurrentRow is null) return;
+            if ((dgvRecords.CurrentRow is null)
+                || (!dgvRecords.CurrentRow.Selected)) return;
 
             dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
@@ -92,9 +92,7 @@ namespace CarReportSystem {
         }
 
         private void SetRadioButtonMaker(MakerGroup targetMaker) {
-
             switch (targetMaker) {
-
                 case MakerGroup.トヨタ:
                     rbToyota.Checked = true;
                     break;
@@ -128,7 +126,6 @@ namespace CarReportSystem {
             //未登録なら登録【登録済みなら何もしない】
             if (!cbCarName.Items.Contains(carName))
                 cbCarName.Items.Add(carName);
-
         }
 
         private void btDeletePicture_Click(object sender, EventArgs e) {
@@ -136,13 +133,32 @@ namespace CarReportSystem {
         }
 
         private void btDeleteRecord_Click(object sender, EventArgs e) {
-
-
-            //選択されているインデックスを取得
-
+            if ((dgvRecords.CurrentRow is null)
+                || (!dgvRecords.CurrentRow.Selected)) return;
 
             //削除したいインデックスを指定してリストから削除
-            listCarReports.RemoveAt(消したい場所の要素番号);
+            listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
+
+            ImputItemsUpdate();
+        }
+
+        //データグリットビューを更新したら呼ぶメソッド
+        private void ImputItemsUpdate() {
+            if (!dgvRecords.CurrentRow.Selected)
+                ImputItemsAllClear();
+        }
+
+        private void btModifyRecord_Click(object sender, EventArgs e) {
+
+            //カーレポート管理用リストの該当する要素のデータを書き換える
+            listCarReports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value;
+            listCarReports[dgvRecords.CurrentRow.Index].Author = cbAuthor.Text;
+            listCarReports[dgvRecords.CurrentRow.Index].Meker = GetRadioButtonMaker();
+            listCarReports[dgvRecords.CurrentRow.Index].CarName = cbCarName.Text;
+            listCarReports[dgvRecords.CurrentRow.Index].Report = tbReport.Text;
+            listCarReports[dgvRecords.CurrentRow.Index].Picture = pbPicture.Image;
+
+            dgvRecords.Refresh();   //データグリッドビューの更新
         }
     }
 }
