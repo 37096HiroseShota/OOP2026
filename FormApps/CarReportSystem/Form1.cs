@@ -12,17 +12,12 @@ namespace CarReportSystem {
             dgvRecords.DataSource = listCarReports;
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-
-        }
-
         //追加ボタンイベントハンドラ
         private void btAddRecord_Click(object sender, EventArgs e) {
 
             tsslbMessage.Text = String.Empty;   //メッセージ領域のクリア
 
             //記録者と車名が未入力だった場合は追加しない
-            //if(cbAuthor.Text == String.Empty || cbCarName.Text == String.Empty) {
             if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
                 tsslbMessage.Text = "記録者、または車名が未入力です";
                 return;
@@ -42,7 +37,8 @@ namespace CarReportSystem {
             SetCbAuthor(cbAuthor.Text);
             SetCbCarName(cbCarName.Text);
 
-            ImputItemsAllClear();   //入力項目の全クリア
+            dgvRecords.CurrentRow.Selected = false;   //セルの選択を解除する
+            ImputItemsUpdate();
         }
 
         private MakerGroup GetRadioButtonMaker() {
@@ -77,6 +73,8 @@ namespace CarReportSystem {
             cbCarName.Text = string.Empty;
             tbReport.Text = string.Empty;
             pbPicture.Image = null;
+
+            dgvRecords.CurrentRow.Selected = false;   //セルの選択を解除する
         }
 
         private void dgvRecords_Click(object sender, EventArgs e) {
@@ -89,6 +87,8 @@ namespace CarReportSystem {
             cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
             tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
             pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+
+            ImputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
 
         private void SetRadioButtonMaker(MakerGroup targetMaker) {
@@ -139,7 +139,7 @@ namespace CarReportSystem {
             //削除したいインデックスを指定してリストから削除
             listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
 
-            ImputItemsUpdate();
+            ImputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
 
         //データグリットビューを更新したら呼ぶメソッド
@@ -166,6 +166,20 @@ namespace CarReportSystem {
 
             dgvRecords.Refresh();   //データグリッドビューの更新
             ImputItemsUpdate();
+        }
+
+        private void dgvRecords_SelectionChanged(object sender, EventArgs e) {
+            if ((dgvRecords.CurrentRow is null)
+                    || (!dgvRecords.CurrentRow.Selected)) return;
+
+            dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
+            cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
+            SetRadioButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Meker"].Value);
+            cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
+            tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
+            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+
+            ImputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
     }
 }
