@@ -18,21 +18,17 @@ namespace Temp01 {
             UserAccount userAccount = new UserAccount
                 (accountNameTextBox.Text, passWordTextBox.Text, 0);
 
-            string[] lines = {
-                $"{accountNameTextBox.Text + passWordTextBox.Text}" 
-            };
-            String.Join(",");
+            string line = $"{accountNameTextBox.Text + passWordTextBox.Text}";
+            string[] words = line.Split(",");
 
-
-            string failePath = "User.csv";
-            using (var writer = new StreamWriter(failePath, append: true)) {
-                    writer.WriteLine(line);
+            using (var writer = new StreamWriter("User.csv", append: true)) {
+                writer.WriteLine(words);
             }
 
             foreach (var item in File.ReadAllLines("User.csv")) {
                 testTextBox.Text = item;
             }
-            
+
         }
     }
 }

@@ -181,5 +181,15 @@ namespace CarReportSystem {
 
             ImputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
+
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (cdColor.ShowDialog() == DialogResult.OK) {
+                BackColor = cdColor.Color;
+            }
+        }
     }
 }
