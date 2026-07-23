@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using System.Xml;
+using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
@@ -6,6 +8,7 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+        Settings settings = new Settings();
 
         public Form1() {
             InitializeComponent();
@@ -193,6 +196,17 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
+            }
+        }
+
+        //フォームが閉じたら呼ばれるイベントハンドラ
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            //設定ファイルへ色情報を保存する処理（シリアル化）
+            //P284意向を参考にする（ファイル名：setting.xml）
+
+            using (var writer = XmlWriter.Create("settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
             }
         }
     }
