@@ -24,8 +24,9 @@ namespace CarReportSystem {
                 try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        var setting = serializer.Deserialize(reader) as Settings;
-                        BackColor = setting;
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        //îwåiêFê›íË
+                        BackColor = Color.FromArgb(settings.MainFormBackColor);
                     }
                 }
                 catch (Exception ex) {
