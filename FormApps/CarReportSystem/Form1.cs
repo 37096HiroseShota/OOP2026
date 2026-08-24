@@ -240,6 +240,10 @@ namespace CarReportSystem {
             reportSaveFile();
         }
 
+        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
+            reportOpenFile();
+        }
+
         //ファイルセーブ処理
         private void reportSaveFile() {
             if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
@@ -248,9 +252,12 @@ namespace CarReportSystem {
 #pragma warning disable SYSLIB0011
                     var bf = new BinaryFormatter();
 #pragma warning restore SYSLIB0011
-
-
-
+                    using (FileStream fs = File.Open(
+                        sfdReportFileSave.FileName,
+                        FileMode.Create
+                        )) {
+                        bf.Serialize(fs, listCarReports);
+                    }
                 }
                 catch (Exception ex) {
                     tsslbMessage.Text = "ファイル書き出しエラー";
@@ -264,7 +271,6 @@ namespace CarReportSystem {
         private void reportOpenFile() {
             if (ofdReportFileSave.ShowDialog() == DialogResult.OK) {
                 try {
-
                 }
                 catch (Exception ex) {
                     tsslbMessage.Text = "ファイル読み込みエラー";
@@ -272,10 +278,6 @@ namespace CarReportSystem {
                     throw;
                 }
             }
-        }
-
-        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
-            reportOpenFile();
         }
     };
 }
