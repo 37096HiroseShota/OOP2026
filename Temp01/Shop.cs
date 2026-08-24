@@ -26,8 +26,9 @@ namespace Temp01 {
         }
 
         public bool Buy(Item item, int quantity) {
-            if (item.Stock < quantity)
+            if (item.Stock < quantity) {
                 return false;
+            }
 
             item.Stock -= quantity;
             return true;

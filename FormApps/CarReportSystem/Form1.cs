@@ -25,7 +25,7 @@ namespace CarReportSystem {
                 try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        var settings = serializer.Deserialize(reader) as Settings;
+                        settings = serializer.Deserialize(reader) as Settings;
                         //îwåiêFê›íË
                         BackColor = Color.FromArgb(settings.MainFormBackColor);
                     }
@@ -248,6 +248,8 @@ namespace CarReportSystem {
 #pragma warning disable SYSLIB0011
                     var bf = new BinaryFormatter();
 #pragma warning restore SYSLIB0011
+
+
 
                 }
                 catch (Exception ex) {

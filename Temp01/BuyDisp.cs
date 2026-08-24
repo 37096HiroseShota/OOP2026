@@ -39,14 +39,14 @@ namespace Temp01 {
             int totalPrice = count * selectedItem.Price;
 
             if (userAccount.Money < totalPrice) {
-                MessageBox.Show("所持金が足りません");
+                MessageBox.Show("所持金が不足しています");
                 return;
             }
 
             bool result = shop.Buy(selectedItem, count);
 
             if (!result) {
-                MessageBox.Show("在庫が足りません");
+                MessageBox.Show("在庫がありません");
                 return;
             }
 
