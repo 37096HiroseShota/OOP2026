@@ -140,8 +140,9 @@ namespace CarReportSystem {
         //記録者の入力履歴をコンボボックスへ登録（重複なし）
         private void SetCbAuthor(string author) {
             //未登録なら登録【登録済みなら何もしない】
-            if (!cbAuthor.Items.Contains(author))
+            if (!cbAuthor.Items.Contains(author)) {
                 cbAuthor.Items.Add(author);
+            }
         }
 
         //車名の入力履歴をコンボボックスへ登録（重複なし）
@@ -269,11 +270,33 @@ namespace CarReportSystem {
 
         //ファイルオープン処理
         private void reportOpenFile() {
-            if (ofdReportFileSave.ShowDialog() == DialogResult.OK) {
+            if (ofdReportFileOpen.ShowDialog() == DialogResult.OK) {
                 try {
+                    //逆シリアル化でバイナリ形式を取り込む
+#pragma warning disable SYSLIB0011
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011
+                    using (FileStream fs = File.Open(
+                        ofdReportFileOpen.FileName, //ファイル名
+                        FileMode.Open,  //ファイルモード
+                        FileAccess.Read //アクセス
+                        )) {
+                        listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvRecords.DataSource = listCarReports;
+                    }
+                    //コンボボックスの履歴をすべて消す
+                    InputItemsUpdate();
+                    cbAuthor.Items.Clear();
+                    cbCarName.Items.Clear();
+
+                    //コンボボックスの履歴を再登録
+                    foreach (var report in listCarReports) {
+                        SetCbAuthor(report.Author);
+                        SetCbCarName(report.CarName);
+                    }
                 }
                 catch (Exception ex) {
-                    tsslbMessage.Text = "ファイル読み込みエラー";
+                    tsslbMessage.Text = "ファイル読み出しエラー";
                     MessageBox.Show(ex.Message);
                     throw;
                 }
