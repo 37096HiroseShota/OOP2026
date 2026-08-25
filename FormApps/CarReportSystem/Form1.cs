@@ -20,7 +20,6 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             //設定ファイルを読み込み背景色を設定する（逆シリアル化）
-            //P286以降を参考にする（ファイル名：setting.xml）
 
             //ファイルが存在するか？
             if (File.Exists("setting.xml")) {
@@ -169,7 +168,8 @@ namespace CarReportSystem {
 
         //データグリットビューを更新したら呼ぶメソッド
         private void InputItemsUpdate() {
-            if (!dgvRecords.CurrentRow.Selected)
+            if (dgvRecords.CurrentRow is null
+                   || !dgvRecords.CurrentRow.Selected)
                 ImputItemsAllClear();
         }
 
@@ -180,7 +180,6 @@ namespace CarReportSystem {
                 return;
             }
 
-            //記録者と車名が未入力だった場合は修正しない
             if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
                 tsslbMessage.Text = "記録者、または車名が未入力です";
                 return;
@@ -230,7 +229,6 @@ namespace CarReportSystem {
         //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
             //設定ファイルへ色情報を保存する処理（シリアル化）
-            //P284以降を参考にする（ファイル名：setting.xml）
 
             using (var writer = XmlWriter.Create("setting.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
