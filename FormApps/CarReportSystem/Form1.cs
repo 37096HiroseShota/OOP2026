@@ -9,6 +9,8 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+
+        //設定クラスのオブジェクトを生成
         Settings settings = new Settings();
 
         public Form1() {
@@ -18,7 +20,7 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             //設定ファイルを読み込み背景色を設定する（逆シリアル化）
-            //P286意向を参考にする（ファイル名：setting.xml）
+            //P286以降を参考にする（ファイル名：setting.xml）
 
             //ファイルが存在するか？
             if (File.Exists("setting.xml")) {
@@ -140,9 +142,8 @@ namespace CarReportSystem {
         //記録者の入力履歴をコンボボックスへ登録（重複なし）
         private void SetCbAuthor(string author) {
             //未登録なら登録【登録済みなら何もしない】
-            if (!cbAuthor.Items.Contains(author)) {
+            if (!cbAuthor.Items.Contains(author))
                 cbAuthor.Items.Add(author);
-            }
         }
 
         //車名の入力履歴をコンボボックスへ登録（重複なし）
@@ -229,7 +230,7 @@ namespace CarReportSystem {
         //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
             //設定ファイルへ色情報を保存する処理（シリアル化）
-            //P284意向を参考にする（ファイル名：setting.xml）
+            //P284以降を参考にする（ファイル名：setting.xml）
 
             using (var writer = XmlWriter.Create("setting.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
@@ -281,11 +282,11 @@ namespace CarReportSystem {
                         FileMode.Open,  //ファイルモード
                         FileAccess.Read //アクセス
                         )) {
+
                         listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
                         dgvRecords.DataSource = listCarReports;
                     }
                     //コンボボックスの履歴をすべて消す
-                    InputItemsUpdate();
                     cbAuthor.Items.Clear();
                     cbCarName.Items.Clear();
 
