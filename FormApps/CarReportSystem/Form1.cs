@@ -28,7 +28,7 @@ namespace CarReportSystem {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
 
-                        if(serializer.Deserialize(reader) is Settings loadedSettings) {
+                        if (serializer.Deserialize(reader) is Settings loadedSettings) {
                             settings = loadedSettings;
                             //背景色設定
                             BackColor = Color.FromArgb(settings.MainFormBackColor);
@@ -162,9 +162,13 @@ namespace CarReportSystem {
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
             //削除したいインデックスを指定してリストから削除
-            listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "削除するレポ－トを選択してください";
+                return;
+            }
+            listCarReports.Remove(carReport);
 
-            InputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
+            InputItemsUpdate(); //データグリットビューを更新したら呼ぶメソッド
         }
         //データグリットビューを更新したら呼ぶメソッド
         private void InputItemsUpdate() {
@@ -172,7 +176,6 @@ namespace CarReportSystem {
                    || !dgvRecords.CurrentRow.Selected)
                 ImputItemsAllClear();
         }
-
         private void btModifyRecord_Click(object sender, EventArgs e) {
 
             if (dgvRecords.SelectedRows.Count == 0) {
@@ -182,6 +185,11 @@ namespace CarReportSystem {
 
             if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
                 tsslbMessage.Text = "記録者、または車名が未入力です";
+                return;
+            }
+            
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "修正するレポ－トを選択してください";
                 return;
             }
 
