@@ -24,11 +24,15 @@ namespace CarReportSystem {
             //ファイルが存在するか？
             if (File.Exists("setting.xml")) {
                 try {
+
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        settings = serializer.Deserialize(reader) as Settings;
-                        //背景色設定
-                        BackColor = Color.FromArgb(settings.MainFormBackColor);
+
+                        if(serializer.Deserialize(reader) is Settings loadedSettings) {
+                            settings = loadedSettings;
+                            //背景色設定
+                            BackColor = Color.FromArgb(settings.MainFormBackColor);
+                        }
                     }
                 }
                 catch (Exception ex) {
@@ -144,18 +148,15 @@ namespace CarReportSystem {
             if (!cbAuthor.Items.Contains(author))
                 cbAuthor.Items.Add(author);
         }
-
         //車名の入力履歴をコンボボックスへ登録（重複なし）
         private void SetCbCarName(string carName) {
             //未登録なら登録【登録済みなら何もしない】
             if (!cbCarName.Items.Contains(carName))
                 cbCarName.Items.Add(carName);
         }
-
         private void btDeletePicture_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
-
         private void btDeleteRecord_Click(object sender, EventArgs e) {
             if ((dgvRecords.CurrentRow is null)
                 || (!dgvRecords.CurrentRow.Selected)) return;
@@ -165,7 +166,6 @@ namespace CarReportSystem {
 
             InputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
-
         //データグリットビューを更新したら呼ぶメソッド
         private void InputItemsUpdate() {
             if (dgvRecords.CurrentRow is null
