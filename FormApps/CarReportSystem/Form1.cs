@@ -21,6 +21,7 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             //設定ファイルを読み込み背景色を設定する（逆シリアル化）
 
+            
             //ファイルが存在するか？
             if (File.Exists("setting.xml")) {
                 try {
