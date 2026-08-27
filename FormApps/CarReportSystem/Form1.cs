@@ -1,7 +1,5 @@
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml;
-using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
@@ -10,38 +8,20 @@ namespace CarReportSystem {
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
-        //設定クラスのオブジェクトを生成
-        //Settings settings = Settings.Instance;
-
         public Form1() {
             InitializeComponent();
             dgvRecords.DataSource = listCarReports;
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            //設定ファイルを読み込み背景色を設定する（逆シリアル化）
-
-            
-            //ファイルが存在するか？
-            if (File.Exists("setting.xml")) {
-                try {
-
-                    using (var reader = XmlReader.Create("setting.xml")) {
-                        var serializer = new XmlSerializer(typeof(Settings));
-
-                        if (serializer.Deserialize(reader) is Settings loadedSettings) {
-                            settings = loadedSettings;
-                            //背景色設定
-                            BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
-                        }
-                    }
-                }
-                catch (Exception ex) {
-                    tsslbMessage.Text = "設定ファイル読み込みエラー";
-                    MessageBox.Show(ex.Message);//←より具体的なエラーを出力
-                }
-            } else {
-                tsslbMessage.Text = "設定ファイルがありません";
+            //背景色を設定する
+            try {
+                Settings.Instance.Load();
+                BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
+            }
+            catch (Exception ex) {
+                tsslbMessage.Text = "設定ファイル読み込みエラー";
+                MessageBox.Show(ex.Message);//←より具体的なエラーを出力
             }
         }
 
@@ -64,6 +44,7 @@ namespace CarReportSystem {
                 Report = tbReport.Text,
                 Picture = pbPicture.Image,
             };
+
             listCarReports.Add(carReport);
 
             //入力履歴を登録
@@ -71,7 +52,7 @@ namespace CarReportSystem {
             SetCbCarName(cbCarName.Text.Trim());
 
             dgvRecords.ClearSelection();   //セルの選択を解除する
-            InputItemsUpdate();
+            InputItemsUpdate();   //データグリッドビューを更新したら呼ぶメソッド
         }
 
         private MakerGroup GetRadioButtonMaker() {
@@ -149,15 +130,18 @@ namespace CarReportSystem {
             if (!cbAuthor.Items.Contains(author))
                 cbAuthor.Items.Add(author);
         }
+
         //車名の入力履歴をコンボボックスへ登録（重複なし）
         private void SetCbCarName(string carName) {
             //未登録なら登録【登録済みなら何もしない】
             if (!cbCarName.Items.Contains(carName))
                 cbCarName.Items.Add(carName);
         }
+
         private void btDeletePicture_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
+
         private void btDeleteRecord_Click(object sender, EventArgs e) {
             if ((dgvRecords.CurrentRow is null)
                 || (!dgvRecords.CurrentRow.Selected)) return;
@@ -171,12 +155,14 @@ namespace CarReportSystem {
 
             InputItemsUpdate(); //データグリットビューを更新したら呼ぶメソッド
         }
+
         //データグリットビューを更新したら呼ぶメソッド
         private void InputItemsUpdate() {
             if (dgvRecords.CurrentRow is null
                    || !dgvRecords.CurrentRow.Selected)
                 ImputItemsAllClear();
         }
+
         private void btModifyRecord_Click(object sender, EventArgs e) {
 
             if (dgvRecords.SelectedRows.Count == 0) {
@@ -237,12 +223,8 @@ namespace CarReportSystem {
 
         //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
-            //設定ファイルへ色情報を保存する処理（シリアル化）
-
-            using (var writer = XmlWriter.Create("setting.xml")) {
-                var serializer = new XmlSerializer(Settings.Instance.GetType());
-                serializer.Serialize(writer, Settings.Instance);
-            }
+            //色情報を保存
+            Settings.Instance.Save();
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
