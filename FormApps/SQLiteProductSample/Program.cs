@@ -6,6 +6,9 @@ internal static class Program {
         ApplicationConfiguration.Initialize();
 
         try {
+            //SQLiteデータベースを初期化する
+            //Products.dbが存在しない場合は作成され
+            //Prosuctsテーブルも存在しない場合だけ作成される
             Database.Initialize();
             Application.Run(new Form1());
         }

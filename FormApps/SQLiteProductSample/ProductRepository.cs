@@ -29,6 +29,19 @@ public class ProductRepository {
 
         return products;
     }
+
+    public void Add(string name, int price) {
+        using var connection = Database.GetConnection();
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText =
+        """
+        INSERT INTO Products (Name,Price)
+        VALUES ($name, $price);
+        """;
+
+        command.Parameters.AddWithValue("$name", name);
+        command.Parameters.AddWithValue("$price", price);
+    }
 }
-
-

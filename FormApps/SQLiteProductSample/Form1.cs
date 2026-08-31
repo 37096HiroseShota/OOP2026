@@ -43,8 +43,10 @@ public partial class Form1 : Form {
         _products.Clear();
 
         foreach (var product in _repository.GetAll()) {
-            
+            _products.Add(product);
         }
+
+        dgvProducts.ClearSelection();
     }
 
     private bool TryGetInput(out string name, out int price) {
