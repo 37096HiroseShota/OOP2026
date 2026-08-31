@@ -49,7 +49,11 @@ public partial class Form1 : Form {
     }
 
     private void dgvProducts_SelectionChanged(object sender, EventArgs e) {
+        if (dgvProducts.CurrentRow?.DataBoundItem is not Product product)
+            return;
 
+        tbName.Text = product.Name;
+        tbPrice.Text = product.Price.ToString();
     }
 
     private void ReloadProducts() {
