@@ -12,7 +12,7 @@ public class ProductRepository {
         using var command = connectioin.CreateCommand();
         command.CommandText =
         """
-        SELECT id, Name, Price
+        SELECT Id, Name, Price
         FROM Products
         ORDER BY Id;
         """;

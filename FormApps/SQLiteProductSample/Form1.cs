@@ -20,7 +20,20 @@ public partial class Form1 : Form {
     }
 
     private void btAdd_Click(object sender, EventArgs e) {
+        if (!TryGetInput(out string name, out int price))
+            return;
 
+        try {
+            _repository.Add(name, price);
+
+            ReloadProducts();
+            ClearInput();
+
+            tsslMessage.Text = "商品を登録しました。";
+        }
+        catch (Exception ex) {
+            ShowError("登録エラー", ex);
+        }
     }
 
     private void btUpdate_Click(object sender, EventArgs e) {
