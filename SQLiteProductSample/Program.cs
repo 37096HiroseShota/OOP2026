@@ -6,6 +6,7 @@ internal static class Program {
         ApplicationConfiguration.Initialize();
 
         try {
+            Database.Initialize();
             Application.Run(new Form1());
         }
         catch (Exception ex) {

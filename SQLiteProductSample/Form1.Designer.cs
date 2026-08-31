@@ -1,7 +1,6 @@
 namespace SQLiteProductSample;
 
-partial class Form1
-{
+partial class Form1 {
     private System.ComponentModel.IContainer? components = null;
 
     private Label lblTitle = null!;
@@ -17,16 +16,14 @@ partial class Form1
     private StatusStrip statusStrip1 = null!;
     private ToolStripStatusLabel tsslMessage = null!;
 
-    protected override void Dispose(bool disposing)
-    {
+    protected override void Dispose(bool disposing) {
         if (disposing)
             components?.Dispose();
 
         base.Dispose(disposing);
     }
 
-    private void InitializeComponent()
-    {
+    private void InitializeComponent() {
         lblTitle = new Label();
         lblName = new Label();
         lblPrice = new Label();
