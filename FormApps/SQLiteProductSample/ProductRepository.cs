@@ -37,11 +37,13 @@ public class ProductRepository {
         using var command = connection.CreateCommand();
         command.CommandText =
         """
-        INSERT INTO Products (Name,Price)
+        INSERT INTO Products (Name, Price)
         VALUES ($name, $price);
         """;
 
         command.Parameters.AddWithValue("$name", name);
         command.Parameters.AddWithValue("$price", price);
+
+        command.ExecuteNonQuery();
     }
 }
