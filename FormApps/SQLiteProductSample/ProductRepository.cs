@@ -71,7 +71,7 @@ public class ProductRepository {
 
         command.Parameters.AddWithValue("$name", product.Name);
         command.Parameters.AddWithValue("$price", product.Price);
-        command.Parameters.AddWithValue("$Id", product.Id);
+        command.Parameters.AddWithValue("$id", product.Id);
 
         command.ExecuteNonQuery();
     }
