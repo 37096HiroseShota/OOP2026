@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace SQLiteProductSample;
 
@@ -11,11 +12,14 @@ public partial class Form1 : Form {
     public Form1() {
         InitializeComponent();
 
+        //ProductクラスのプロパティからDataGridView列を自動生成する
         dgvProducts.AutoGenerateColumns = true;
+        //DataGridViewのデータ元としてBindListを設定する
         dgvProducts.DataSource = _products;
-
+        //起動直後にDbから商品一覧を読み込む
         ReloadProducts();
 
+        //使用中のDBファイルの場所をステータスバーへ表示する
         tsslMessage.Text = $"DB: {Database.FilePath}";
     }
 
@@ -37,7 +41,28 @@ public partial class Form1 : Form {
     }
 
     private void btUpdate_Click(object sender, EventArgs e) {
+        if (dgvProducts.CurrentRow?.DataBoundItem is not Product selectedProduct) {
+            tsslMessage.Text = "修正する商品を選択してください";
+            return;
+        }
 
+        if (!TryGetInput(out string name, out int price))
+            return;
+
+        try {
+            selectedProduct.Name = name;
+            selectedProduct.Price = price;
+
+            _repository.Update(selectedProduct);
+
+            ReloadProducts();
+            ClearInput();
+
+            tsslMessage.Text = "商品を修正しました。";
+        }
+        catch (Exception ex) {
+            ShowError("修正エラー", ex);
+        }
     }
 
     private void btDelete_Click(object sender, EventArgs e) {

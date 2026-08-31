@@ -56,7 +56,7 @@ public class ProductRepository {
         command.ExecuteNonQuery();
     }
 
-    private void Update(Product product) {
+    public void Update(Product product) {
         using var connection = Database.GetConnection();
         connection.Open();
 
