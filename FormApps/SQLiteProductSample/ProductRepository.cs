@@ -75,4 +75,19 @@ public class ProductRepository {
 
         command.ExecuteNonQuery();
     }
+
+    public void Delete(int id) {
+        using var connection = Database.GetConnection();
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText =
+        """
+        DELETE FROM Products
+        WHERE Id = $id;
+        """;
+
+        command.Parameters.AddWithValue("$Id", id);
+        command.ExecuteNonQuery();
+    }
 }
