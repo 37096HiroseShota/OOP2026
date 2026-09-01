@@ -102,6 +102,7 @@ public partial class Form1 : Form {
         if (dgvProducts.CurrentRow?.DataBoundItem is not Product product)
             return;
 
+        // 選択した商品のデータを入力欄へ表示する
         tbName.Text = product.Name;
         tbPrice.Text = product.Price.ToString();
     }
