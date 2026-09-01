@@ -1,6 +1,4 @@
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Xml.Linq;
 
 namespace SQLiteProductSample;
 
@@ -25,6 +23,7 @@ public partial class Form1 : Form {
     }
 
     private void btAdd_Click(object sender, EventArgs e) {
+        //値が不正なら処理を終了する
         if (!TryGetInput(out string name, out int price))
             return;
 

@@ -35,8 +35,12 @@ public class ProductRepository {
         return products;
     }
 
-    public void Add(string name, int price) {
+    // 商品を1件追加する。Create（INSERT）に相当する
+    public int Add(string name, int price) {
+        //接続オブジェクトを生成する
         using var connection = Database.GetConnection();
+
+        //DBを開く
         connection.Open();
 
 
@@ -47,13 +51,21 @@ public class ProductRepository {
         """
         INSERT INTO Products (Name, Price)
         VALUES ($name, $price);
+
+        SELECT last_insert_rowid();
         """;
 
         command.Parameters.AddWithValue("$name", name);
         command.Parameters.AddWithValue("$price", price);
 
-        //結果行を返さないSQLを実行する
-        command.ExecuteNonQuery();
+        //1つの値を返すSQLを実行する
+        var result = command.ExecuteScalar();
+
+        if (result is null)
+            throw new InvalidOperationException("登録した商品のIDを取得できませんでした。");
+
+        // SQLiteのINTEGERはlongとして返るため、intへ変換する
+        return Convert.ToInt32((long)result);
     }
 
     public void Update(Product product) {
