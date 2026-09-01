@@ -87,7 +87,7 @@ public class ProductRepository {
         WHERE Id = $id;
         """;
 
-        command.Parameters.AddWithValue("$Id", id);
+        command.Parameters.AddWithValue("$id", id);
         command.ExecuteNonQuery();
     }
 }
