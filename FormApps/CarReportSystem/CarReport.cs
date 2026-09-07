@@ -5,7 +5,7 @@
             なし, トヨタ, 日産, ホンダ, スバル, 輸入車, その他,
         }
         [System.ComponentModel.DisplayName("Id")]
-        public int Id { get; set; }   //ID
+        public int Id { get; set; }   //カーレポートID
         [System.ComponentModel.DisplayName("日付")]
         public DateTime Date { get; set; }   //日付
         [System.ComponentModel.DisplayName("記録者")]

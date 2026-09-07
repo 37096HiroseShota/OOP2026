@@ -19,17 +19,17 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
-        """
-        CREATE TABLE IF NOT EXISTS Products (
+            """
+            CREATE TABLE IF NOT EXISTS Products (
             Id        INTEGER PRIMARY KEY AUTOINCREMENT,
             Date      TEXT NOT NULL,
             Author    TEXT NOT NULL,
-            Maker     INTEGER NOT NULL CHECK (Price >= 0)
+            Maker     INTEGER NOT NULL,
             CarName   TEXT NOT NULL,
             Report    TEXT NOT NULL,
             Picture   BLOB
-        );
-        """;
+                );
+            """;
 
             command.ExecuteNonQuery();
         }
