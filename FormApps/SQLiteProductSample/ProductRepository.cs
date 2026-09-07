@@ -1,5 +1,3 @@
-using Microsoft.Data.Sqlite;
-
 namespace SQLiteProductSample;
 
 // Prosuctテーブルに対するDB操作をまとめたクラス
