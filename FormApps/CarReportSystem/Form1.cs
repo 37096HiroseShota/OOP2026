@@ -241,6 +241,9 @@ namespace CarReportSystem {
 
             foreach (var carReport in _repository.GetAll()) {
                 listCarReports.Add(carReport);
+
+                SetCbAuthor(carReport.Author);
+                SetCbCarName(carReport.CarName);
             }
 
             dgvRecords.ClearSelection();
