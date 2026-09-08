@@ -8,7 +8,7 @@ namespace CarReportSystem {
             Path.Combine(AppContext.BaseDirectory, "carreport.db");
 
         private static readonly string ConnectionString =
-        $"Data Source={DatabasePath}";
+            $"Data Source={DatabasePath}";
 
         public static string FilePath => DatabasePath;
 
@@ -27,13 +27,13 @@ namespace CarReportSystem {
 
             """
             CREATE TABLE IF NOT EXISTS CarReports (
-            Id        INTEGER PRIMARY KEY AUTOINCREMENT,
-            Date      TEXT NOT NULL,
-            Author    TEXT NOT NULL,
-            Maker     INTEGER NOT NULL,
-            CarName   TEXT NOT NULL,
-            Report    TEXT NOT NULL,
-            Picture   BLOB
+                Id        INTEGER PRIMARY KEY AUTOINCREMENT,
+                Date      TEXT NOT NULL,
+                Author    TEXT NOT NULL,
+                Maker     INTEGER NOT NULL,
+                CarName   TEXT NOT NULL,
+                Report    TEXT NOT NULL,
+                Picture   BLOB
             );
             """;
 

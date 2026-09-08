@@ -65,7 +65,7 @@ namespace CarReportSystem {
             SetCbCarName(cbCarName.Text.Trim());
 
             dgvRecords.ClearSelection();   //セルの選択を解除する
-            InputItemsUpdate();   //データグリッドビューを更新したら呼ぶメソッド
+            ClearInputItemsIfNoSelection();   //データグリッドビューを更新したら呼ぶメソッド
         }
 
         private MakerGroup GetRadioButtonMaker() {
@@ -125,14 +125,14 @@ namespace CarReportSystem {
 
         //記録者の入力履歴をコンボボックスへ登録（重複なし）
         private void SetCbAuthor(string author) {
-            //未登録なら登録【登録済みなら何もしない】
+            //未登録なら登録（登録済みなら何もしない）
             if (!cbAuthor.Items.Contains(author))
                 cbAuthor.Items.Add(author);
         }
 
         //車名の入力履歴をコンボボックスへ登録（重複なし）
         private void SetCbCarName(string carName) {
-            //未登録なら登録【登録済みなら何もしない】
+            //未登録なら登録（登録済みなら何もしない）
             if (!cbCarName.Items.Contains(carName))
                 cbCarName.Items.Add(carName);
         }
@@ -154,11 +154,11 @@ namespace CarReportSystem {
 
             _carReports.Remove(carReport);
 
-            InputItemsUpdate();
+            ClearInputItemsIfNoSelection();
         }
 
         //データグリッドビューを更新したら呼ぶメソッド
-        private void InputItemsUpdate() {
+        private void ClearInputItemsIfNoSelection() {
             if (dgvRecords.CurrentRow is null
                    || !dgvRecords.CurrentRow.Selected)
                 ClearInputItems();
@@ -180,7 +180,7 @@ namespace CarReportSystem {
                 return;
             }
 
-            //カーレポート管理用リストの該当する要素のデータを書き換える
+            //選択したカーレポートのデータを書き換える
             carReport.Date = dtpDate.Value.Date;
             carReport.Author = cbAuthor.Text.Trim();
             carReport.Maker = GetRadioButtonMaker();

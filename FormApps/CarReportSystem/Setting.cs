@@ -12,7 +12,7 @@ namespace CarReportSystem {
 
         //メイン画面に設定した色情報
         public int MainFormBackColor { get; set; }
-           = SystemColors.Control.ToArgb();
+            = SystemColors.Control.ToArgb();
 
         //唯一のオブジェクトを取得する
         public static Setting Instance {
