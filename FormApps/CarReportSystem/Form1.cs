@@ -59,7 +59,7 @@ namespace CarReportSystem {
                 cbCarName.Text.Trim(),
                 tbReport.Text,
                 pbPicture.Image
-                );
+            );
 
             //入力履歴を登録
             SetCbAuthor(cbAuthor.Text.Trim());
@@ -166,6 +166,8 @@ namespace CarReportSystem {
                 return;
             }
             listCarReports.Remove(carReport);
+
+            _repository.Delete(carReport.Id);
 
             InputItemsUpdate(); //データグリットビューを更新したら呼ぶメソッド
         }
