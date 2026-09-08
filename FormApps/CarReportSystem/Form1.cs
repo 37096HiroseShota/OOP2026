@@ -92,7 +92,7 @@ namespace CarReportSystem {
             }
         }
 
-        private void ImputItemsAllClear() {
+        private void InputItemsAllClear() {
             dtpDate.Value = DateTime.Today;
             cbAuthor.Text = string.Empty;
             rbOther.Checked = true;
@@ -107,12 +107,7 @@ namespace CarReportSystem {
             if ((dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport)
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
-            dtpDate.Value = carReport.Date;
-            cbAuthor.Text = carReport.Author;
-            SetRadioButtonMaker(carReport.Maker);
-            cbCarName.Text = carReport.CarName;
-            tbReport.Text = carReport.Report;
-            pbPicture.Image = carReport.Picture;
+            DisplayCarReport(carReport);
 
             InputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
@@ -178,7 +173,7 @@ namespace CarReportSystem {
         private void InputItemsUpdate() {
             if (dgvRecords.CurrentRow is null
                    || !dgvRecords.CurrentRow.Selected)
-                ImputItemsAllClear();
+                InputItemsAllClear();
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
@@ -218,12 +213,7 @@ namespace CarReportSystem {
             if ((dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport)
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
-            dtpDate.Value = carReport.Date;
-            cbAuthor.Text = carReport.Author;
-            SetRadioButtonMaker(carReport.Maker);
-            cbCarName.Text = carReport.CarName;
-            tbReport.Text = carReport.Report;
-            pbPicture.Image = carReport.Picture;
+            DisplayCarReport(carReport);
 
             InputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
@@ -254,6 +244,15 @@ namespace CarReportSystem {
             }
 
             dgvRecords.ClearSelection();
+        }
+
+        private void DisplayCarReport(CarReport carReport) {
+            dtpDate.Value = carReport.Date;
+            cbAuthor.Text = carReport.Author;
+            SetRadioButtonMaker(carReport.Maker);
+            cbCarName.Text = carReport.CarName;
+            tbReport.Text = carReport.Report;
+            pbPicture.Image = carReport.Picture;
         }
     }
 }
