@@ -3,8 +3,18 @@ namespace CarReportSystem {
         [STAThread]
         static void Main() {
             ApplicationConfiguration.Initialize();
-            Database.Initialize();
             Application.Run(new Form1());
+            try {
+                Database.Initialize();
+                Application.Run(new Form1());
+            }
+            catch (Exception ex) {
+                MessageBox.Show(
+                    $"アプリケーションの起動に失敗しました。\n\n{ex.Message}",
+                    "起動エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }

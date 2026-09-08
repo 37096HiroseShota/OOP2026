@@ -13,6 +13,7 @@ namespace CarReportSystem {
             using var command = connectioin.CreateCommand();
 
             command.CommandText =
+
             """
         　　SELECT Id, Date, Author, Maker, CarName, Report, Picture
         　　FROM CarReports
@@ -24,23 +25,25 @@ namespace CarReportSystem {
             while (reader.Read()) {
                 carReports.Add(new CarReport {
                     Id = reader.GetInt32(0),
+
                     Date = DateTime.ParseExact(
-                        reader.GetString(1),
-                        "yyy-MM-dd",
-                        CultureInfo.InvariantCulture),
+                       reader.GetString(1),
+                       "yyyy-MM-dd",
+                       CultureInfo.InvariantCulture),
 
                     Author = reader.GetString(2),
                     Maker = (CarReport.MakerGroup)reader.GetInt32(3),
                     CarName = reader.GetString(4),
                     Report = reader.GetString(5),
-                    Picture = reader.Get(6)
+                    Picture = reader.IsDBNull(6)
+                                ? null : BytesToImage(reader.GetFieldValue<byte[]>(6))
                 });
             }
-
+            //System.FormatException: 'String '2026-09-08 00:00:00' was not recognized as a valid DateTime.'
             return carReports;
         }
 
-        public int Add(DateTime date, string author, CarReport.MakerGroup maker, string carname, string report, Image picture) {
+        public int Add(DateTime date, string author, CarReport.MakerGroup maker, string carName, string report, Image? picture) {
             using var connection = Database.GetConnection();
 
             connection.Open();
@@ -48,21 +51,21 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
+
             """
             INSERT INTO CarReports
             (Date, Author, Maker, CarName, Report, Picture)
             VALUES ($date, $author, $maker, $carName, $report, $picture);
 
             SELECT last_insert_rowid();
-            """
-            ;
+            """;
 
             command.Parameters.AddWithValue("$date", date);
             command.Parameters.AddWithValue("$author", author);
             command.Parameters.AddWithValue("$maker", maker);
-            command.Parameters.AddWithValue("$carname", carname);
+            command.Parameters.AddWithValue("$carName", carName);
             command.Parameters.AddWithValue("$report", report);
-            command.Parameters.AddWithValue("$picture", picture);
+            command.Parameters.AddWithValue("$picture", ImageToBytes(picture));
 
             var result = command.ExecuteScalar();
 
@@ -80,18 +83,21 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
+
             """
             UPDATE CarReports
             SET Date = $date, Author = $author, Maker = $maker,
                 CarName = $carName, Report = $report, Picture = $picture
             WHERE Id = $id;
             """;
+
             command.Parameters.AddWithValue("$date", carReport.Date);
             command.Parameters.AddWithValue("$author", carReport.Author);
             command.Parameters.AddWithValue("$maker", carReport.Maker);
-            command.Parameters.AddWithValue("$carname", carReport.CarName);
+            command.Parameters.AddWithValue("$carName", carReport.CarName);
             command.Parameters.AddWithValue("$report", carReport.Report);
-            command.Parameters.AddWithValue("$picture", carReport.Picture);
+            command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
+            command.Parameters.AddWithValue("$id", carReport.Id);
 
             command.ExecuteNonQuery();
         }
@@ -104,6 +110,7 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
+
             """
             DELETE FROM CarReports
             WHERE Id = $id;

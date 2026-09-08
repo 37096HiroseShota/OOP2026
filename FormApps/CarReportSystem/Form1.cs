@@ -2,14 +2,22 @@ using System.ComponentModel;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
+
     public partial class Form1 : Form {
+
+        private readonly CarReportRepository _repository = new();
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         public Form1() {
             InitializeComponent();
+
             dgvRecords.DataSource = listCarReports;
+
+            ReloadCarReports();
+
+            tsslbMessage.Text = $"DB: {Database.FilePath}";
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -45,6 +53,13 @@ namespace CarReportSystem {
             };
 
             listCarReports.Add(carReport);
+            _repository.Add(dtpDate.Value.Date,
+                cbAuthor.Text.Trim(),
+                GetRadioButtonMaker(),
+                cbCarName.Text.Trim(),
+                tbReport.Text,
+                pbPicture.Image
+                );
 
             //入力履歴を登録
             SetCbAuthor(cbAuthor.Text.Trim());
@@ -163,7 +178,6 @@ namespace CarReportSystem {
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
-
             if (dgvRecords.SelectedRows.Count == 0) {
                 tsslbMessage.Text = "修正するレポートを選択してください。";
                 return;
@@ -226,61 +240,14 @@ namespace CarReportSystem {
             Settings.Instance.Save();
         }
 
-        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
-            reportSaveFile();
-        }
+        private void ReloadCarReports() {
+            listCarReports.Clear();
 
-        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
-            reportOpenFile();
-        }
-
-        //ファイルセーブ処理
-        private void reportSaveFile() {
-            if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
-                try {
-                    using (FileStream fs = File.Open(
-                        sfdReportFileSave.FileName,
-                        FileMode.Create
-                        )) {
-                    }
-                }
-                catch (Exception ex) {
-                    tsslbMessage.Text = "ファイル書き出しエラー";
-                    MessageBox.Show(ex.Message);
-                    throw;
-                }
+            foreach (var carReport in _repository.GetAll()) {
+                listCarReports.Add(carReport);
             }
+
+            dgvRecords.ClearSelection();
         }
-
-        //ファイルオープン処理
-        private void reportOpenFile() {
-            if (ofdReportFileOpen.ShowDialog() == DialogResult.OK) {
-                try {
-                    //逆シリアル化でバイナリ形式を取り込む
-                    using (FileStream fs = File.Open(
-                        ofdReportFileOpen.FileName, //ファイル名
-                        FileMode.Open,  //ファイルモード
-                        FileAccess.Read //アクセス
-                        )) {
-
-                        dgvRecords.DataSource = listCarReports;
-                    }
-                    //コンボボックスの履歴をすべて消す
-                    cbAuthor.Items.Clear();
-                    cbCarName.Items.Clear();
-
-                    //コンボボックスの履歴を再登録
-                    foreach (var report in listCarReports) {
-                        SetCbAuthor(report.Author);
-                        SetCbCarName(report.CarName);
-                    }
-                }
-                catch (Exception ex) {
-                    tsslbMessage.Text = "ファイル読み出しエラー";
-                    MessageBox.Show(ex.Message);
-                    throw;
-                }
-            }
-        }
-    };
+    }
 }

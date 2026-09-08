@@ -51,9 +51,6 @@
             pbPicture = new PictureBox();
             menuStrip1 = new MenuStrip();
             ファイルAToolStripMenuItem = new ToolStripMenuItem();
-            開くToolStripMenuItem = new ToolStripMenuItem();
-            保存ToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator1 = new ToolStripSeparator();
             色設定ToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             終了ToolStripMenuItem = new ToolStripMenuItem();
@@ -366,29 +363,10 @@
             // 
             // ファイルAToolStripMenuItem
             // 
-            ファイルAToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 開くToolStripMenuItem, 保存ToolStripMenuItem, toolStripSeparator1, 色設定ToolStripMenuItem, toolStripSeparator2, 終了ToolStripMenuItem });
+            ファイルAToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 色設定ToolStripMenuItem, toolStripSeparator2, 終了ToolStripMenuItem });
             ファイルAToolStripMenuItem.Name = "ファイルAToolStripMenuItem";
             ファイルAToolStripMenuItem.Size = new Size(67, 20);
             ファイルAToolStripMenuItem.Text = "ファイル(&F)";
-            // 
-            // 開くToolStripMenuItem
-            // 
-            開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(180, 22);
-            開くToolStripMenuItem.Text = "開く...";
-            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
-            // 
-            // 保存ToolStripMenuItem
-            // 
-            保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(180, 22);
-            保存ToolStripMenuItem.Text = "保存...";
-            保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click;
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
@@ -420,7 +398,7 @@
             // このアプリについてToolStripMenuItem
             // 
             このアプリについてToolStripMenuItem.Name = "このアプリについてToolStripMenuItem";
-            このアプリについてToolStripMenuItem.Size = new Size(164, 22);
+            このアプリについてToolStripMenuItem.Size = new Size(180, 22);
             このアプリについてToolStripMenuItem.Text = "このアプリについて...";
             // 
             // ofdPicFileOpen
@@ -522,11 +500,8 @@
         private PictureBox pbPicture;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem ファイルAToolStripMenuItem;
-        private ToolStripMenuItem 開くToolStripMenuItem;
-        private ToolStripMenuItem 保存ToolStripMenuItem;
         private ToolStripMenuItem 色設定ToolStripMenuItem;
         private ToolStripMenuItem 終了ToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem ヘルプHToolStripMenuItem;
         private ToolStripMenuItem このアプリについてToolStripMenuItem;
