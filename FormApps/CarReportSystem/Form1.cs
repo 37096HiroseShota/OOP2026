@@ -4,14 +4,14 @@ using static CarReportSystem.CarReport;
 namespace CarReportSystem {
 
     public partial class Form1 : Form {
-        private readonly BindingList<CarReport> _carReport = new();
+        private readonly BindingList<CarReport> _carReports = new();
 
         private readonly CarReportRepository _repository = new();
 
         public Form1() {
             InitializeComponent();
 
-            dgvRecords.DataSource = _carReport;
+            dgvRecords.DataSource = _carReports;
 
             ReloadCarReports();
 
@@ -40,7 +40,14 @@ namespace CarReportSystem {
                 return;
             }
 
-            var carReport = new CarReport();
+            var carReport = new CarReport {
+                Date = dtpDate.Value.Date,
+                Author = cbAuthor.Text.Trim(),
+                Maker = GetRadioButtonMaker(),
+                CarName = cbCarName.Text.Trim(),
+                Report = tbReport.Text,
+                Picture = pbPicture.Image
+            };
 
             carReport.Id = _repository.Add(dtpDate.Value.Date,
                 cbAuthor.Text.Trim(),
@@ -50,7 +57,7 @@ namespace CarReportSystem {
                 pbPicture.Image
             );
 
-            _carReport.Add(carReport);
+            _carReports.Add(carReport);
 
             //入力履歴を登録
             SetCbAuthor(cbAuthor.Text.Trim());
@@ -143,12 +150,12 @@ namespace CarReportSystem {
             }
             _repository.Delete(carReport.Id);
 
-            _carReport.Remove(carReport);
+            _carReports.Remove(carReport);
 
-            InputItemsUpdate(); //データグリットビューを更新したら呼ぶメソッド
+            InputItemsUpdate();
         }
 
-        //データグリットビューを更新したら呼ぶメソッド
+        //データグリッドビューを更新したら呼ぶメソッド
         private void InputItemsUpdate() {
             if (dgvRecords.CurrentRow is null
                    || !dgvRecords.CurrentRow.Selected)
@@ -161,7 +168,7 @@ namespace CarReportSystem {
                 return;
             }
 
-            if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
+            if (string.IsNullOrWhiteSpace(cbAuthor.Text) || string.IsNullOrWhiteSpace(cbCarName.Text)) {
                 tsslbMessage.Text = "記録者、または車名が未入力です。";
                 return;
             }
@@ -193,8 +200,6 @@ namespace CarReportSystem {
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
             DisplayCarReport(carReport);
-
-            InputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
 
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -216,10 +221,10 @@ namespace CarReportSystem {
         }
 
         private void ReloadCarReports() {
-            _carReport.Clear();
+            _carReports.Clear();
 
             foreach (var carReport in _repository.GetAll()) {
-                _carReport.Add(carReport);
+                _carReports.Add(carReport);
 
                 SetCbAuthor(carReport.Author);
                 SetCbCarName(carReport.CarName);
