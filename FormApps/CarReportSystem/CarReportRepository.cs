@@ -36,13 +36,21 @@ namespace CarReportSystem {
                     CarName = reader.GetString(4),
                     Report = reader.GetString(5),
                     Picture = reader.IsDBNull(6)
-                                ? null : BytesToImage(reader.GetFieldValue<byte[]>(6))
+                        ? null
+                        : BytesToImage(reader.GetFieldValue<byte[]>(6))
                 });
             }
             return carReports;
         }
 
-        public int Add(DateTime date, string author, CarReport.MakerGroup maker, string carName, string report, Image? picture) {
+        public int Add(
+            DateTime date,
+            string author,
+            CarReport.MakerGroup maker,
+            string carName,
+            string report,
+            Image? picture) {
+
             using var connection = Database.GetConnection();
 
             connection.Open();

@@ -4,16 +4,14 @@ using static CarReportSystem.CarReport;
 namespace CarReportSystem {
 
     public partial class Form1 : Form {
+        private readonly BindingList<CarReport> _carReport = new();
 
         private readonly CarReportRepository _repository = new();
-
-        //カーレポート管理用リスト
-        BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         public Form1() {
             InitializeComponent();
 
-            dgvRecords.DataSource = listCarReports;
+            dgvRecords.DataSource = _carReport;
 
             ReloadCarReports();
 
@@ -23,10 +21,9 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             //背景色を設定する
             try {
-                Settings.Instance.Load();
-                BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
-            }
-            catch (Exception ex) {
+                Setting.Instance.Load();
+                BackColor = Color.FromArgb(Setting.Instance.MainFormBackColor);
+            } catch (Exception ex) {
                 tsslbMessage.Text = "設定ファイル読み込みエラー";
                 MessageBox.Show(ex.Message);//←より具体的なエラーを出力
             }
@@ -35,25 +32,17 @@ namespace CarReportSystem {
         //追加ボタンイベントハンドラ
         private void btAddRecord_Click(object sender, EventArgs e) {
 
-            tsslbMessage.Text = String.Empty;   //メッセージ領域のクリア
+            tsslbMessage.Text = string.Empty;   //メッセージ領域のクリア
 
             //記録者と車名が未入力だった場合は追加しない
-            if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
-                tsslbMessage.Text = "記録者、または車名が未入力です";
+            if (string.IsNullOrWhiteSpace(cbAuthor.Text) || string.IsNullOrWhiteSpace(cbCarName.Text)) {
+                tsslbMessage.Text = "記録者、または車名が未入力です。";
                 return;
             }
 
-            var carReport = new CarReport {
-                Date = dtpDate.Value.Date,
-                Author = cbAuthor.Text.Trim(),
-                Maker = GetRadioButtonMaker(),
-                CarName = cbCarName.Text.Trim(),
-                Report = tbReport.Text,
-                Picture = pbPicture.Image,
-            };
+            var carReport = new CarReport();
 
-            carReport.Id =
-            _repository.Add(dtpDate.Value.Date,
+            carReport.Id = _repository.Add(dtpDate.Value.Date,
                 cbAuthor.Text.Trim(),
                 GetRadioButtonMaker(),
                 cbCarName.Text.Trim(),
@@ -61,7 +50,7 @@ namespace CarReportSystem {
                 pbPicture.Image
             );
 
-            listCarReports.Add(carReport);
+            _carReport.Add(carReport);
 
             //入力履歴を登録
             SetCbAuthor(cbAuthor.Text.Trim());
@@ -101,15 +90,6 @@ namespace CarReportSystem {
             pbPicture.Image = null;
 
             dgvRecords.ClearSelection();   //セルの選択を解除する
-        }
-
-        private void dgvRecords_Click(object sender, EventArgs e) {
-            if ((dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport)
-                || (!dgvRecords.CurrentRow.Selected)) return;
-
-            DisplayCarReport(carReport);
-
-            InputItemsUpdate();   //データグリットビューを更新したら呼ぶメソッド
         }
 
         private void SetRadioButtonMaker(MakerGroup targetMaker) {
@@ -157,14 +137,13 @@ namespace CarReportSystem {
             if ((dgvRecords.CurrentRow is null)
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
-            //削除したいインデックスを指定してリストから削除
             if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
-                tsslbMessage.Text = "削除するレポ－トを選択してください";
+                tsslbMessage.Text = "削除するレポートを選択してください。";
                 return;
             }
             _repository.Delete(carReport.Id);
 
-            listCarReports.Remove(carReport);
+            _carReport.Remove(carReport);
 
             InputItemsUpdate(); //データグリットビューを更新したら呼ぶメソッド
         }
@@ -183,12 +162,12 @@ namespace CarReportSystem {
             }
 
             if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
-                tsslbMessage.Text = "記録者、または車名が未入力です";
+                tsslbMessage.Text = "記録者、または車名が未入力です。";
                 return;
             }
 
             if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
-                tsslbMessage.Text = "修正するレポ－トを選択してください";
+                tsslbMessage.Text = "修正するレポートを選択してください。";
                 return;
             }
 
@@ -196,7 +175,7 @@ namespace CarReportSystem {
             carReport.Date = dtpDate.Value.Date;
             carReport.Author = cbAuthor.Text.Trim();
             carReport.Maker = GetRadioButtonMaker();
-            carReport.CarName = cbCarName.Text;
+            carReport.CarName = cbCarName.Text.Trim();
             carReport.Report = tbReport.Text;
             carReport.Picture = pbPicture.Image;
 
@@ -226,21 +205,21 @@ namespace CarReportSystem {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
                 //変更された色の情報を保存
-                Settings.Instance.MainFormBackColor = cdColor.Color.ToArgb();
+                Setting.Instance.MainFormBackColor = cdColor.Color.ToArgb();
             }
         }
 
         //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
             //色情報を保存
-            Settings.Instance.Save();
+            Setting.Instance.Save();
         }
 
         private void ReloadCarReports() {
-            listCarReports.Clear();
+            _carReport.Clear();
 
             foreach (var carReport in _repository.GetAll()) {
-                listCarReports.Add(carReport);
+                _carReport.Add(carReport);
 
                 SetCbAuthor(carReport.Author);
                 SetCbCarName(carReport.CarName);
@@ -256,6 +235,11 @@ namespace CarReportSystem {
             cbCarName.Text = carReport.CarName;
             tbReport.Text = carReport.Report;
             pbPicture.Image = carReport.Picture;
+        }
+
+        private void btNewInput_Click(object sender, EventArgs e) {
+            InputItemsAllClear();
+            tsslbMessage.Text = string.Empty;
         }
     }
 }

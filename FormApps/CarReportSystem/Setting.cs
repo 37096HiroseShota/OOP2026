@@ -3,24 +3,24 @@ using System.Xml.Serialization;
 
 namespace CarReportSystem {
 
-    public sealed class Settings {
+    public sealed class Setting {
 
         private const string FileName = "setting.xml";
 
         //唯一のSettingオブジェクト
-        private static readonly Settings _instance = new Settings();
+        private static readonly Setting _instance = new Setting();
 
         //メイン画面に設定した色情報
         public int MainFormBackColor { get; set; }
            = SystemColors.Control.ToArgb();
 
         //唯一のオブジェクトを取得する
-        public static Settings Instance {
+        public static Setting Instance {
             get { return _instance; }
         }
 
         //外部からnewできないようにする
-        private Settings() { }
+        private Setting() { }
 
         //設定ファイルからロード
         public void Load() {
@@ -28,12 +28,11 @@ namespace CarReportSystem {
                 return;
             }
 
-            using (var reader = XmlReader.Create(FileName)) {
-                var serializer = new XmlSerializer(typeof(SettingsData));
+            using var reader = XmlReader.Create(FileName);
+            var serializer = new XmlSerializer(typeof(SettingsData));
 
-                if (serializer.Deserialize(reader) is SettingsData data) {
-                    MainFormBackColor = data.MainFormBackColor;
-                }
+            if (serializer.Deserialize(reader) is SettingsData data) {
+                MainFormBackColor = data.MainFormBackColor;
             }
         }
 
