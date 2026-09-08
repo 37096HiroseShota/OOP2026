@@ -61,10 +61,10 @@ namespace CarReportSystem {
 
             command.Parameters.AddWithValue("$date", date.ToString("yyyy-MM-dd"));
             command.Parameters.AddWithValue("$author", author);
-            command.Parameters.AddWithValue("$maker", maker);
+            command.Parameters.AddWithValue("$maker", (int)maker);
             command.Parameters.AddWithValue("$carName", carName);
             command.Parameters.AddWithValue("$report", report);
-            command.Parameters.AddWithValue("$picture", ImageToBytes(picture));
+            command.Parameters.AddWithValue("$picture", ImageToBytes(picture) is null ? DBNull.Value : ImageToBytes(picture));
 
             var result = command.ExecuteScalar();
 
@@ -92,10 +92,10 @@ namespace CarReportSystem {
 
             command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd"));
             command.Parameters.AddWithValue("$author", carReport.Author);
-            command.Parameters.AddWithValue("$maker", carReport.Maker);
+            command.Parameters.AddWithValue("$maker", (int)carReport.Maker);
             command.Parameters.AddWithValue("$carName", carReport.CarName);
             command.Parameters.AddWithValue("$report", carReport.Report);
-            command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
+            command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture) is null ? DBNull.Value : ImageToBytes(carReport.Picture));
             command.Parameters.AddWithValue("$id", carReport.Id);
 
             command.ExecuteNonQuery();

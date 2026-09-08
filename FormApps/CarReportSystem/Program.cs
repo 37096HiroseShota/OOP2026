@@ -2,7 +2,7 @@ namespace CarReportSystem {
     internal static class Program {
         [STAThread]
         static void Main() {
-            //ApplicationConfiguration.Initialize();
+            ApplicationConfiguration.Initialize();
             
             try {
                 Database.Initialize();

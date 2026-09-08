@@ -53,6 +53,8 @@ namespace CarReportSystem {
             };
 
             listCarReports.Add(carReport);
+
+            carReport.Id =
             _repository.Add(dtpDate.Value.Date,
                 cbAuthor.Text.Trim(),
                 GetRadioButtonMaker(),
@@ -165,9 +167,9 @@ namespace CarReportSystem {
                 tsslbMessage.Text = "削除するレポ－トを選択してください";
                 return;
             }
-            listCarReports.Remove(carReport);
-
             _repository.Delete(carReport.Id);
+
+            listCarReports.Remove(carReport);
 
             InputItemsUpdate(); //データグリットビューを更新したら呼ぶメソッド
         }
