@@ -2,7 +2,13 @@
     public class CarReport {
         //列挙型
         public enum MakerGroup {
-            なし, トヨタ, 日産, ホンダ, スバル, 輸入車, その他,
+            なし = 0,
+            トヨタ = 1,
+            日産 = 2,
+            ホンダ = 3,
+            スバル = 4,
+            輸入車 = 5,
+            その他 = 6,
         }
         [System.ComponentModel.DisplayName("Id")]
         public int Id { get; set; }   //カーレポートID

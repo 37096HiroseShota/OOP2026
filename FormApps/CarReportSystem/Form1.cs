@@ -25,7 +25,7 @@ namespace CarReportSystem {
                 BackColor = Color.FromArgb(Setting.Instance.MainFormBackColor);
             } catch (Exception ex) {
                 tsslbMessage.Text = "設定ファイル読み込みエラー";
-                MessageBox.Show(ex.Message);//←より具体的なエラーを出力
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -49,12 +49,13 @@ namespace CarReportSystem {
                 Picture = pbPicture.Image
             };
 
-            carReport.Id = _repository.Add(dtpDate.Value.Date,
-                cbAuthor.Text.Trim(),
-                GetRadioButtonMaker(),
-                cbCarName.Text.Trim(),
-                tbReport.Text,
-                pbPicture.Image
+            carReport.Id = _repository.Add(
+                carReport.Date,
+                carReport.Author,
+                carReport.Maker,
+                carReport.CarName,
+                carReport.Report,
+                carReport.Picture
             );
 
             _carReports.Add(carReport);
@@ -88,7 +89,7 @@ namespace CarReportSystem {
             }
         }
 
-        private void InputItemsAllClear() {
+        private void ClearInputItems() {
             dtpDate.Value = DateTime.Today;
             cbAuthor.Text = string.Empty;
             rbOther.Checked = true;
@@ -141,13 +142,14 @@ namespace CarReportSystem {
         }
 
         private void btDeleteRecord_Click(object sender, EventArgs e) {
-            if ((dgvRecords.CurrentRow is null)
-                || (!dgvRecords.CurrentRow.Selected)) return;
+            if (dgvRecords.CurrentRow is null
+                || !dgvRecords.CurrentRow.Selected
+                || dgvRecords.CurrentRow.DataBoundItem is not CarReport carReport) {
 
-            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
                 tsslbMessage.Text = "削除するレポートを選択してください。";
                 return;
             }
+            
             _repository.Delete(carReport.Id);
 
             _carReports.Remove(carReport);
@@ -159,7 +161,7 @@ namespace CarReportSystem {
         private void InputItemsUpdate() {
             if (dgvRecords.CurrentRow is null
                    || !dgvRecords.CurrentRow.Selected)
-                InputItemsAllClear();
+                ClearInputItems();
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
@@ -243,7 +245,7 @@ namespace CarReportSystem {
         }
 
         private void btNewInput_Click(object sender, EventArgs e) {
-            InputItemsAllClear();
+            ClearInputItems();
             tsslbMessage.Text = string.Empty;
         }
     }

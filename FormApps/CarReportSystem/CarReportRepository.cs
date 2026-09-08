@@ -13,7 +13,6 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
-                 
             """
             SELECT Id, Date, Author, Maker, CarName, Report, Picture
             FROM CarReports
@@ -27,9 +26,9 @@ namespace CarReportSystem {
                     Id = reader.GetInt32(0),
 
                     Date = DateTime.ParseExact(
-                       reader.GetString(1),
-                       "yyyy-MM-dd",
-                       CultureInfo.InvariantCulture),
+                        reader.GetString(1),
+                        "yyyy-MM-dd",
+                        CultureInfo.InvariantCulture),
 
                     Author = reader.GetString(2),
                     Maker = (CarReport.MakerGroup)reader.GetInt32(3),
@@ -58,7 +57,6 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
-
             """
             INSERT INTO CarReports
             (Date, Author, Maker, CarName, Report, Picture)
@@ -92,7 +90,6 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
-
             """
             UPDATE CarReports
             SET Date = $date, Author = $author, Maker = $maker,
@@ -121,7 +118,6 @@ namespace CarReportSystem {
             using var command = connection.CreateCommand();
 
             command.CommandText =
-
             """
             DELETE FROM CarReports
             WHERE Id = $id;
