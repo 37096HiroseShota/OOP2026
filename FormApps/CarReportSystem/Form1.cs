@@ -52,8 +52,6 @@ namespace CarReportSystem {
                 Picture = pbPicture.Image,
             };
 
-            listCarReports.Add(carReport);
-
             carReport.Id =
             _repository.Add(dtpDate.Value.Date,
                 cbAuthor.Text.Trim(),
@@ -62,6 +60,8 @@ namespace CarReportSystem {
                 tbReport.Text,
                 pbPicture.Image
             );
+
+            listCarReports.Add(carReport);
 
             //入力履歴を登録
             SetCbAuthor(cbAuthor.Text.Trim());
@@ -198,12 +198,12 @@ namespace CarReportSystem {
             }
 
             //カーレポート管理用リストの該当する要素のデータを書き換える
-            listCarReports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value.Date;
-            listCarReports[dgvRecords.CurrentRow.Index].Author = cbAuthor.Text.Trim();
-            listCarReports[dgvRecords.CurrentRow.Index].Maker = GetRadioButtonMaker();
-            listCarReports[dgvRecords.CurrentRow.Index].CarName = cbCarName.Text;
-            listCarReports[dgvRecords.CurrentRow.Index].Report = tbReport.Text;
-            listCarReports[dgvRecords.CurrentRow.Index].Picture = pbPicture.Image;
+            carReport.Date = dtpDate.Value.Date;
+            carReport.Author = cbAuthor.Text.Trim();
+            carReport.Maker = GetRadioButtonMaker();
+            carReport.CarName = cbCarName.Text;
+            carReport.Report = tbReport.Text;
+            carReport.Picture = pbPicture.Image;
 
             SetCbAuthor(cbAuthor.Text.Trim());
             SetCbCarName(cbCarName.Text.Trim());
