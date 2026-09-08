@@ -204,6 +204,8 @@ namespace CarReportSystem {
             SetCbAuthor(cbAuthor.Text.Trim());
             SetCbCarName(cbCarName.Text.Trim());
 
+            _repository.Update(carReport);
+
             dgvRecords.Refresh();   //データグリッドビューの更新
             tsslbMessage.Text = "レポートを修正しました。";
         }

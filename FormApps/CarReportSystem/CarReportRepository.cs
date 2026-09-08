@@ -90,7 +90,7 @@ namespace CarReportSystem {
             WHERE Id = $id;
             """;
 
-            command.Parameters.AddWithValue("$date", carReport.Date);
+            command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd"));
             command.Parameters.AddWithValue("$author", carReport.Author);
             command.Parameters.AddWithValue("$maker", carReport.Maker);
             command.Parameters.AddWithValue("$carName", carReport.CarName);
