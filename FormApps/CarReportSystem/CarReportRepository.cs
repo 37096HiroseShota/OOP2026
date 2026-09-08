@@ -6,11 +6,11 @@ namespace CarReportSystem {
         public List<CarReport> GetAll() {
             var carReports = new List<CarReport>();
 
-            using var connectioin = Database.GetConnection();
+            using var connection = Database.GetConnection();
 
-            connectioin.Open();
+            connection.Open();
 
-            using var command = connectioin.CreateCommand();
+            using var command = connection.CreateCommand();
 
             command.CommandText =
                  
