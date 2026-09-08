@@ -2,6 +2,7 @@
 using System.Xml.Serialization;
 
 namespace CarReportSystem {
+
     public sealed class Settings {
 
         private const string FileName = "setting.xml";

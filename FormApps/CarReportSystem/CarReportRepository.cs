@@ -39,7 +39,6 @@ namespace CarReportSystem {
                                 ? null : BytesToImage(reader.GetFieldValue<byte[]>(6))
                 });
             }
-            //System.FormatException: 'String '2026-09-08 00:00:00' was not recognized as a valid DateTime.'
             return carReports;
         }
 
@@ -60,7 +59,7 @@ namespace CarReportSystem {
             SELECT last_insert_rowid();
             """;
 
-            command.Parameters.AddWithValue("$date", date);
+            command.Parameters.AddWithValue("$date", date.ToString("yyyy-MM-dd"));
             command.Parameters.AddWithValue("$author", author);
             command.Parameters.AddWithValue("$maker", maker);
             command.Parameters.AddWithValue("$carName", carName);

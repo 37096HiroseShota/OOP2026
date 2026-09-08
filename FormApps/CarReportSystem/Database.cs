@@ -16,6 +16,7 @@ namespace CarReportSystem {
             => new SqliteConnection(ConnectionString);
 
         public static void Initialize() {
+
             using var connection = GetConnection();
 
             connection.Open();
