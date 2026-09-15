@@ -4,6 +4,7 @@ using static CarReportSystem.CarReport;
 namespace CarReportSystem {
 
     public partial class Form1 : Form {
+
         private readonly BindingList<CarReport> _carReports = new();
 
         private readonly CarReportRepository _repository = new();

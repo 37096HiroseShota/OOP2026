@@ -1,5 +1,6 @@
 ﻿namespace CarReportSystem {
     public class CarReport {
+
         //列挙型
         public enum MakerGroup {
             なし = 0,
@@ -10,6 +11,7 @@
             輸入車 = 5,
             その他 = 6,
         }
+
         [System.ComponentModel.DisplayName("Id")]
         public int Id { get; set; }   //カーレポートID
         [System.ComponentModel.DisplayName("日付")]

@@ -3,7 +3,9 @@ namespace SQLiteProductSample;
 // Prosuctテーブルに対するDB操作をまとめたクラス
 // CRUD (Create / Read / Update / Delete) を担当する
 public class ProductRepository {
+
     public List<Product> GetAll() {
+
         var products = new List<Product>();
 
         using var connectioin = Database.GetConnection();

@@ -4,6 +4,7 @@ namespace SQLiteProductSample;
 
 //SQLiteデータベースへの接続と初期化を担当するクラス
 public static class Database {
+
     //DBファイルの保存場所
     private static readonly string DatabasePath =
         Path.Combine(AppContext.BaseDirectory, "products.db");

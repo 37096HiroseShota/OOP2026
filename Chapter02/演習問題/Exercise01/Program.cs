@@ -9,7 +9,7 @@ namespace Exercise01 {
                 Console.Write("曲名：");
                 string? title = Console.ReadLine();
 
-                if (String.Compare(title, "end", ignoreCase:true) == 0) {
+                if (String.Compare(title, "end", ignoreCase: true) == 0) {
                     break;
                 }
 
