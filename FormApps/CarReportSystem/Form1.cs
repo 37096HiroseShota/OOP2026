@@ -24,7 +24,8 @@ namespace CarReportSystem {
             try {
                 Setting.Instance.Load();
                 BackColor = Color.FromArgb(Setting.Instance.MainFormBackColor);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 tsslbMessage.Text = "設定ファイル読み込みエラー";
                 MessageBox.Show(ex.Message);
             }
@@ -150,7 +151,7 @@ namespace CarReportSystem {
                 tsslbMessage.Text = "削除するレポートを選択してください。";
                 return;
             }
-            
+
             _repository.Delete(carReport.Id);
 
             _carReports.Remove(carReport);
@@ -248,6 +249,10 @@ namespace CarReportSystem {
         private void btNewInput_Click(object sender, EventArgs e) {
             ClearInputItems();
             tsslbMessage.Text = string.Empty;
+        }
+
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+
         }
     }
 }
