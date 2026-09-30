@@ -12,13 +12,13 @@ if (!app.Environment.IsDevelopment()) {
 }
 
 app.UseHttpsRedirection();   // HTTPからHTTPSへ転送
-app.UseStaticFiles();        // 
-app.UseRouting();            // 
-app.UseAuthorization();      // 
+app.UseStaticFiles();        // wwwrootにあるCSSやJavaScriptなどを配信
+app.UseRouting();            // URLとControllerのActionを対応付ける
+app.UseAuthorization();      // 設定されているアクセス許可を確認
 
-// 
+// URLをControllerとActionに対応付ける
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();                   // 
+app.Run();                   // Webサーバーを起動して要求の受信を開始
