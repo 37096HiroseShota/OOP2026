@@ -1,30 +1,9 @@
-﻿@* このViewがProduct型を受け取る宣言 *@
-@model List<MvcBasicSample.Models.Product>
-
-@{
-    ViewData["Title"] = "商品一覧";   // タブ用のタイトル
-    int total = 0;
+﻿@{
+    ViewData["Title"] = "商品情報";
+    string productName = "ノート";
+    int price = 250;
 }
 
-<h1>商品一覧</h1>
-@* Tag Helperで移動先を指定しBootstrapで見た目を整える *@
-<a asp-controller="Hello" asp-action="Index"
-   class="btn btn-primary mb-3">商品一覧を表示</a>
-
-@* 件数が0なら説明だけを表示する *@
-@if (Model.Count == 0) {
-    <p>商品はありません</p>
-} else {
-    <p>@Model.Count 件の商品があります</p>
-    <div class="row">
-        @* 一覧から商品を1件ずつ取り出す *@
-        @foreach (var product in Model) {
-            <div class="col-12 col-md-6 mb-3">
-                <h2 class="h5">@product.Name</h2>
-                <p>@product.Name @product.Price 円</p>
-            </div>
-            total += product.Price;
-        }
-    </div>
-    <p>合計金額：@total 円</p>
-}
+<h1>商品情報</h1>
+<p>商品名：@productName</p>
+<p>価格：@price 円</p>
