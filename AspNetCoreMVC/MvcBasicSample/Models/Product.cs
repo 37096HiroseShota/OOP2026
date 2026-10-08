@@ -12,4 +12,7 @@ public class Product {
     public int Price { get; set; }   // 円単位の価格
 
     public int Stock { get; set; }
+
+    [Required]
+    public string Description { get; set; } = string.Empty;
 }
