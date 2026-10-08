@@ -13,11 +13,13 @@ public class ProductsController : Controller {
         _db = db;                       // 受け取ったAppDbContextをフィールドに保存 
     }
 
-    // /Products/Indexで商品一覧を取得する 
+    // /Products/Indexで商品一覧を取得する (非同期メソッド)
     public async Task<IActionResult> Index() {
+
         // Idの昇順で取得し結果をList<Product>にする 
         var products = await _db.Products
-            .OrderBy(product => product.Id)
+            .Where(product => product.Price >= 500)
+            .OrderBy(product => product.Price)
             .ToListAsync();
 
         return View(products);          // 商品一覧をViewへ渡す 
