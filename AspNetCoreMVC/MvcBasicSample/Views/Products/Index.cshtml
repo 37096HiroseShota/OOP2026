@@ -11,16 +11,19 @@
     <p>商品はありません</p>
 } else {
     <p>@Model.Count 件の商品があります</p>
-    @foreach (var product in Model) {
-        @if (product.Stock == 0) {
-            <span class="text-danger fw-bold">売り切れ</span>
-        } else {
-            <span>
-                在庫 @product.Stock
-            </span>
+    <ul>
+        @foreach (var product in Model) {
+            <li>
+                @product.Name
+                @product.Price.ToString("N0") 円
+                @product.Description
+
+                @if (product.Stock == 0) {
+                    <span class="text-danger fw-bold">売り切れ</span>
+                } else {
+                    <span>在庫 @product.Stock</span>
+                }
+            </li>
         }
-        <li>
-            @product.Name @product.Price 円 @product.Description
-        </li>
-    }
+    </ul>
 }
