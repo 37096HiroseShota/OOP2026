@@ -6,7 +6,7 @@ namespace SelfOrderSystem.Data;
 public static class SeedData {
     public static async Task InitializeAsync(AppDbContext db) {
         if (await db.Categories.AnyAsync()) {
-            return;                                                // 登録済みなら終了 
+            return;                                               // 登録済みなら終了 
         }
 
         var meat = new Category { Name = "肉料理", SortOrder = 1 };

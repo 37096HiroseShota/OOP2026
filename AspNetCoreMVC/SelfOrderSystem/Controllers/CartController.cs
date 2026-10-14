@@ -5,10 +5,10 @@ using SelfOrderSystem.Services;
 
 namespace SelfOrderSystem.Controllers;
 
-public class CartController : Controller                      // カート操作を受け取るController 
-{
-    private readonly AppDbContext _db;                          // 商品確認用 
-    private readonly CartService _cart;                         // カート操作用 
+// カート操作を受け取るController
+public class CartController : Controller {                      
+    private readonly AppDbContext _db;                           // 商品確認用 
+    private readonly CartService _cart;                          // カート操作用 
 
     public CartController(AppDbContext db, CartService cart) {
         _db = db;
@@ -16,23 +16,23 @@ public class CartController : Controller                      // カート操作
     }
 
     public IActionResult Index() {
-        return View(_cart.GetItems());               // Sessionのカート一覧をViewへ渡す 
+        return View(_cart.GetItems());                           // Sessionのカート一覧をViewへ渡す 
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Add(int productId)          // 商品IDを受け取る 
-    {
+    // 商品IDを受け取る
+    public async Task<IActionResult> Add(int productId) {          
         var product = await _db.Products
             .AsNoTracking()                                      // 読み取り専用 
             .SingleOrDefaultAsync(p => p.Id == productId && p.IsActive); // 利用可能な商品を1件取得 
 
         if (product == null) {
-            return NotFound();                                  // 該当商品がなければ404を返す 
+            return NotFound();                                   // 該当商品がなければ404を返す 
         }
 
         if (product.IsSoldOut) {
-            TempData["Error"] = "この商品は売り切れです";         // 次の画面へエラーを渡す 
+            TempData["Error"] = "この商品は売り切れです";        // 次の画面へエラーを渡す 
             return RedirectToAction("Index", "Menu");
         }
 

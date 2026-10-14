@@ -1,6 +1,7 @@
 ﻿namespace SelfOrderSystem.Models;
 
-public class CartItem {                                       // カート内の1商品を表す一時データ
+// カート内の1商品を表す一時データ
+public class CartItem {                                       
     public int ProductId { get; set; }                           // 商品ID 
     public string ProductName { get; set; } = string.Empty;      // 商品名 
     public decimal UnitPrice { get; set; }                       // 単価 

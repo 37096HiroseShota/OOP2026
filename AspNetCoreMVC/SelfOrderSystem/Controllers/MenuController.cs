@@ -5,14 +5,12 @@ using SelfOrderSystem.Data;
 using SelfOrderSystem.Services;
 using SelfOrderSystem.ViewModels;
 
-
-
 namespace SelfOrderSystem.Controllers;
 
 public class MenuController : Controller {
-    private readonly AppDbContext _db;                            // DB操作用
-                                                                  // 
-    private readonly CartService _cart;                           // Session上のカート操作用 
+    private readonly AppDbContext _db;                                    // DB操作用
+                                                                   
+    private readonly CartService _cart;                                   // Session上のカート操作用 
 
     public MenuController(AppDbContext db, CartService cart) {
         _db = db;
@@ -49,6 +47,6 @@ public class MenuController : Controller {
             CartTotal = cartItems.Sum(x => x.LineTotal)                   // 小計の合計 
         };
 
-        return View(vm);                                         // ViewModelをViewへ渡す 
+        return View(vm);                                                  // ViewModelをViewへ渡す 
     }
 }

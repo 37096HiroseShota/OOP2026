@@ -14,7 +14,7 @@ builder.Services.AddDistributedMemoryCache();                    // Session‚Ì•Û‘
 
 builder.Services.AddSession(options =>                           // Session‹@”\‚ğ“o˜^ 
 {
-    options.IdleTimeout = TimeSpan.FromHours(2);                     // 2ŠÔ‘€ì‚ª‚È‚¯‚ê‚ÎŠúŒÀØ‚ê 
+    options.IdleTimeout = TimeSpan.FromHours(2);                 // 2ŠÔ‘€ì‚ª‚È‚¯‚ê‚ÎŠúŒÀØ‚ê 
     options.Cookie.HttpOnly = true;                              // JavaScript‚©‚çSession ID‚ğ“Ç‚ß‚È‚¢‚æ‚¤‚É‚·‚é
     options.Cookie.IsEssential = true;                           // Session ID—pCookie‚ğ•K{Cookie‚Æ‚µ‚Äˆµ‚¤
 });
@@ -39,7 +39,7 @@ if (!app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseSession();                                                // ‚±‚ÌƒŠƒNƒGƒXƒg‚ÅSession‚ğg‚¦‚é‚æ‚¤‚É‚·‚é
+app.UseSession();                                               @ // ‚±‚ÌƒŠƒNƒGƒXƒg‚ÅSession‚ğg‚¦‚é‚æ‚¤‚É‚·‚é
 app.UseAuthorization();
 
 app.MapControllerRoute(
