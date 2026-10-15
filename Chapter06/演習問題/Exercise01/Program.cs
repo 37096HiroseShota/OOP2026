@@ -1,17 +1,17 @@
-﻿namespace Exercise01 {
-    internal class Program {
-        static void Main(string[] args) {
-            Console.Write("文字列1:");
-            var str1 = Console.ReadLine();
+﻿namespace Exercise01;
 
-            Console.Write("文字列2:");
-            var str2 = Console.ReadLine();
+internal class Program {
+    static void Main(string[] args) {
+        Console.Write("文字列1:");
+        var str1 = Console.ReadLine();
 
-            if (String.Compare(str1, str2, ignoreCase: true) == 0) {
-                Console.WriteLine("\n等しい");
-            } else {
-                Console.WriteLine("\n等しくない");
-            }
+        Console.Write("文字列2:");
+        var str2 = Console.ReadLine();
+
+        if (String.Compare(str1, str2, ignoreCase: true) == 0) {
+            Console.WriteLine("\n等しい");
+        } else {
+            Console.WriteLine("\n等しくない");
         }
     }
 }

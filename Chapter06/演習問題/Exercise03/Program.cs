@@ -1,108 +1,106 @@
-﻿
-using System.Text;
+﻿using System.Text;
 
-namespace Exercise03 {
-    internal class Program {
-        static void Main(string[] args) {
-            var text = "Jackdaws love my big sphinx of quartz";
-            #region
-            Console.WriteLine("6.3.1");
-            Exercise1(text);
+namespace Exercise03;
+internal class Program {
+    static void Main(string[] args) {
+        var text = "Jackdaws love my big sphinx of quartz";
+        #region
+        Console.WriteLine("6.3.1");
+        Exercise1(text);
 
-            Console.WriteLine("\n6.3.2");
-            Exercise2(text);
+        Console.WriteLine("\n6.3.2");
+        Exercise2(text);
 
-            Console.WriteLine("\n6.3.3");
-            Exercise3(text);
+        Console.WriteLine("\n6.3.3");
+        Exercise3(text);
 
-            Console.WriteLine("\n6.3.4");
-            Exercise4(text);
+        Console.WriteLine("\n6.3.4");
+        Exercise4(text);
 
-            Console.WriteLine("\n6.3.5");
-            Exercise5(text);
+        Console.WriteLine("\n6.3.5");
+        Exercise5(text);
 
-            Console.WriteLine("\n6.3.6");
-            Exercise6(text);
-            #endregion
+        Console.WriteLine("\n6.3.6");
+        Exercise6(text);
+        #endregion
+    }
+
+    private static void Exercise1(string text) {
+        Console.WriteLine($"空白数:{text.Count(c => c == ' ')}");
+    }
+
+    private static void Exercise2(string text) {
+        Console.Write("検索:");
+        var search = Console.ReadLine();
+
+        Console.Write("置換:");
+        var replace = Console.ReadLine();
+
+        var replaced = text.Replace(search, replace);
+        Console.WriteLine($"\n置換語文字列:{replaced}");
+    }
+
+    private static void Exercise3(string text) {
+        var words = text.Split(' ');
+        var sb = new StringBuilder(words[0]);
+
+        sb.Append(words[0]);
+
+        for (int i = 1; i < words.Length; i++) {
+            sb.Append(' ');
+            sb.Append(words[i]);
         }
 
-        private static void Exercise1(string text) {
-            Console.WriteLine($"空白数:{text.Count(c => c == ' ')}");
+        foreach (var word in words.Skip(1)) {
+            sb.Append(' ');
+            sb.Append(word);
         }
 
-        private static void Exercise2(string text) {
-            Console.Write("検索:");
-            var search = Console.ReadLine();
+        Console.WriteLine(sb + ".");
+    }
 
-            Console.Write("置換:");
-            var replace = Console.ReadLine();
+    private static void Exercise4(string text) {
+        Console.WriteLine($"単語数:{text.Split(' ').Length}");
+    }
 
-            var replaced = text.Replace(search, replace);
-            Console.WriteLine($"\n置換語文字列:{replaced}");
+    private static void Exercise5(string text) {
+        text.Split(' ').Where(s => 4 >= s.Length).ToList().ForEach(Console.WriteLine);
+    }
+
+    //アルファベットの数をカウントして表示する
+    private static void Exercise6(string text) {
+        var str = text.ToLower().Replace(" ", "");
+
+        //辞書（ディクショナリ）を使った集計
+        var alphDicCount = Enumerable.Range('a', 26).
+            ToDictionary(num => ((char)num), num => 0);
+
+        //var dict = new SortedDictionary<char, int>();
+        foreach (var c in str) {
+            alphDicCount[c]++;
         }
 
-        private static void Exercise3(string text) {
-            var words = text.Split(' ');
-            var sb = new StringBuilder(words[0]);
-
-            sb.Append(words[0]);
-            
-            for(int i = 1; i < words.Length; i++) {
-                sb.Append(' ');
-                sb.Append(words[i]);
-            }
-
-            foreach (var word in words.Skip(1)) {
-                sb.Append(' ');
-                sb.Append(word);
-            }
-
-            Console.WriteLine(sb + ".");
+        foreach (var word in alphDicCount) {
+            Console.WriteLine($"{word.Key}:{word.Value}");
         }
 
-        private static void Exercise4(string text) {
-            Console.WriteLine($"単語数:{text.Split(' ').Length}");
+        Console.WriteLine();   //改行
+
+        //配列を用いた集計
+        var array = Enumerable.Repeat(0, 26).ToArray();
+        foreach (var alph in str) {
+            array[alph - 'a']++;
         }
 
-        private static void Exercise5(string text) {
-            text.Split(' ').Where(s => 4 >= s.Length).ToList().ForEach(Console.WriteLine);
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            Console.WriteLine($"{ch}:{array[ch - 'a']}");
         }
 
-        //アルファベットの数をカウントして表示する
-        private static void Exercise6(string text) {
-            var str = text.ToLower().Replace(" ", "");
+        Console.WriteLine();   //改行
 
-            //辞書（ディクショナリ）を使った集計
-            var alphDicCount = Enumerable.Range('a', 26).
-                ToDictionary(num => ((char)num), num => 0);
-
-            //var dict = new SortedDictionary<char, int>();
-            foreach (var c in str) {
-                alphDicCount[c]++;
-            }
-
-            foreach (var word in alphDicCount) {
-                Console.WriteLine($"{word.Key}:{word.Value}");
-            }
-
-            Console.WriteLine();   //改行
-
-            //配列を用いた集計
-            var array = Enumerable.Repeat(0, 26).ToArray();
-            foreach (var alph in str) {
-                array[alph - 'a']++;
-            }
-
-            for (char ch = 'a'; ch <= 'z'; ch++) {
-                Console.WriteLine($"{ch}:{array[ch - 'a']}");
-            }
-
-            Console.WriteLine();   //改行
-
-            //'a'から順にカウントして集計
-            for(char ch = 'a'; ch <= 'z'; ch++) {
-                Console.WriteLine($"{ch}:{str.Count(c => c == ch)}");
-            }
+        //'a'から順にカウントして集計
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            Console.WriteLine($"{ch}:{str.Count(c => c == ch)}");
         }
     }
 }

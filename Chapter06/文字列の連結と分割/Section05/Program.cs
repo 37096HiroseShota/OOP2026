@@ -1,23 +1,24 @@
-﻿
-using System.Buffers;
-using System.Text;
+﻿using System.Text;
 
-namespace Section05 {
-    internal class Program {
-        static void Main(string[] args) {
-            var sb = new StringBuilder();
-            foreach (var word in GetWords()) {
-                sb.Append(word);
-            }
-            Console.WriteLine(sb);
+namespace Section05;
 
-            var separator = ',';
-            var result = String.Join(separator, GetWords());
-            Console.WriteLine(result);
+internal class Program {
+    static void Main(string[] args) {
+        var sb = new StringBuilder();
+
+        foreach (var word in GetWords()) {
+            sb.Append(word);
         }
 
-        private static IEnumerable<object> GetWords() {
-            return ["Orange", "Lemon", "Strawberry"];
-        }
+        Console.WriteLine(sb);
+
+        var separator = ',';
+        var result = String.Join(separator, GetWords());
+
+        Console.WriteLine(result);
+    }
+
+    private static IEnumerable<object> GetWords() {
+        return ["Orange", "Lemon", "Strawberry"];
     }
 }

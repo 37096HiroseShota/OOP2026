@@ -1,13 +1,14 @@
-namespace Section01 {
-    public class Book {
-        public string Title { get; init; } = string.Empty;
-        public int Price { get; init; }
-        public int Pages { get; init; }
-    }
+namespace Section01;
 
-    static class Books {
-        public static List<Book> GetBooks() {
-            var books = new List<Book> {
+public class Book {
+    public string Title { get; init; } = string.Empty;
+    public int Price { get; init; }
+    public int Pages { get; init; }
+}
+
+static class Books {
+    public static List<Book> GetBooks() {
+        var books = new List<Book> {
                 new Book { Title = "こころ", Price = 400, Pages = 378 },
                 new Book { Title = "人間失格", Price = 281, Pages = 212 },
                 new Book { Title = "伊豆の踊子", Price = 389, Pages = 201 },
@@ -16,8 +17,7 @@ namespace Section01 {
                 new Book { Title = "二都物語", Price = 961, Pages = 666 },
                 new Book { Title = "遠野物語", Price = 514, Pages = 268 },
             };
-            return books;
+        return books;
 
-        }
     }
 }

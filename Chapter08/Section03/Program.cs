@@ -1,7 +1,4 @@
-﻿// コンストラクタの呼び出し
-using Section03;
-
-var abbrs = new Abbreviations();
+﻿var abbrs = new Abbreviations();
 
 // Addメソッドの呼び出し例
 abbrs.Add("IOC", "国際オリンピック委員会");
