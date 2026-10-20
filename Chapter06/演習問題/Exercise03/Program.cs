@@ -45,13 +45,6 @@ internal class Program {
         var words = text.Split(' ');
         var sb = new StringBuilder(words[0]);
 
-        sb.Append(words[0]);
-
-        for (int i = 1; i < words.Length; i++) {
-            sb.Append(' ');
-            sb.Append(words[i]);
-        }
-
         foreach (var word in words.Skip(1)) {
             sb.Append(' ');
             sb.Append(word);
