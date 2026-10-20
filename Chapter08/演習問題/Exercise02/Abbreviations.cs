@@ -1,4 +1,3 @@
-
 public class Abbreviations {
     private readonly Dictionary<string, string> _dict = [];
 
