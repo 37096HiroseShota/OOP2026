@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,28 +12,33 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Exercise01_WPF {
-    public partial class MainWindow : Window {
-        public MainWindow() {
-            InitializeComponent();
-        }
+namespace Exercise01_WPF;
 
-        private async Task Button_Click(object sender, RoutedEventArgs e) {
-            var ofd = new OpenFileDialog();
-
-            if(ofd.ShowDialog() is true) {
-                TextArea.Text = await TextReaderSample.ReadTextAsync(ofd.FileName);
-            }
-        }
+public partial class MainWindow : Window {
+    public MainWindow() {
+        InitializeComponent();
     }
 
-    internal class TextReaderSample {
-        internal static async Task<string> ReadTextAsync(string fileName) {
-            var sb = new StringBuilder();
+    private async void Button_Click(object sender, RoutedEventArgs e) {
+        var ofd = new OpenFileDialog();
 
-            //ここに非同期でテキストファイルを読み込む処理を記述する
-
-            return sb.ToString();
+        if (ofd.ShowDialog() is true) {
+            TextArea.Text = await TextReaderSample.ReadTextAsync(ofd.FileName);
         }
+    }
+}
+
+internal class TextReaderSample {
+    internal static async Task<string> ReadTextAsync(string fileName) {
+        var sb = new StringBuilder();
+
+        //ここに非同期でテキストファイルを読み込む処理を記述する
+        var sr = new StreamReader(fileName);
+        await foreach (var line in sr.ReadLineAsync()) {
+            sb.Append(line);
+        }
+        sb.AppendLine(await sr.ReadLineAsync());
+
+        return sb.ToString();
     }
 }

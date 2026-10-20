@@ -24,14 +24,14 @@ internal class Program {
         Exercise6(text);
         #endregion
     }
-
+    
     private static void Exercise1(string text) {
         Console.WriteLine($"空白数:{text.Count(c => c == ' ')}");
     }
 
     private static void Exercise2(string text) {
         Console.Write("検索:");
-        var search = Console.ReadLine();
+        var search = Console.ReadLine()!;
 
         Console.Write("置換:");
         var replace = Console.ReadLine();
