@@ -1,64 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SalesCalculator;
 
-namespace SalesCalculator {
-    //売上集計クラス
-    public class SalesCounter {
-        private readonly IEnumerable<Sale> _sales;
+//売上集計クラス
+public class SalesCounter {
+    private readonly IEnumerable<Sale> _sales;
 
-        //コンストラクター
-        public SalesCounter(string filePath) {
-            _sales = ReadSales(filePath);
+    //コンストラクター
+    public SalesCounter(string filePath) {
+        _sales = ReadSales(filePath);
+    }
+
+    public IEnumerable<Sale> ReadSales(string filePath) {
+        var sales = new List<Sale>();    ///リスト
+        var lines = File.ReadAllLines(filePath);
+        foreach (var line in lines) {
+            var items = line.Split(',');   //カンマ区切りで分割
+            var sale = new Sale {
+                ShopName = items[0],
+                ProductCategory = items[1],
+                Amount = int.Parse(items[2]),
+            };
+            sales.Add(sale);
         }
+        return sales;
+    }
 
-        public IEnumerable<Sale> ReadSales(string filePath) {
-            var sales = new List<Sale>();    ///リスト
-            var lines = File.ReadAllLines(filePath);
-            foreach (var line in lines) {
-                var items = line.Split(',');   //カンマ区切りで分割
-                var sale = new Sale {
-                    ShopName = items[0],
-                    ProductCategory = items[1],
-                    Amount = int.Parse(items[2]),
-                };
-                sales.Add(sale);
-            }
-            return sales;
+    //店舗別売り上げを求める
+    public IDictionary<string, int> GetPerStoreSales() {
+        var dict = new SortedDictionary<string, int>();
+
+        foreach (var sale in _sales) {
+            //既に店舗名が辞書のキーに登録されているか？
+            if (dict.ContainsKey(sale.ShopName))
+                //登録されている場合
+                dict[sale.ShopName] += sale.Amount;   //売り上げを足しこみ
+            else
+                //未登録の場合
+                dict[sale.ShopName] = sale.Amount;   //新規に売り上げを登録
         }
-
-        //店舗別売り上げを求める
-        public IDictionary<string, int> GetPerStoreSales() {
-            var dict = new SortedDictionary<string, int>();
-
-            foreach (var sale in _sales) {
-                //既に店舗名が辞書のキーに登録されているか？
-                if (dict.ContainsKey(sale.ShopName))
-                    //登録されている場合
-                    dict[sale.ShopName] += sale.Amount;   //売り上げを足しこみ
-                else
-                    //未登録の場合
-                    dict[sale.ShopName] = sale.Amount;   //新規に売り上げを登録
-            }
-                return dict;
-        }
-
-        //商品カテゴリ別売り上げを求める
-        public IDictionary<string, int> GetPerProductCategorySales() {
-            var dict = new SortedDictionary<string, int>();
-
-            foreach (var sale in _sales) {
-                //既に商品カテゴリ名が辞書のキーに登録されているか？
-                if (dict.ContainsKey(sale.ShopName))
-                    //登録されている場合
-                    dict[sale.ProductCategory] += sale.Amount;   //売り上げを足しこみ
-                else
-                    //未登録の場合
-                    dict[sale.ProductCategory] = sale.Amount;   //新規に売り上げを登録
-            }
             return dict;
+    }
+
+    //商品カテゴリ別売り上げを求める
+    public IDictionary<string, int> GetPerProductCategorySales() {
+        var dict = new SortedDictionary<string, int>();
+
+        foreach (var sale in _sales) {
+            //既に商品カテゴリ名が辞書のキーに登録されているか？
+            if (dict.ContainsKey(sale.ShopName))
+                //登録されている場合
+                dict[sale.ProductCategory] += sale.Amount;   //売り上げを足しこみ
+            else
+                //未登録の場合
+                dict[sale.ProductCategory] = sale.Amount;   //新規に売り上げを登録
         }
+        return dict;
     }
 }

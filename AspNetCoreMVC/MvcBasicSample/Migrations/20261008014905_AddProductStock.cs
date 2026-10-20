@@ -2,28 +2,21 @@
 
 #nullable disable
 
-namespace MvcBasicSample.Migrations
-{
-    /// <inheritdoc />
-    public partial class AddProductStock : Migration
-    {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<int>(
-                name: "Stock",
-                table: "Products",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-        }
+namespace MvcBasicSample.Migrations;
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "Stock",
-                table: "Products");
-        }
+public partial class AddProductStock : Migration {
+    protected override void Up(MigrationBuilder migrationBuilder) {
+        migrationBuilder.AddColumn<int>(
+            name: "Stock",
+            table: "Products",
+            type: "int",
+            nullable: false,
+            defaultValue: 0);
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder) {
+        migrationBuilder.DropColumn(
+            name: "Stock",
+            table: "Products");
     }
 }

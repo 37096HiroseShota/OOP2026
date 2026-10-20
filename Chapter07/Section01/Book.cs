@@ -18,6 +18,5 @@ static class Books {
                 new Book { Title = "遠野物語", Price = 514, Pages = 268 },
             };
         return books;
-
     }
 }
