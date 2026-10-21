@@ -24,7 +24,7 @@ internal class TextReaderSample {
         var sb = new StringBuilder();
 
         //ここに非同期でテキストファイルを読み込む処理を記述する
-        var sr = new StreamReader(fileName);
+        using var sr = new StreamReader(fileName);
 
         while (!sr.EndOfStream) {
             var line = await sr.ReadLineAsync();

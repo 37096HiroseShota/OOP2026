@@ -12,14 +12,6 @@ public partial class Form1 : Form {
         MessageBox.Show(elapsed + "ƒ~ƒŠ•b");
     }
 
-    /*
-    private async Task DoLongTimeWork() {
-        await Task.Run(() => {
-            Thread.Sleep(5000);
-        });
-    }
-    */
-
     private async Task<long> DoLongTimeWork(int milliseconds) {
         var sw = Stopwatch.StartNew();
         

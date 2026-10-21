@@ -2,13 +2,10 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-var httpClient = new HttpClient();
+using var httpClient = new HttpClient();
 await GetHtmlExample(httpClient);
 
 static async Task GetHtmlExample(HttpClient httpClient) {
-    //var url = "https://github.com/37096HiroseShota/OOP2026/commits/master/";
-    //var text = await httpClient.GetStringAsync(url);
-
     httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
        "MyWikipediaCliant/1.0 (https://example.com/; contact@example.com)"
     );
