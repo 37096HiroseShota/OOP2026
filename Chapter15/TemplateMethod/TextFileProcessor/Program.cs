@@ -16,6 +16,6 @@ public abstract class TextProcessor {
     }
 
     protected virtual void Initialize(string fileName) { }
-    protected virtual void Execute(string fileName) { }
+    protected virtual void Execute(string line) { }
     protected virtual void Terminate() { }
 }
