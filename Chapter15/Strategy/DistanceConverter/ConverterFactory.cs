@@ -9,6 +9,8 @@ internal class ConverterFactory {
         new FeetConverter(),
         new YardConverter(),
         new InchConverter(),
+        new MileConverter(),
+        new KilometreConverter(),
     };
 
     public static ConverterBase? GetInstance(string name) =>
