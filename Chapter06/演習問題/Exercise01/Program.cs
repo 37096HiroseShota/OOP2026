@@ -1,7 +1,7 @@
 ﻿namespace Exercise01;
 
 internal class Program {
-    static void Main(string[] args) {
+    static void Main() {
         Console.Write("文字列1:");
         var str1 = Console.ReadLine();
 

@@ -1,7 +1,7 @@
 ﻿namespace Exercise02;
 
 internal class Program {
-    static void Main(string[] args) {
+    static void Main() {
         Console.Write("整数文字列:");
         var str = Console.ReadLine();
 

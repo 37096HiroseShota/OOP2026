@@ -35,12 +35,6 @@ class PasswordPolicy {
     public string GivenName { get; init; } = null!;
     public string FamilyName { get; init; } = null!;
 
-
-    //getのアクセサのみを定義した読み取り専用プロパティ
-    //public string Name {
-    //    get { return FamilyName + " " + GivenName; }
-    //}
-
     public string Name => FamilyName + " " + GivenName;
 
     public PasswordPolicy(string familyName, string givenName) {

@@ -1,7 +1,7 @@
 namespace SQLiteProductSample;
 
 partial class Form1 {
-    private System.ComponentModel.IContainer? components = null;
+    private System.ComponentModel.IContainer components = null;
 
     private Label lblTitle = null!;
     private Label lblName = null!;
