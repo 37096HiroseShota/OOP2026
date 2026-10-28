@@ -11,9 +11,7 @@ internal class Program {
             Console.WriteLine($"{obj.Key} {obj.Value}");
         }
 
-        Console.WriteLine();
-
-        Console.WriteLine("****商品カテゴリ別売上高****");
+        Console.WriteLine("\n****商品カテゴリ別売上高****");
         foreach (var obj in amountPerProductCategory) {
             Console.WriteLine($"{obj.Key} {obj.Value}");
         }

@@ -12,7 +12,9 @@ internal class Program {
             "Canberra",
             "Hong Kong",
         };
+
         var query = cities.Where(s => s.Length <= 5).ToList();
+        
         foreach (var item in query) {
             Console.WriteLine(item);
         }
@@ -20,6 +22,7 @@ internal class Program {
         Console.WriteLine("-------");
 
         cities[0] = "Osaka";
+        
         foreach (var item in query) {
             Console.WriteLine(item);
         }

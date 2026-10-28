@@ -9,30 +9,30 @@ internal class Program {
 
         Console.WriteLine("***** 3.2.1 *****");
         Exercise2_1(cities);
-        Console.WriteLine();
 
-        Console.WriteLine("***** 3.2.2 *****");
+        Console.WriteLine("\n***** 3.2.2 *****");
         Exercise2_2(cities);
-        Console.WriteLine();
 
-        Console.WriteLine("***** 3.2.3 *****");
+        Console.WriteLine("\n***** 3.2.3 *****");
         Exercise2_3(cities);
-        Console.WriteLine();
 
-        Console.WriteLine("***** 3.2.4 *****");
+        Console.WriteLine("\n***** 3.2.4 *****");
         Exercise2_4(cities);
-        Console.WriteLine();
     }
 
     private static void Exercise2_1(List<string> cities) {
         //できたらGitのコメント「問題3.2.1完成」
         while (true) {
             Console.WriteLine("都市名を入力。空行で終了");
+            
             var name = Console.ReadLine();
-            if (String.IsNullOrEmpty(name)) {
+            
+            if (string.IsNullOrEmpty(name)) {
                 break;
             }
+            
             var index = cities.FindIndex(c => c.Equals(name));
+            
             Console.WriteLine(index);
         }
     }
@@ -40,12 +40,14 @@ internal class Program {
     private static void Exercise2_2(List<string> cities) {
         //できたらGitのコメント「問題3.2.2完成」
         var count = cities.Count(c => c.Contains('o'));
+        
         Console.WriteLine(count);
     }
 
     private static void Exercise2_3(List<string> cities) {
         //できたらGitのコメント「問題3.2.3完成」
         var selected =  cities.Where(c => c.Contains('o')).ToArray();
+        
         foreach (var name in selected) {
             Console.WriteLine(name);
         }
@@ -53,8 +55,8 @@ internal class Program {
 
     private static void Exercise2_4(List<string> cities) {
         //できたらGitのコメント「問題3.2.4完成」
-        var obj = cities.Where(c => c.StartsWith('B'))
-                            .Select(c => new { c, c.Length });
+        var obj = cities.Where(c => c.StartsWith('B')).Select(c => new { c, c.Length });
+        
         foreach (var data in obj) {
             Console.WriteLine(data.c + ":" + data.Length + "文字");
         }

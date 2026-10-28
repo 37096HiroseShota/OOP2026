@@ -10,8 +10,9 @@ public class SalesCounter {
     }
 
     public IEnumerable<Sale> ReadSales(string filePath) {
-        var sales = new List<Sale>();    ///リスト
+        var sales = new List<Sale>();
         var lines = File.ReadAllLines(filePath);
+        
         foreach (var line in lines) {
             var items = line.Split(',');   //カンマ区切りで分割
             var sale = new Sale {
@@ -19,8 +20,10 @@ public class SalesCounter {
                 ProductCategory = items[1],
                 Amount = int.Parse(items[2]),
             };
+
             sales.Add(sale);
         }
+
         return sales;
     }
 
@@ -35,7 +38,7 @@ public class SalesCounter {
                 dict[sale.ShopName] += sale.Amount;   //売り上げを足しこみ
             else
                 //未登録の場合
-                dict[sale.ShopName] = sale.Amount;   //新規に売り上げを登録
+                dict[sale.ShopName] = sale.Amount;    //新規に売り上げを登録
         }
             return dict;
     }
@@ -51,7 +54,7 @@ public class SalesCounter {
                 dict[sale.ProductCategory] += sale.Amount;   //売り上げを足しこみ
             else
                 //未登録の場合
-                dict[sale.ProductCategory] = sale.Amount;   //新規に売り上げを登録
+                dict[sale.ProductCategory] = sale.Amount;    //新規に売り上げを登録
         }
         return dict;
     }

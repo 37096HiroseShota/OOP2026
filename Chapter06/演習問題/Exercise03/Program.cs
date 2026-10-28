@@ -7,21 +7,27 @@ internal class Program {
         var text = "Jackdaws love my big sphinx of quartz";
         #region
         Console.WriteLine("6.3.1");
+        
         Exercise1(text);
 
         Console.WriteLine("\n6.3.2");
+        
         Exercise2(text);
 
         Console.WriteLine("\n6.3.3");
+        
         Exercise3(text);
 
         Console.WriteLine("\n6.3.4");
+        
         Exercise4(text);
 
         Console.WriteLine("\n6.3.5");
+        
         Exercise5(text);
 
         Console.WriteLine("\n6.3.6");
+        
         Exercise6(text);
         #endregion
     }
@@ -32,12 +38,15 @@ internal class Program {
 
     private static void Exercise2(string text) {
         Console.Write("検索:");
+        
         var search = Console.ReadLine()!;
 
         Console.Write("置換:");
+        
         var replace = Console.ReadLine();
 
         var replaced = text.Replace(search, replace);
+        
         Console.WriteLine($"\n置換語文字列:{replaced}");
     }
 
@@ -69,7 +78,6 @@ internal class Program {
         var alphDicCount = Enumerable.Range('a', 26).
             ToDictionary(num => ((char)num), num => 0);
 
-        //var dict = new SortedDictionary<char, int>();
         foreach (var c in str) {
             alphDicCount[c]++;
         }
@@ -82,6 +90,7 @@ internal class Program {
 
         //配列を用いた集計
         var array = Enumerable.Repeat(0, 26).ToArray();
+        
         foreach (var alph in str) {
             array[alph - 'a']++;
         }

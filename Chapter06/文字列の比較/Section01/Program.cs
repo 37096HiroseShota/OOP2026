@@ -8,7 +8,7 @@ internal class Program {
         var str2 = "ｱｲｳｴｵ";
         var cultureInfo = new CultureInfo("ja-JP");
 
-        if (String.Compare(str1, str2, cultureInfo,
+        if (string.Compare(str1, str2, cultureInfo,
                                 CompareOptions.IgnoreWidth | CompareOptions.IgnoreKanaType) == 0) {
             Console.WriteLine("等しい");
         } else {

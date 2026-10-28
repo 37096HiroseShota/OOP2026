@@ -1,0 +1,7 @@
+﻿using Exerceise03;
+
+var service = new Take20Processor();
+var processor = new TextFileProcessor(service);
+string fileName = @"C:\Users\infosys\source\repos\OOP2026\Chapter15\演習問題\Exercise01\枕草子.txt";
+
+processor.Run(fileName);

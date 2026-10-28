@@ -8,7 +8,7 @@ internal class Program {
         Console.Write("文字列2:");
         var str2 = Console.ReadLine();
 
-        if (String.Compare(str1, str2, ignoreCase: true) == 0) {
+        if (string.Compare(str1, str2, ignoreCase: true) == 0) {
             Console.WriteLine("\n等しい");
         } else {
             Console.WriteLine("\n等しくない");

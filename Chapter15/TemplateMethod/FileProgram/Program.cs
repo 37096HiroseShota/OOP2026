@@ -6,12 +6,12 @@ TextProcessor.Run<FileProgram>(path);
 
 public class FileProgram : TextProcessor {
     private int _count;
-    private string _seachWords = "";
+    private string? _seachWords = "";
 
     protected override void Initialize(string fileName) {
         _count = 0;
         Console.Write("カウントしたい単語：");
-        _seachWords = Console.ReadLine()!;
+        _seachWords = Console.ReadLine();
     }
 
     protected override void Execute(string line) {

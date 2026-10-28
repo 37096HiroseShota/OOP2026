@@ -4,17 +4,13 @@ namespace Section01;
 
 internal class Program {
     static void Main(string[] args) {
-        //var obj = new PasswordPolicy("aaaaa", "bbbbb");
-        //var data = obj.Name;
-
         var ms = new MySample();
         //変更不可のオブジェクトなので、Add、RemoveAtは新たなインスタンスを返す
         var newList = ms.MyList.Add(6).Remove(0);
-        ms.MyList.ForEach(n => Console.Write($"{n} "));
-        Console.WriteLine();   //改行
+        
+        ms.MyList.ForEach(n => Console.Write($"{n}\n"));
 
-        newList.ForEach(n => Console.Write($"{n} "));
-        Console.WriteLine();   //改行
+        newList.ForEach(n => Console.Write($"{n}\n"));
     }
 }
 

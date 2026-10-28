@@ -19,7 +19,6 @@ internal class Program {
         Console.WriteLine("5.2.4");
         Exercise4(ymCollection);
 
-
         Console.WriteLine("5.2.5");
         Exercise5(ymCollection);
     }
@@ -36,6 +35,7 @@ internal class Program {
 
     private static void Exercise5(YearMonth[] ymCollection) {
         var array = ymCollection.Select(s => s.AddOneMonth()).ToArray();
+        
         foreach (var obj in array) {
             Console.WriteLine(obj);
         }
@@ -46,6 +46,7 @@ internal class Program {
             if (obj.IS21Century) {
                 return obj;
             }
+        
         }
         return null;
     }

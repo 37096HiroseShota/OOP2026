@@ -25,10 +25,12 @@ internal class Program {
     private static void Exercise1(List<int> numbers) {
         //できたらGitのコメント「問題3.1.1完成」
         var exists = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
+        
         if (exists) {
             Console.WriteLine("存在しています");
             return;
         }
+
         Console.WriteLine("存在していません");
     }
 

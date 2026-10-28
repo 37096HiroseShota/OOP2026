@@ -23,7 +23,7 @@ internal class Program {
             Console.WriteLine("array" + "[" + i + "]" + ":" + array[i]);
         }
         
-        Console.WriteLine("\n合計" + ":" + array.Where(n => n % 2 == 0).Sum()); //LINQ
+        Console.WriteLine("\n合計" + ":" + array.Where(n => n % 2 == 0).Sum());
         Console.WriteLine("\n(出力2)");
         
         astOut(array);
@@ -34,10 +34,8 @@ internal class Program {
             Console.Write("array" + "[" + i + "]" + ":");
 
             for (int j = 0; j <= i; j++) {
-                Console.Write("*");
+                Console.Write("*\n");
             }
-
-            Console.WriteLine();
         }
     }
 }

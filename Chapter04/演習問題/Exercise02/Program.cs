@@ -3,17 +3,24 @@
 internal class Program {
     static void Main(string[] args) {
         Console.WriteLine(" --- 4.2.1 ---");
+        
         Exercise1();
+        
         Console.WriteLine("\n --- 4.2.2 ---");
+        
         Exercise2();
+        
         Console.WriteLine("\n --- 4.2.3 ---");
+        
         Exercise3();
     }
 
     private static void Exercise1() {
         //if-else文を使用
         Console.Write("数値を入力してください" + ":");
+        
         string? line = Console.ReadLine();
+        
         if (!int.TryParse(line, out var number)) {
             Console.WriteLine("入力値に誤りがあります");
             return;
@@ -33,9 +40,12 @@ internal class Program {
     private static void Exercise2() {
         //switch文を使用
         Console.Write("数値を入力してください" + ":");
+        
         string? line = Console.ReadLine();
+        
         if (!int.TryParse(line, out var number)) {
             Console.WriteLine("入力値に誤りがあります");
+            
             return;
         }
 
@@ -59,7 +69,9 @@ internal class Program {
     private static void Exercise3() {
         //switch式を使用
         Console.Write("数値を入力してください" + ":");
+        
         string? line = Console.ReadLine();
+        
         if (!int.TryParse(line, out var number)) {
             Console.WriteLine("入力値に誤りがあります");
             return;

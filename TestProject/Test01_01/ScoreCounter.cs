@@ -20,10 +20,8 @@ public class ScoreCounter {
                 Subject = scores[1],
                 Score = int.Parse(scores[2]),
             };
-
             score.Add(student);
         }
-
         return score;
     }
 
@@ -38,7 +36,6 @@ public class ScoreCounter {
                 dict[student.Subject] = student.Score;
             }
         }
-
         return dict;
     }
 }

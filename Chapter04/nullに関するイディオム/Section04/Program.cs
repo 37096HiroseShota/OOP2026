@@ -4,6 +4,7 @@ internal class Program {
     static void Main(string[] args) {
         #region nullの判定
         string? name = null;
+        
         if (name is not null) {
             Console.WriteLine("nameはnullです");
         } else {
@@ -14,9 +15,9 @@ internal class Program {
         #region null合体演算子
         string code = "12345";
 
-        //GetMessage()メソッドの戻り値がnullだったら、
-        //DefaultMessage()メソッドが実行される
+        //GetMessage()メソッドの戻り値がnullだったら、DefaultMessage()メソッドが実行される
         var message = GetMassage(code) ?? DefaultMessage();
+       
         Console.WriteLine(message);
 
         #endregion
@@ -35,6 +36,7 @@ internal class Program {
         };
         //sale = null;
         int? amount = sale?.Amount;
+        
         Console.WriteLine("売上高" + ":" + amount);
         #endregion
 
@@ -42,6 +44,7 @@ internal class Program {
         int a = 10;
         int b = 20;
         int c = 30;
+        
         Console.Write("入れ替え前" + ":");
         Console.WriteLine("a = " + a + " b = " + b);
 

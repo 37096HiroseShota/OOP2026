@@ -5,7 +5,6 @@ internal class Program {
         if (args.Length == 3
             && int.TryParse(args[1], out var start)
                 && int.TryParse(args[2], out var stop)) {
-
             if (args[0] == "-tom") {
                 PrintFeetToMeterList(start, stop);   //メートルへの変換
             } else if (args[0] == "-tof") {
@@ -21,7 +20,6 @@ internal class Program {
     //フィートからメートルへの対応表を出力
     private static void PrintFeetToMeterList(int start, int stop) {
         PrintMessage(start, stop, "フィート", "メートル");
-        Console.WriteLine();
 
         for (int feet = start; feet <= stop; feet++) {
             double meter = FeetConverter.ToMeter(feet);
@@ -32,7 +30,6 @@ internal class Program {
     //メートルからフィートへの対応表を出力
     private static void PrintMeterToFeetList(int start, int stop) {
         PrintMessage(start, stop, "メートル", "フィート");
-        Console.WriteLine();
 
         for (int meter = start; meter <= stop; meter++) {
             double feet = FeetConverter.FromMeter(meter);
@@ -41,7 +38,6 @@ internal class Program {
     }
 
     private static void PrintMessage(int start, int stop, String from, String to) {
-        Console.WriteLine("(" + start + from + "から" + stop + from + "までの"
-            + to + "への変換表を表示" + ")");
+        Console.WriteLine($"({start}{from}から{stop}{from}までの{to}への変換表を表示)\n");
     }
 }

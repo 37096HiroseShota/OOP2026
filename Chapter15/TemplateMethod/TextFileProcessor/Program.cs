@@ -8,10 +8,13 @@ public abstract class TextProcessor {
 
     private void Process(string fileName) {
         Initialize(fileName);
+        
         var lines = File.ReadAllLines(fileName);
+        
         foreach (var line in lines) {
             Execute(line);
         }
+        
         Terminate();
     }
 

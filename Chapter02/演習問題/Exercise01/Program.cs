@@ -5,10 +5,11 @@ internal class Program {
         var songs = new List<Song>();
 
         Console.WriteLine("***** 曲の登録 *****");
+
         while (true) {
             Console.Write("曲名：");
 
-            string? title = Console.ReadLine()!;
+            string title = Console.ReadLine()!;
 
             if (String.Compare(title, "end", ignoreCase: true) == 0) {
                 break;
@@ -16,7 +17,7 @@ internal class Program {
 
             Console.Write("アーティスト名：");
 
-            string? artistName = Console.ReadLine()!;
+            string artistName = Console.ReadLine()!;
 
             Console.Write("演奏時間（秒）：");
             

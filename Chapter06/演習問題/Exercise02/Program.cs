@@ -3,6 +3,7 @@
 internal class Program {
     static void Main() {
         Console.Write("整数文字列:");
+        
         var str = Console.ReadLine();
 
         if (int.TryParse(str, out var num)) {

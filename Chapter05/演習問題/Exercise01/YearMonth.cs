@@ -6,8 +6,7 @@ public record YearMonth(int year, int month) {
     public int Month { get; init; } = month;
 
     //5.1.2
-    //設定されている西暦が21世紀か判定する
-    //Yearが2001～2100年の間ならtrue、それ以外ならfalseを返す
+    //設定されている西暦が21世紀か判定する。Yearが2001～2100年の間ならtrue、それ以外ならfalseを返す
     public bool IS21Century => 2001 <= Year && Year <= 2100;
 
     //5.1.3
@@ -15,6 +14,7 @@ public record YearMonth(int year, int month) {
         if (Month == 12) {
             return new YearMonth(Year + 1, 1);
         }
+        
         return new (Year, Month + 1);
     }
 
