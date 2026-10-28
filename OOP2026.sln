@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156
+# Visual Studio Version 18
+VisualStudioVersion = 18.7.11925.98 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter00", "Chapter00", "{DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}"
 EndProject
@@ -178,6 +178,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "演習問題", "演習問題", "{F4EFA5F4-7B8F-42EC-ABF1-E76DDF151A6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise03", "Chapter15\演習問題\Exercise01\Exercise03.csproj", "{2273278C-0B32-466C-8B65-FF8452531578}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_csTello", "03_csTello", "{4DEADCF1-6B83-4F59-A0DB-7D92922DD513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consolleTello", "Tello\consolleTello\consolleTello.csproj", "{E4AE9918-A71D-40DA-A4F7-068DC9B9580E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -397,6 +401,10 @@ Global
 		{2273278C-0B32-466C-8B65-FF8452531578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2273278C-0B32-466C-8B65-FF8452531578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2273278C-0B32-466C-8B65-FF8452531578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4AE9918-A71D-40DA-A4F7-068DC9B9580E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4AE9918-A71D-40DA-A4F7-068DC9B9580E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4AE9918-A71D-40DA-A4F7-068DC9B9580E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4AE9918-A71D-40DA-A4F7-068DC9B9580E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -475,6 +483,7 @@ Global
 		{4F227162-8196-47DB-AF75-71AB43C5D2AA} = {CA511F00-11D7-45CA-8A2D-D0CEEB3627A7}
 		{F4EFA5F4-7B8F-42EC-ABF1-E76DDF151A6C} = {8D3BDFBD-4A35-4F33-B270-4B74DE25584C}
 		{2273278C-0B32-466C-8B65-FF8452531578} = {F4EFA5F4-7B8F-42EC-ABF1-E76DDF151A6C}
+		{E4AE9918-A71D-40DA-A4F7-068DC9B9580E} = {4DEADCF1-6B83-4F59-A0DB-7D92922DD513}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F12B8131-7C0C-477E-A6D4-FACBB08B9856}
