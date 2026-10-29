@@ -14,7 +14,7 @@ public class SalesCounter {
         var lines = File.ReadAllLines(filePath);
         
         foreach (var line in lines) {
-            var items = line.Split(',');   //カンマ区切りで分割
+            var items = line.Split(',');
             var sale = new Sale {
                 ShopName = items[0],
                 ProductCategory = items[1],

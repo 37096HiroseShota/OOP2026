@@ -8,12 +8,12 @@ internal class Program {
 
         Console.WriteLine("****店舗別売上****");
         foreach (var obj in amountPerStore) {
-            Console.WriteLine($"{obj.Key} {obj.Value}");
+            Console.WriteLine($"{obj.Key}{obj.Value}");
         }
 
         Console.WriteLine("\n****商品カテゴリ別売上高****");
         foreach (var obj in amountPerProductCategory) {
-            Console.WriteLine($"{obj.Key} {obj.Value}");
+            Console.WriteLine($"{obj.Key}{obj.Value}");
         }
     }
 }

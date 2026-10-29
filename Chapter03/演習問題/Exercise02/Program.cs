@@ -58,7 +58,7 @@ internal class Program {
         var obj = cities.Where(c => c.StartsWith('B')).Select(c => new { c, c.Length });
         
         foreach (var data in obj) {
-            Console.WriteLine(data.c + ":" + data.Length + "文字");
+            Console.WriteLine($"{data.c}:{data.Length}文字");
         }
     }
 }

@@ -9,6 +9,6 @@ internal class Program {
             i++;
         }
 
-        Console.WriteLine(i + "回繰り返しました");
+        Console.WriteLine($"{i}回繰り返しました");
     }
 }

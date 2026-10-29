@@ -37,7 +37,7 @@ internal class Program {
         }
     }
 
-    private static void PrintMessage(int start, int stop, String from, String to) {
+    private static void PrintMessage(int start, int stop, string from, string to) {
         Console.WriteLine($"({start}{from}から{stop}{from}までの{to}への変換表を表示)\n");
     }
 }
