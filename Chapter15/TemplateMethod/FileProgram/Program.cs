@@ -10,7 +10,9 @@ public class FileProgram : TextProcessor {
 
     protected override void Initialize(string fileName) {
         _count = 0;
+        
         Console.Write("カウントしたい単語：");
+        
         _seachWords = Console.ReadLine();
     }
 

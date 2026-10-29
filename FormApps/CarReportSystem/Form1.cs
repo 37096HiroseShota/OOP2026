@@ -22,17 +22,17 @@ public partial class Form1 : Form {
         }
         catch (Exception ex) {
             tsslbMessage.Text = "設定ファイル読み込みエラー";
-            MessageBox.Show(ex.Message);//←より具体的なエラーを出力
+            MessageBox.Show(ex.Message);   //←より具体的なエラーを出力
         }
     }
 
     //追加ボタンイベントハンドラ
     private void btAddRecord_Click(object sender, EventArgs e) {
 
-        tsslbMessage.Text = String.Empty;   //メッセージ領域のクリア
+        tsslbMessage.Text = string.Empty;   //メッセージ領域のクリア
 
         //記録者と車名が未入力だった場合は追加しない
-        if (String.IsNullOrWhiteSpace(cbAuthor.Text) || String.IsNullOrWhiteSpace(cbCarName.Text)) {
+        if (string.IsNullOrWhiteSpace(cbAuthor.Text) || string.IsNullOrWhiteSpace(cbCarName.Text)) {
             tsslbMessage.Text = "記録者、または車名が未入力です";
             return;
         }
@@ -152,6 +152,7 @@ public partial class Form1 : Form {
             tsslbMessage.Text = "削除するレポ－トを選択してください";
             return;
         }
+
         listCarReports.Remove(carReport);
 
         InputItemsUpdate(); //データグリットビューを更新したら呼ぶメソッド

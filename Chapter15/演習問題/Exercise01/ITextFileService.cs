@@ -1,5 +1,7 @@
 ﻿namespace Exerceise03;
 
 public interface ITextFileService {
-    void Execute(string line);
+    void Initialize();
+    bool Execute(string line);
+    void Terminate();
 }

@@ -4,7 +4,6 @@ public class DistanceConverter {
     public ConverterBase From {  get; init; }
     public ConverterBase To { get; init; }
 
-    //コンストラクタ
     public DistanceConverter(ConverterBase from, ConverterBase to) {
         From = from;
         To = to;

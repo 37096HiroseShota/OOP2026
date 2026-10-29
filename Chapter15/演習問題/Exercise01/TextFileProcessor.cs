@@ -8,10 +8,13 @@ internal class TextFileProcessor {
     }
 
     public void Run(string filename) {
+        _service.Initialize();
         var lines = File.ReadLines(filename);
-
-        foreach (var line in lines.Take(20)) {
-            _service.Execute(line);
+        foreach (var line in lines) {
+            if (!_service.Execute(line)) {
+                break;
+            }
         }
+        _service.Terminate();
     }
 }
