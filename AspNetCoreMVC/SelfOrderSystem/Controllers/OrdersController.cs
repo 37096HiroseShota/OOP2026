@@ -10,7 +10,7 @@ namespace SelfOrderSystem.Controllers;
 
 public class OrdersController : Controller {
     private readonly AppDbContext _db;      // 商品と注文のDB操作 
-    private readonly CartService _cart;    // Session内のカート操作 
+    private readonly CartService _cart;     // Session内のカート操作 
 
     public OrdersController(AppDbContext db, CartService cart) {
         _db = db;
@@ -73,7 +73,7 @@ public class OrdersController : Controller {
             });
         }
 
-        _db.Orders.Add(order);           // 注文と明細を登録対象にする 
+        _db.Orders.Add(order);          // 注文と明細を登録対象にする 
         await _db.SaveChangesAsync();   // DB保存の完了を待つ 
         _cart.Clear();                  // 保存成功後にカートを空にする 
         return RedirectToAction(nameof(Complete),
