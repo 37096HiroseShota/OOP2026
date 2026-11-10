@@ -1,24 +1,355 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+/* ==============================
+   カラーテーマ
+============================== */
+
+:root {
+    --main-bg: #111113;
+    --card-bg: #1b1b1e;
+    --header-bg: #151517;
+    --gold: #d6b77b;
+    --gold-hover: #e6c992;
+    --text-main: #f5f1e9;
+    --text-sub: #b7b0a6;
+    --border-color: #39352e;
+}
+
+/* ==============================
+   全体
+============================== */
+
+html {
+    background-color: var(--main-bg);
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--text-main);
+    font-family: "Segoe UI", "Yu Gothic UI", "Meiryo", sans-serif;
+}
+
+main {
+    padding-top: 1.5rem;
+}
+
+    main h1 {
+        color: var(--text-main);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin-bottom: 1.5rem;
+    }
+
+    main .text-muted {
+        color: var(--text-sub) !important;
+    }
+
+/* ==============================
+   ナビゲーション
+============================== */
+
+header .navbar.bg-white {
+    background-color: var(--header-bg) !important;
+}
+
+header .navbar.border-bottom {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+header a.navbar-brand {
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+    header a.navbar-brand:hover {
+        color: var(--gold-hover);
+    }
+
+header .nav-link.text-dark {
+    color: var(--text-sub) !important;
+    transition: color 0.2s;
+}
+
+    header .nav-link.text-dark:hover,
+    header .nav-link.text-dark:focus {
+        color: var(--gold) !important;
+    }
+
+header .navbar-toggler {
+    border-color: var(--border-color);
+}
+
+header .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* ==============================
+   商品・カートカード
+============================== */
+
+main .card {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+    main .card.shadow-sm {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+    }
+
+    main .card:hover {
+        transform: translateY(-3px);
+        border-color: #746348;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3) !important;
+    }
+
+main .card-body {
+    padding: 1.5rem;
+}
+
+main .card h2 {
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+main .card .fs-5.fw-bold {
+    color: var(--gold);
+}
+
+/* ==============================
+   ボタン
+============================== */
+
+main .btn {
+    border-radius: 0.65rem;
+    font-weight: 600;
+    padding: 0.65rem 1.1rem;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* メインボタン */
+main .btn-primary,
+main .btn-success,
+main .btn-dark {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: #171512;
+}
+
+    main .btn-primary:hover,
+    main .btn-success:hover,
+    main .btn-dark:hover {
+        background-color: var(--gold-hover);
+        border-color: var(--gold-hover);
+        color: #171512;
+    }
+
+/* カテゴリ切り替え */
+main .btn-outline-dark {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-sub);
+}
+
+    main .btn-outline-dark:hover {
+        background-color: #2b2823;
+        border-color: var(--gold);
+        color: var(--gold);
+    }
+
+/* サブボタン */
+main .btn-outline-secondary {
+    border-color: #706a61;
+    color: var(--text-main);
+}
+
+    main .btn-outline-secondary:hover {
+        background-color: #34312d;
+        border-color: var(--gold);
+        color: var(--text-main);
+    }
+
+main .btn-light {
+    background-color: var(--text-main);
+    border-color: var(--text-main);
+    color: #171512;
+}
+
+    main .btn-light:hover {
+        background-color: var(--gold-hover);
+        border-color: var(--gold-hover);
+        color: #171512;
+    }
+
+main .btn:disabled {
+    opacity: 0.55;
+}
+
+main .btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+/* ==============================
+   入力フォーム
+============================== */
+
+main .form-control,
+main .form-select {
+    background-color: #242427;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 0.65rem;
+    padding: 0.7rem 0.9rem;
+}
+
+    main .form-control:focus,
+    main .form-select:focus {
+        background-color: #29292c;
+        color: var(--text-main);
+        border-color: var(--gold);
+        box-shadow: 0 0 0 0.2rem rgba(214, 183, 123, 0.15);
+    }
+
+    main .form-control::placeholder {
+        color: #969087;
+    }
+
+main .form-label {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* ==============================
+   注文情報・メッセージ
+============================== */
+
+main .alert {
+    border-radius: 0.85rem;
+    padding: 1rem 1.25rem;
+}
+
+main .alert-dark {
+    background-color: #29251f;
+    border: 1px solid #514634;
+    color: var(--gold);
+}
+
+main .alert-info {
+    background-color: #202a30;
+    border: 1px solid #354b59;
+    color: #d0e5ef;
+}
+
+main .alert-danger {
+    background-color: #352021;
+    border: 1px solid #713e40;
+    color: #ffd4d4;
+}
+
+main .badge {
+    border-radius: 0.4rem;
+    padding: 0.45rem 0.7rem;
+}
+
+main .border-bottom {
+    border-bottom-color: var(--border-color) !important;
+}
+
+/* ==============================
+   注文完了画面
+============================== */
+
+main .display-6 {
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+/* ==============================
+   フッター
+============================== */
+
+footer.footer {
+    background-color: var(--header-bg);
+    color: var(--text-sub) !important;
+    border-top: 1px solid var(--border-color) !important;
+}
+
+footer a {
+    color: var(--gold);
+}
+
+    footer a:hover {
+        color: var(--gold-hover);
+    }
+
+/* ==============================
+   スマートフォン対応
+============================== */
+
+@media (max-width: 575.98px) {
+    main {
+        padding-top: 0.5rem;
+    }
+
+        main h1 {
+            font-size: 1.5rem;
+        }
+
+        main .card-body {
+            padding: 1.1rem;
+        }
+
+        main .card .d-flex.gap-2.mt-2 {
+            flex-wrap: wrap;
+        }
+
+        main .alert-dark {
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+}
+
+/* ==============================
+   アニメーション軽減設定
+============================== */
+
+@media (prefers-reduced-motion: reduce) {
+    main .card,
+    main .btn,
+    header .nav-link {
+        transition: none;
+    }
+
+        main .card:hover {
+            transform: none;
+        }
 }
 
 /* 商品写真を一定の高さで表示 */
