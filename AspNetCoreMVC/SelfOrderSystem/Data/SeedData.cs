@@ -12,6 +12,8 @@ public static class SeedData {
         var meat = new Category { Name = "肉料理", SortOrder = 1 };
         var curry = new Category { Name = "カレー", SortOrder = 2 };
         var drink = new Category { Name = "ドリンク", SortOrder = 3 };
+        var side = new Category { Name = "サイドメニュー", SortOrder = 4 };
+        var dessert = new Category { Name = "デザート", SortOrder = 5 };
 
         db.Categories.AddRange(meat, curry, drink);
         await db.SaveChangesAsync();                              // CategoryIdを確定 
@@ -40,6 +42,12 @@ public static class SeedData {
                 Name = "アイスコーヒー",
                 Price = 380m,
                 Description = "食後にもおすすめです"
+            },
+            new Product {
+                CategoryId = dessert.Id,
+                Name = "ガトーショコラ",
+                Price = 980m,
+                Description = "濃厚なチョコレートの風味を楽しめるケーキです"
             });
 
         await db.SaveChangesAsync();                              // 商品を保存 
