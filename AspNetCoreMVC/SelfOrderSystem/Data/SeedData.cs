@@ -15,7 +15,7 @@ public static class SeedData {
         var side = new Category { Name = "サイドメニュー", SortOrder = 4 };
         var dessert = new Category { Name = "デザート", SortOrder = 5 };
 
-        db.Categories.AddRange(meat, curry, drink);
+        db.Categories.AddRange(meat, curry, drink, side, dessert);
         await db.SaveChangesAsync();                              // CategoryIdを確定 
 
         db.Products.AddRange(

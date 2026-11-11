@@ -2,7 +2,15 @@
 @model List<Order>
 @{
     ViewData["Title"] = "店舗 注文一覧";
+
+    // 提供済み以外の注文数
+    int activeCount = Model.Count(o => o.Status != OrderStatus.Served);
+    
+    // 提供済みの注文数
+    int servedCount = Model.Count(o => o.Status == OrderStatus.Served);
 }
+
+<link rel="stylesheet" href="~/css/staff.css" asp-append-version="true" />
 
 <h1 class="h3">店舗 注文一覧</h1>
 <p>注文日時の新しい順に最大50件を表示します</p>
