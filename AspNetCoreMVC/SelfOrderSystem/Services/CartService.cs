@@ -4,12 +4,12 @@ using SelfOrderSystem.Models;
 namespace SelfOrderSystem.Services;
 
 // カート操作をまとめるクラス
-public class CartService {                                    
-    private const string CartKey = "CART";                        // Sessionのキー 
-    private readonly IHttpContextAccessor _httpContextAccessor;   // HttpContext取得用 
+public class CartService {
+    private const string CartKey = "CART"; // Sessionのキー 
+    private readonly IHttpContextAccessor _httpContextAccessor; // HttpContext取得用 
 
     // HttpContext取得用の仕組みを受け取る
-    public CartService(IHttpContextAccessor httpContextAccessor) { 
+    public CartService(IHttpContextAccessor httpContextAccessor) {
         _httpContextAccessor = httpContextAccessor;
     }
 
@@ -19,13 +19,13 @@ public class CartService {
                ?? throw new InvalidOperationException("Sessionを取得できません");
 
     // Sessionからカートを取得
-    public List<CartItem> GetItems() {                             
-        return Session.GetObject<List<CartItem>>(CartKey)         // CARTをList<CartItem>へ戻す 
+    public List<CartItem> GetItems() {
+        return Session.GetObject<List<CartItem>>(CartKey) // CARTをList<CartItem>へ戻す 
                ?? new List<CartItem>();
     }
 
     // 商品を1個追加
-    public void Add(Product product) {                             
+    public void Add(Product product) {
         var items = GetItems();
         var item = items.SingleOrDefault(x => x.ProductId == product.Id); // 同じ商品を探す 
 
@@ -37,10 +37,10 @@ public class CartService {
                 Quantity = 1
             });
         } else {
-            item.Quantity++;                                      // 既存商品なら数量だけ1増やす 
+            item.Quantity++; // 既存商品なら数量だけ1増やす 
         }
 
-        Save(items);                                              // 変更後のカートをSessionへ保存 
+        Save(items); // 変更後のカートをSessionへ保存 
     }
 
     public void SetQuantity(int productId, int quantity) {
@@ -51,21 +51,21 @@ public class CartService {
             return;
         }
 
-        item.Quantity = Math.Clamp(quantity, 1, 99);              // 数量を1～99の範囲へ収める 
-        Save(items);                                              // 変更後のカートをSessionへ保存 
+        item.Quantity = Math.Clamp(quantity, 1, 99); // 数量を1～99の範囲へ収める 
+        Save(items); // 変更後のカートをSessionへ保存 
     }
 
     public void Remove(int productId) {
         var items = GetItems();
-        items.RemoveAll(x => x.ProductId == productId);           // 指定商品だけ削除する 
-        Save(items);                                              // 変更後のカートをSessionへ保存 
+        items.RemoveAll(x => x.ProductId == productId); // 指定商品だけ削除する 
+        Save(items); // 変更後のカートをSessionへ保存 
     }
 
     public void Clear() {
-        Session.Remove(CartKey);                                  // CARTキーを削除してカートを空にする 
+        Session.Remove(CartKey); // CARTキーを削除してカートを空にする 
     }
 
     private void Save(List<CartItem> items) {
-        Session.SetObject(CartKey, items);                        // List<CartItem>をJSON化して保存 
+        Session.SetObject(CartKey, items); // List<CartItem>をJSON化して保存 
     }
 }
