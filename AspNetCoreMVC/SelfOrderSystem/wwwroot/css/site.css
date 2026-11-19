@@ -1,25 +1,25 @@
+﻿/*
+   SelfOrderSystem — 和食店スタイル
+   既存の Views/Menu/Index.cshtml を変更せずに適用できるデザイン
+   UTF-8 で保存
+*/
 
-/* ==============================
-   ��{�ݒ�
-============================== */
-
+/* 基本設定 */
 :root {
-    --main-bg: #f7f6f2;
-    --card-bg: #ffffff;
-    --header-bg: #243e35;
-    --main-color: #285342;
-    --main-hover: #193a2d;
-    --accent-color: #9b7036;
-    --text-main: #25332d;
-    --text-sub: #626b65;
-    --border-color: #dfe4dc;
+    --so-green: #233f35;
+    --so-green-deep: #1a3029;
+    --so-gold: #b18b52;
+    --so-ink: #26332d;
+    --so-muted: #6d756f;
+    --so-paper: #f8f6f1;
+    --so-line: #e7e2d8;
+    --so-rust: #a34f39;
 }
 
 html {
     font-size: 14px;
     position: relative;
     min-height: 100%;
-    background-color: var(--main-bg);
 }
 
 @media (min-width: 768px) {
@@ -30,324 +30,363 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: var(--main-bg);
-    color: var(--text-main);
-    font-family: "Segoe UI", "Yu Gothic UI", "Meiryo", sans-serif;
 }
 
-main {
-    padding-top: 1.5rem;
+.btn:focus-visible,
+.btn-link.nav-link:focus-visible,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 .2rem rgba(177, 139, 82, .3);
 }
 
-    main h1 {
-        color: var(--text-main);
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        margin-bottom: 1.5rem;
+/* メニューページだけ背景を切り替える
+   :has() は現在のChrome・Edgeで利用可能 */
+body:has(.so-cart-sidebar) {
+    background: var(--so-paper);
+    color: var(--so-ink);
+}
+
+    /* メニューページの見出し */
+    body:has(.so-cart-sidebar) h1.h3 {
+        font-size: clamp(1.55rem, 2.5vw, 2.15rem);
+        font-weight: 750;
+        letter-spacing: .06em;
+        color: var(--so-green-deep);
+        margin: 10px 0 22px !important;
+        padding-left: 17px;
+        border-left: 4px solid var(--so-gold);
     }
 
-    main .text-muted {
-        color: var(--text-sub) !important;
+    /* カテゴリ切替：横スクロール可能な丸みのあるタブ */
+    body:has(.so-cart-sidebar) .d-flex.gap-2.overflow-auto.pb-3 {
+        gap: 9px !important;
+        margin-bottom: 16px;
+        scrollbar-width: thin;
+        scrollbar-color: #c9c4b7 transparent;
     }
 
-/* ==============================
-   �i�r�Q�[�V����
-============================== */
+        body:has(.so-cart-sidebar) .d-flex.gap-2.overflow-auto.pb-3 > .btn {
+            border-radius: 100px;
+            padding: 9px 19px;
+            border: 1px solid #d8d7cf;
+            color: #4a584f;
+            background: #fff;
+            font-size: .88rem;
+            font-weight: 650;
+            white-space: nowrap;
+            box-shadow: 0 2px 7px rgba(25, 45, 31, .025);
+            transition: background .18s ease, color .18s ease, transform .18s ease;
+        }
 
-header .navbar.bg-white {
-    background-color: var(--header-bg) !important;
-}
+            body:has(.so-cart-sidebar) .d-flex.gap-2.overflow-auto.pb-3 > .btn:hover {
+                background: #edf0e9;
+                transform: translateY(-1px);
+            }
 
-header .navbar.border-bottom {
-    border-bottom: 1px solid #345246 !important;
-}
+            body:has(.so-cart-sidebar) .d-flex.gap-2.overflow-auto.pb-3 > .btn.btn-dark {
+                background: var(--so-green);
+                color: #fff;
+                border-color: var(--so-green);
+                box-shadow: 0 4px 10px rgba(35, 63, 53, .14);
+            }
 
-header a.navbar-brand {
-    color: #e6c68e;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-}
-
-    header a.navbar-brand:hover {
-        color: #f5d8a5;
+    /* 商品カード */
+    body:has(.so-cart-sidebar) .row.g-3 > [class*="col-"] > .card {
+        background: #fff;
+        border: 1px solid var(--so-line);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(24, 34, 27, .055) !important;
+        transition: transform .2s ease, box-shadow .2s ease;
     }
 
-header .nav-link.text-dark {
-    color: #edf2ed !important;
-}
-
-    header .nav-link.text-dark:hover,
-    header .nav-link.text-dark:focus {
-        color: #f5d8a5 !important;
+@media (hover: hover) {
+    body:has(.so-cart-sidebar) .row.g-3 > [class*="col-"] > .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 26px rgba(24, 34, 27, .12) !important;
     }
-
-header .navbar-toggler {
-    border-color: #b9c8be;
 }
 
-header .navbar-toggler-icon {
-    filter: invert(1);
-}
-
-/* ==============================
-   ���i�E�J�[�g�J�[�h
-============================== */
-
-main .card {
-    background-color: var(--card-bg);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(30, 50, 40, 0.06);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-    main .card.shadow-sm {
-        box-shadow: 0 4px 16px rgba(30, 50, 40, 0.06) !important;
-    }
-
-    main .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(30, 50, 40, 0.1) !important;
-    }
-
-main .card-body {
-    padding: 1.5rem;
-}
-
-main .card h2 {
-    color: var(--text-main);
-    font-weight: 700;
-}
-
-main .card .fs-5.fw-bold {
-    color: var(--accent-color);
-}
-
-/* ==============================
-   �{�^��
-============================== */
-
-main .btn {
-    border-radius: 0.65rem;
-    font-weight: 600;
-    padding: 0.65rem 1.1rem;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-main .btn-primary,
-main .btn-success,
-main .btn-dark {
-    background-color: var(--main-color);
-    border-color: var(--main-color);
-    color: #ffffff;
-}
-
-    main .btn-primary:hover,
-    main .btn-success:hover,
-    main .btn-dark:hover {
-        background-color: var(--main-hover);
-        border-color: var(--main-hover);
-        color: #ffffff;
-    }
-
-main .btn-outline-dark {
-    background-color: #ffffff;
-    border-color: #aebdb3;
-    color: var(--main-color);
-}
-
-    main .btn-outline-dark:hover {
-        background-color: var(--main-color);
-        border-color: var(--main-color);
-        color: #ffffff;
-    }
-
-main .btn-outline-secondary {
-    border-color: #87958b;
-    color: var(--text-main);
-}
-
-    main .btn-outline-secondary:hover {
-        background-color: #e8ede8;
-        border-color: var(--main-color);
-        color: var(--main-color);
-    }
-
-main .btn-light {
-    background-color: #ffffff;
-    border-color: #ffffff;
-    color: var(--main-color);
-}
-
-    main .btn-light:hover {
-        background-color: #edf2ed;
-        border-color: #edf2ed;
-        color: var(--main-hover);
-    }
-
-main .btn:disabled {
-    opacity: 0.6;
-}
-
-main .btn:focus-visible {
-    outline: 3px solid var(--accent-color);
-    outline-offset: 2px;
-}
-
-/* ==============================
-   ���̓t�H�[��
-============================== */
-
-main .form-control,
-main .form-select {
-    background-color: #ffffff;
-    color: var(--text-main);
-    border: 1px solid #bac7bc;
-    border-radius: 0.65rem;
-    padding: 0.7rem 0.9rem;
-}
-
-    main .form-control:focus,
-    main .form-select:focus {
-        background-color: #ffffff;
-        color: var(--text-main);
-        border-color: var(--main-color);
-        box-shadow: 0 0 0 0.2rem rgba(40, 83, 66, 0.15);
-    }
-
-    main .form-control::placeholder {
-        color: #737d75;
-    }
-
-main .form-label {
-    color: var(--text-main);
-    font-weight: 600;
-}
-
-/* ==============================
-   �������E���b�Z�[�W
-============================== */
-
-main .alert {
-    border-radius: 0.85rem;
-    padding: 1rem 1.25rem;
-}
-
-main .alert-dark {
-    background-color: #e4ede6;
-    border: 1px solid #c8d9cc;
-    color: #224333;
-}
-
-main .alert-info {
-    background-color: #e8f2f7;
-    border: 1px solid #b9d6e6;
-    color: #24506b;
-}
-
-main .alert-danger {
-    background-color: #fff0f0;
-    border: 1px solid #e8b8b8;
-    color: #963333;
-}
-
-main .badge {
-    border-radius: 0.45rem;
-    padding: 0.45rem 0.7rem;
-}
-
-main .border-bottom {
-    border-bottom-color: var(--border-color) !important;
-}
-
-/* ==============================
-   �����������
-============================== */
-
-main .display-6 {
-    color: var(--accent-color);
-    font-weight: 700;
-    letter-spacing: 0.03em;
-}
-
-/* ==============================
-   �t�b�^�[
-============================== */
-
-footer.footer {
-    background-color: #ffffff;
-    color: var(--text-sub) !important;
-    border-top: 1px solid var(--border-color) !important;
-}
-
-footer a {
-    color: var(--main-color);
-}
-
-    footer a:hover {
-        color: var(--main-hover);
-    }
-
-/* ==============================
-   ���i�ʐ^
-============================== */
-
+/* 商品写真はカード幅いっぱいに表示 */
 .so-product-photo {
     display: block;
     width: 100%;
-    height: 190px;
+    height: 205px;
     object-fit: cover;
-    background-color: #eeeee9;
+    object-position: center;
+    background: #f0eee8;
 }
 
 .so-product-photo--empty {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-sub);
-    font-size: 0.95rem;
+    color: #7d817a;
+    font-size: .93rem;
 }
 
-/* ==============================
-   �X�}�[�g�t�H���Ή�
-============================== */
+body:has(.so-cart-sidebar) .row.g-3 > [class*="col-"] > .card .card-body {
+    padding: 19px 18px 18px;
+}
+
+body:has(.so-cart-sidebar) .row.g-3 > [class*="col-"] > .card h2 {
+    font-size: 1.08rem;
+    font-weight: 750;
+    color: var(--so-green-deep);
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+body:has(.so-cart-sidebar) .row.g-3 > [class*="col-"] > .card .text-muted {
+    color: var(--so-muted) !important;
+    font-size: .86rem;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+body:has(.so-cart-sidebar) .row.g-3 > [class*="col-"] > .card p.fs-5 {
+    color: var(--so-rust);
+    font-weight: 800 !important;
+    letter-spacing: .015em;
+    margin-bottom: 14px;
+}
+
+/* 商品追加ボタンと売り切れボタン */
+body:has(.so-cart-sidebar) .row.g-3 .card .btn-primary,
+body:has(.so-cart-sidebar) .so-cart-sidebar .btn-primary {
+    background: var(--so-green);
+    color: #fff;
+    border: 1px solid var(--so-green);
+    border-radius: 10px;
+    padding: 11px 12px;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .025em;
+    transition: background .18s ease, transform .18s ease;
+}
+
+    body:has(.so-cart-sidebar) .row.g-3 .card .btn-primary:hover,
+    body:has(.so-cart-sidebar) .so-cart-sidebar .btn-primary:hover {
+        background: var(--so-green-deep);
+        border-color: var(--so-green-deep);
+        transform: translateY(-1px);
+    }
+
+body:has(.so-cart-sidebar) .row.g-3 .card .btn-secondary:disabled {
+    border: 1px solid #dddcd6;
+    border-radius: 10px;
+    background: #eeece7;
+    color: #8d908a;
+    opacity: 1;
+    padding: 11px 12px;
+}
+
+/* 写真付きカート */
+.so-cart-sidebar {
+    border: 1px solid #d9dfd7;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(24, 43, 32, .09);
+    overflow: hidden;
+}
+
+    .so-cart-sidebar .card-body {
+        padding: 0 17px 18px;
+    }
+
+        /* カート上部を濃緑の帯に */
+        .so-cart-sidebar .card-body > h2 {
+            background: var(--so-green);
+            color: #fff;
+            font-weight: 750;
+            font-size: 1.03rem;
+            letter-spacing: .05em;
+            margin: 0 -17px 6px;
+            padding: 17px 18px;
+        }
+
+            .so-cart-sidebar .card-body > h2::before {
+                content: "";
+                display: inline-block;
+                vertical-align: -1px;
+                height: 15px;
+                width: 3px;
+                margin-right: 10px;
+                border-radius: 2px;
+                background: #d9be8b;
+            }
+
+        .so-cart-sidebar .card-body > .text-muted {
+            color: var(--so-muted) !important;
+            font-size: .88rem;
+            padding: 20px 0;
+            margin: 0;
+            text-align: center;
+        }
+
+/* カート商品1件分 */
+.so-cart-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ece9e2;
+}
+
+.so-cart-photo,
+.so-cart-photo-empty {
+    display: block;
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+    border-radius: 10px;
+    background: #f2eee7;
+}
+
+.so-cart-photo {
+    object-fit: contain;
+    border: 1px solid #eee9e0;
+}
+
+.so-cart-photo-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #888;
+    font-size: .69rem;
+}
+
+.so-cart-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 5px;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
+}
+
+    .so-cart-info strong {
+        font-size: .87rem;
+        font-weight: 750;
+        color: var(--so-green-deep);
+    }
+
+    .so-cart-info small {
+        font-size: .77rem;
+        color: var(--so-muted);
+    }
+
+    .so-cart-info .fw-bold {
+        color: var(--so-rust);
+        font-size: .94rem;
+        font-weight: 750 !important;
+    }
+
+/* 点数と合計を分かりやすく区切る */
+.so-cart-total {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 19px 0 5px;
+}
+
+    .so-cart-total span {
+        color: #66746b;
+        font-size: .84rem;
+        font-weight: 600;
+    }
+
+    .so-cart-total strong {
+        color: var(--so-rust);
+        font-size: clamp(1.05rem, 1.65vw, 1.45rem);
+        font-weight: 800;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+.so-cart-sidebar .btn-primary.w-100 {
+    margin-top: 16px !important;
+    border-radius: 11px;
+    padding-block: 13px;
+}
+
+/* デスクトップ：右のカートを少し広くする */
+@media (min-width: 992px) {
+    body:has(.so-cart-sidebar) .row.g-4 > .col-lg-9 {
+        width: 68%;
+    }
+
+    body:has(.so-cart-sidebar) .row.g-4 > .col-lg-3 {
+        width: 32%;
+    }
+
+    .so-cart-sidebar {
+        position: sticky;
+        top: 90px;
+    }
+}
+
+/* 中程度の画面では2列の商品を読みやすく */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .so-product-photo {
+        height: 190px;
+    }
+
+    .so-cart-sidebar .card-body {
+        padding-inline: 13px;
+    }
+
+        .so-cart-sidebar .card-body > h2 {
+            margin-inline: -13px;
+        }
+
+    .so-cart-item {
+        gap: 8px;
+    }
+
+    .so-cart-photo,
+    .so-cart-photo-empty {
+        width: 58px;
+        height: 58px;
+        flex-basis: 58px;
+    }
+}
+
+/* スマホ：商品は1列、カートは下部でゆったり表示 */
+@media (max-width: 991.98px) {
+    .so-cart-sidebar {
+        position: static;
+    }
+
+    body:has(.so-cart-sidebar) h1.h3 {
+        margin-top: 2px !important;
+    }
+}
 
 @media (max-width: 575.98px) {
-    main {
-        padding-top: 0.5rem;
+    .so-product-photo {
+        height: 220px;
     }
 
-        main h1 {
-            font-size: 1.5rem;
-        }
+    body:has(.so-cart-sidebar) .row.g-3 > [class*="col-"] > .card .card-body {
+        padding: 16px;
+    }
 
-        main .card-body {
-            padding: 1.1rem;
-        }
-
-        main .card .d-flex.gap-2.mt-2 {
-            flex-wrap: wrap;
-        }
-
-        main .alert-dark {
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
+    .so-cart-photo,
+    .so-cart-photo-empty {
+        width: 76px;
+        height: 76px;
+        flex-basis: 76px;
+    }
 }
 
-/* ==============================
-   �A�j���[�V�����y���ݒ�
-============================== */
-
+/* 動きが苦手な人向け */
 @media (prefers-reduced-motion: reduce) {
-    main .card,
-    main .btn {
-        transition: none;
+    body:has(.so-cart-sidebar) .card,
+    body:has(.so-cart-sidebar) .btn {
+        transition: none !important;
     }
-
-        main .card:hover {
-            transform: none;
-        }
 }
