@@ -1,6 +1,5 @@
 ﻿using System.Net.Http;
 using System.Text.Json;
-using System.Windows;
 using WeatherApp.Models;
 
 namespace WeatherApp.Services;
