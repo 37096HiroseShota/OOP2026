@@ -1,12 +1,26 @@
 ﻿<Window x:Class="WeatherApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeatherApp"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="東京の天気"
+        Height="700"
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
 
+    <Grid>
+        <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <TextBlock Text="東京の現在気温"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"/>
+
+            <TextBlock x:Name="TemperatureText"
+                   Margin="0,30,0,0"
+                   FontSize="48"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"/>
+
+        </StackPanel>
     </Grid>
 </Window>
